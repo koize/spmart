@@ -8,12 +8,17 @@ An IOT Self-Checkout System to reduce the time required for customers at a super
 
 * Online Website for customers to purchase and checkout online
 * Option to pick up items from the supermarket themselves or deliver directly to their homes with a delivery fee of $4.00
-* Online customers that opt to collect their items from the supermarket will receive a QR code after online payment that they will need to show to the supermarket staff to collect their items
+* Online customers who opt to collect their items from the supermarket will receive a QR code after online payment that they will need to show to the supermarket staff to collect their items
 
 ## In-store Purchases
 
 * Self-checkout system where customers scan their products themselves, and the system will sum up the total and process payment
 * Two payment choices: ATM via PIN Code, **OR** Contactless "PayWave" Credit Card
+
+## Non-functional features
+
+* Idle Mode
+* Used to keep the system in low power mode when no one is using or interacting with the system
 
 # Components used and their purpose
 
