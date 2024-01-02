@@ -12,7 +12,7 @@ An IOT Self-Checkout System to reduce the time required for customers at a super
 
 ## In-store Purchases
 
-* Self-checkout system where customers scan their products themselves, and the system will sum up the total and process payment
+* Self-checkout system where customers scan their products themselves using a camera, and the system will sum up the total and process payment
 * Two payment choices: ATM via PIN Code, **OR** Contactless "PayWave" Credit Card
 
 ## Non-functional features
@@ -22,14 +22,15 @@ An IOT Self-Checkout System to reduce the time required for customers at a super
 
 # Components used and their purpose
 
-| Component         | Input/Output | Purpose                                                                                           | Customer’s requirements                                                                                             |
-|-------------------|--------------|---------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| Ultrasonic Sensor | Input        | To detect customer presence                                                                       | -                                                                                                                   |
-| RFID Reader       | Input        | To read products and customer’s credit card                                                       | Read product barcode to fetch product prices and other attributes Read customer’s credit card for “PayWave” support |
-| Keypad            | Input        | To allow customers to interact with the system (i.e confirm total price, payment choice, ATM PIN) | Allow customer to enter ATM PIN code for payment                                                                    |
-| LED               | Output       | To show system state                                                                              | -                                                                                                                   |
-| Buzzer            | Output       | To provide information/alerts to customer                                                         | -                                                                                                                   |
-| LCD               | Output       | To provide information to customer                                                                | Display product name, price, cumulative total                                                                       |
+| Component         | Input/Output | Purpose                                                                                           | Customer’s requirements                                           |
+|-------------------|--------------|---------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| Ultrasonic Sensor | Input        | To detect customer presence                                                                       | -                                                                 |
+| Camera            | Input        | To scan products to fetch product attributes                                                      | Read product barcode to fetch product prices and other attributes |
+| RFID Reader       | Input        | To read customer’s credit card                                                                    | Read customer’s credit card for “PayWave” support                 |
+| Keypad            | Input        | To allow customers to interact with the system (i.e confirm total price, payment choice, ATM PIN) | Allow customer to enter ATM PIN code for payment                  |
+| LED               | Output       | To show system state                                                                              | -                                                                 |
+| Buzzer            | Output       | To provide information/alerts to customer                                                         | -                                                                 |
+| LCD               | Output       | To provide information to customer                                                                | Display product name, price, cumulative total                     |
 
 # Software used
 
