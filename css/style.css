@@ -1,0 +1,14 @@
+.accordion{
+    width: 80% !important;
+    margin: 0 auto;
+    
+}
+.blackText{
+    color: black;
+}
+.nav-link:hover{
+    color: #f7ae79!important;
+}
+.dropdown-item:hover{
+    color: #f7ae79!important;
+}
