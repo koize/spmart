@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <link rel="icon" href="img/csad_icon.png" type="image/x-icon" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
 
 
 </head>
@@ -91,16 +93,17 @@
   <!--Main Navigation-->
 
   <!--Main layout-->
-  <main class="mt-5">
-    <div class="container">
+  <main class="mt-5 mx-5 px-5">
+    <div class="container-fluid">
       <section>
-      <h6 class="mb-5 display-6 fw-bold ls-tight" style="color: #2980B9">
-            Shopping
-            <span style="color: #6DD5FA">Cart</span>
-          </h6>         </section>
+        <h6 class="mb-5 display-6 fw-bold ls-tight" style="color: #2980B9">
+          Shopping
+          <span style="color: #6DD5FA">Cart</span>
+        </h6>
+      </section>
       <section>
         <div class="row">
-          <div class="col-md-7 gx-5 mb-4">
+          <div class="col-md-7 mb-5 gx-5 ">
             <div class="card">
               <?php
               $servername = "localhost";
@@ -140,31 +143,44 @@
                 die("Connection failed: " . $conn->connect_error);
               }
 
-              $checkIfEmpty = "SELECT CASE WHEN EXISTS(SELECT 1 FROM shopping_cart WHERE user_id =" . $_COOKIE['id'] .") THEN 0 ELSE 1 END AS IsEmpty";
-              $getIfEmpty = mysqli_query($dbb, $checkIfEmpty);
-              $cartempty = $getIfEmpty->fetch_array()['IsEmpty'];
-
-              if ($cartempty == 1) {
+              if (!isset($_COOKIE['id'])) {
                 echo '<div class="card">';
                 echo '<div class="row">';
-                echo '<h4 style="text-align: center; padding: 25px 20px 20px 20px">Cart is empty</h4>';
+                echo '<h3 style="text-align: center; padding: 20px 20px 20px 0px">Please login to view cart!</h3>';
                 echo '</div>';
                 echo '<p>';
-                echo '<a href="products.php" style="margin: 0px 35% 10px 38%" class="btn btn-outline-info">Add products now!</a>';
+                echo '<a href="login.php" style="margin: 20px 40% 20px 40%" class="btn btn-outline-info">Login now!</a>';
                 echo '</p>';
                 echo '</div>';
               } else {
-                if (isset($_COOKIE['id'])) {
-                  $query = $db->query('SELECT id, name, username, address FROM users WHERE id = "' . $_COOKIE['id'] . '"');
-                  $result = $query->fetchAll();
-                  foreach ($result as $index => $user) {
-                    $user_id = $user['id'];
+                $checkIfEmpty = "SELECT CASE WHEN EXISTS(SELECT 1 FROM shopping_cart WHERE user_id =" . $_COOKIE['id'] . ") THEN 0 ELSE 1 END AS IsEmpty";
+                $getIfEmpty = mysqli_query($dbb, $checkIfEmpty);
+                $cartempty = $getIfEmpty->fetch_array()['IsEmpty'];
+                if ($cartempty == 1) {
+                  echo '<div class="card">';
+                  echo '<div class="row">';
+                  echo '<h3 style="text-align: center; padding: 20px 20px 20px 0px">Cart is empty!</h3>';
+                  echo '</div>';
+                  echo '<p>';
+                  echo '<a href="products.php" style="margin: 20px 40% 20px 40%" class="btn btn-outline-info">Add products now!</a>';
+                  echo '</p>';
+                  echo '</div>';
+                } else {
+                  if (isset($_COOKIE['id'])) {
+                    $query = $db->query('SELECT id, name, username, address FROM users WHERE id = "' . $_COOKIE['id'] . '"');
+                    $result = $query->fetchAll();
+                    foreach ($result as $index => $user) {
+                      $user_id = $user['id'];
+                    }
                   }
+                  $sqlViewCart = "SELECT id,image_link,product_name,product_price,product_quantity FROM shopping_cart WHERE user_id = $user_id";
+                  $result = $conn->query($sqlViewCart);
                 }
-                $sqlViewCart = "SELECT id,image_link,product_name,product_price,product_quantity FROM shopping_cart WHERE user_id = $user_id";
-                $result = $conn->query($sqlViewCart);
 
-                if ($result->num_rows > 0) {
+
+
+
+                if (!empty($result)  && $cartempty == 0) {
                   for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                     $row = mysqli_fetch_assoc($result);
                     $formatted_price = number_format((float)$row['product_price'], 2, '.' . '');
@@ -219,150 +235,303 @@
 
             </div>
           </div>
-          <div class="col-md-5 gx-5 mb-4">
-            <div class="card" style="margin-bottom: 20px; font-weight: bold;">
-              <!-- Card start -->
-              <div class="row" style="margin: 20px 10px 0px 10px">
-                <div class="col-md-6">
-                  Sub Total:
-                </div>
-                <div class="col-md-6">
-                  <?php
 
-                  if (isset($_COOKIE['id'])) {
-                    $query = $db->query('SELECT id, name, username, address FROM users WHERE id = "' . $_COOKIE['id'] . '"');
-                    $result = $query->fetchAll();
-                    foreach ($result as $index => $user) {
-                      $user_id = $user['id'];
-                    }
-                  }
-                  $sqlViewCart = "SELECT id,image_link,product_name,product_price,product_quantity FROM shopping_cart WHERE user_id = $user_id";
-                  $result = $conn->query($sqlViewCart);
-                  $subTotal = 0;
+          <div class="col-md-5 gx-3 mb-4">
+            <div class="card mx-auto my-0" style="margin-top: 20px; margin-bottom: 20px; font-weight: bold;">
+              <div class="card-body">
+                <h5 class="card-title">Select delivery method</h5>
+                <!-- Pills navs -->
+                <ul class="nav nav-pills nav-justified mb-3" id="ex2" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <a data-mdb-pill-init class="nav-link active" id="tab-pickup" data-mdb-toggle="pill" href="#pills-pickup" role="tab" aria-controls="pills-login" aria-selected="true">Self-Pickup</a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <a data-mdb-pill-init class="nav-link" id="tab-delivery" data-mdb-toggle="pill" href="#pills-delivery" role="tab" aria-controls="pills-register" aria-selected="false">Home Delivery</a>
+                  </li>
+                </ul>
+                <!-- Pills navs -->
+                <div class="tab-content">
+                  <div class="tab-pane fade" id="pills-delivery" role="tabpanel" aria-labelledby="tab-login">
+                    <!-- Card start -->
+                    <div class="row" style="margin: 20px 20px 0px 10px">
+                      <div class="col-md-6">
+                        Subtotal
+                      </div>
+                      <div class="col-md-6">
+                        <?php
 
-                  if ($result->num_rows > 0) {
-                    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
-                      $row = mysqli_fetch_assoc($result);
-                      $subTotal = $subTotal + $row['product_price'];
-                    }
-                  }
-                  $formatted_subTotal = number_format((float)$subTotal, 2, '.' . '');
+                        if (isset($_COOKIE['id'])) {
+                          $query = $db->query('SELECT id, name, username, address FROM users WHERE id = "' . $_COOKIE['id'] . '"');
+                          $result = $query->fetchAll();
+                          foreach ($result as $index => $user) {
+                            $user_id = $user['id'];
+                          }
+                          $sqlViewCart = "SELECT id,image_link,product_name,product_price,product_quantity FROM shopping_cart WHERE user_id = $user_id";
+                          $result = $conn->query($sqlViewCart);
+                          $subTotal = 0;
 
-                  echo '<span style="padding-left:100px">$' . $formatted_subTotal . '</span>';
-                  ?>
-                </div>
-              </div>
-              <hr class="hr" style="margin: 10px 0px 0px 0px">
+                          if ($result->num_rows > 0) {
+                            for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                              $row = mysqli_fetch_assoc($result);
+                              $subTotal = $subTotal + $row['product_price'];
+                            }
+                          }
+                          $formatted_subTotal = number_format((float)$subTotal, 2, '.' . '');
 
-              <div class="row" style="margin: 20px 10px 0px 10px">
-                <div class="col-md-6">
-                  Voucher
-                </div>
-
-                <div class="col-md-6">
-                  <form method='POST' action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                    <input type="text" name="voucherET" />
-                    <input type="submit" value="Add" class="btn">
-                  </form>
-                  <?php
-                  $voucherMultiplier = 1;
-                  $servername = "localhost";
-                  $username = "root";
-                  $password = "";
-                  $dbname = "csad_projek_test";
-                  $dbname = "seesad";
-
-                  $conn = new mysqli($servername, $username, $password, $dbname);
-
-                  if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                  }
-
-                  $dbb = mysqli_connect('localhost', 'root', '', 'seesad');
-                  if (!$dbb) {
-                    die("Connection Failed: " . mysqli_connect_error());
-                  }
-                  $db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+                          echo '<span style="padding-left:100px">$' . $formatted_subTotal . '</span>';
+                        } else {
+                        }
 
 
-                  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $voucher_code = $_POST['voucherET'];
-                    $checkVoucher = "SELECT * FROM reward_codes WHERE discount_code = '$voucher_code'";
-                    $voucherResult = $conn->query($checkVoucher);
-                    if ($voucherResult !== false && $voucherResult->num_rows > 0) {
-                      $voucherRow = mysqli_fetch_assoc($voucherResult);
-                      $discount = $voucherRow['discount'];
-                      if ($discount == 5) {
-                        $voucherMultiplier = 0.95;
-                      } else if ($discount == 10) {
-                        $voucherMultiplier = 0.9;
-                      } else if ($discount == 2) {
-                        $voucherMultiplier = 0.98;
+                        ?>
+                      </div>
+                    </div>
+                    <hr class="hr" style="margin: 10px 0px 0px 0px">
+
+                    <!--
+                    <div class="row" style="margin: 20px 20px 0px 10px;">
+                      <form method='POST' action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
+                        <div class="col-xs-2">
+                          Promotion Code
+                        </div>
+                        <div class="col-xs-10 ">
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <input type="text" name="voucherET"  size="55"/>
+                            </div>
+                            <div class="col-lg-2">
+                              <input type="submit" value="Add" class="btn btn-secondary" />
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+
+
+                      <?php
+                      /*
+                      $voucherMultiplier = 1;
+                      $servername = "localhost";
+                      $username = "root";
+                      $password = "";
+                      $dbname = "csad_projek_test";
+                      $dbname = "seesad";
+
+                      $conn = new mysqli($servername, $username, $password, $dbname);
+
+                      if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
                       }
-                    } else {
-                      $voucherWrongWarning = true;
-                    }
-                  }
 
-                  ?>
-                </div>
-              </div>
-              <hr class="hr" style="margin: 10px 0px 0px 0px">
+                      $dbb = mysqli_connect('localhost', 'root', '', 'seesad');
+                      if (!$dbb) {
+                        die("Connection Failed: " . mysqli_connect_error());
+                      }
+                      $db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
 
-              <div class="row" style="margin: 20px 10px 0px 10px">
-                <div class="col-md-6">
-                  Delivery fee
-                </div>
-                <div class="col-md-6">
-                  <span style="padding-left:100px">$5.00</span>
-                </div>
-              </div>
-              <hr class="hr" style="margin: 10px 0px 0px 0px">
 
-              <div class="row" style="margin: 20px 10px 0px 10px">
-                <div class="col-md-6">
-                  Service fee
-                </div>
-                <div class="col-md-6">
-                  <span style="padding-left:100px">$3.69</span>
-                </div>
-              </div>
-              <hr class="hr" style="margin: 10px 0px 0px 0px">
+                      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $voucher_code = $_POST['voucherET'];
+                        $checkVoucher = "SELECT * FROM reward_codes WHERE discount_code = '$voucher_code'";
+                        $voucherResult = $conn->query($checkVoucher);
+                        if ($voucherResult !== false && $voucherResult->num_rows > 0) {
+                          $voucherRow = mysqli_fetch_assoc($voucherResult);
+                          $discount = $voucherRow['discount'];
+                          if ($discount == 5) {
+                            $voucherMultiplier = 0.95;
+                          } else if ($discount == 10) {
+                            $voucherMultiplier = 0.9;
+                          } else if ($discount == 2) {
+                            $voucherMultiplier = 0.98;
+                          }
+                        } else {
+                          $voucherWrongWarning = true;
+                        }
+                      }
+                      */
+                      ?>
+                    </div>
+                    <hr class="hr" style="margin: 10px 0px 0px 0px">
+                    -->
+                    <div class="row" style="margin: 20px 20px 0px 10px">
+                      <div class="col-md-6">
+                        Delivery fee
+                      </div>
+                      <div class="col-md-6">
+                        <span style="padding-left:100px">$5.00</span>
+                      </div>
+                    </div>
+                    <hr class="hr" style="margin: 10px 0px 0px 0px">
 
-              <div class="card" style="margin:20px; background-color:lightgray">
-                <div class="row" style="margin: 15px 15px 15px 15px">
-                  <div class="col-md-6">
-                    <b>Total</b>
+
+
+                    <div class="card" style="margin-top:20px; margin-bottom:20px; background-color:lightblue">
+                      <div class="row" style="margin: 15px 15px 15px 15px">
+                        <div class="col-md-6">
+                          <b>Total</b>
+                        </div>
+                        <div class="col-md-6">
+                          <?php
+                          if (isset($_COOKIE['id'])) {
+                            $TOTAL = ($subTotal + 5);
+                            $formatted_TOTAL = number_format((float)$TOTAL, 2, '.' . '');
+                            echo '<span style="padding-left:100px; font-weight: bold">$' . $formatted_TOTAL . '</span>';
+                          }
+                          ?>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <?php
-                    $TOTAL = ($subTotal + 5 + 3.69) * $voucherMultiplier;
-                    $formatted_TOTAL = number_format((float)$TOTAL, 2, '.' . '');
-                    echo '<span style="padding-left:100px; font-weight: bold">$' . $formatted_TOTAL . '</span>';
-                    ?>
+                  <div class="tab-pane fade show active" id="pills-pickup" role="tabpanel" aria-labelledby="tab-login">
+                    <!-- Card start -->
+                    <div class="row" style="margin: 20px 20px 0px 10px">
+                      <div class="col-md-6">
+                        Subtotal
+                      </div>
+                      <div class="col-md-6">
+                        <?php
+
+                        if (isset($_COOKIE['id'])) {
+                          $query = $db->query('SELECT id, name, username, address FROM users WHERE id = "' . $_COOKIE['id'] . '"');
+                          $result = $query->fetchAll();
+                          foreach ($result as $index => $user) {
+                            $user_id = $user['id'];
+                          }
+                          $sqlViewCart = "SELECT id,image_link,product_name,product_price,product_quantity FROM shopping_cart WHERE user_id = $user_id";
+                          $result = $conn->query($sqlViewCart);
+                          $subTotal = 0;
+
+                          if ($result->num_rows > 0) {
+                            for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                              $row = mysqli_fetch_assoc($result);
+                              $subTotal = $subTotal + $row['product_price'];
+                            }
+                          }
+                          $formatted_subTotal = number_format((float)$subTotal, 2, '.' . '');
+
+                          echo '<span style="padding-left:100px">$' . $formatted_subTotal . '</span>';
+                        }
+
+                        ?>
+                      </div>
+                    </div>
+                    <hr class="hr" style="margin: 10px 0px 0px 0px">
+
+                    <!--
+                    <div class="row" style="margin: 20px 20px 0px 10px;">
+                      <form method='POST' action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
+                        <div class="col-xs-2">
+                          Promotion Code
+                        </div>
+                        <div class="col-xs-10 ">
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <input type="text" name="voucherET"  size="55"/>
+                            </div>
+                            <div class="col-lg-2">
+                              <input type="submit" value="Add" class="btn btn-secondary" />
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+
+
+                      <?php
+                      /*
+                      $voucherMultiplier = 1;
+                      $servername = "localhost";
+                      $username = "root";
+                      $password = "";
+                      $dbname = "csad_projek_test";
+                      $dbname = "seesad";
+
+                      $conn = new mysqli($servername, $username, $password, $dbname);
+
+                      if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                      }
+
+                      $dbb = mysqli_connect('localhost', 'root', '', 'seesad');
+                      if (!$dbb) {
+                        die("Connection Failed: " . mysqli_connect_error());
+                      }
+                      $db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+
+
+                      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $voucher_code = $_POST['voucherET'];
+                        $checkVoucher = "SELECT * FROM reward_codes WHERE discount_code = '$voucher_code'";
+                        $voucherResult = $conn->query($checkVoucher);
+                        if ($voucherResult !== false && $voucherResult->num_rows > 0) {
+                          $voucherRow = mysqli_fetch_assoc($voucherResult);
+                          $discount = $voucherRow['discount'];
+                          if ($discount == 5) {
+                            $voucherMultiplier = 0.95;
+                          } else if ($discount == 10) {
+                            $voucherMultiplier = 0.9;
+                          } else if ($discount == 2) {
+                            $voucherMultiplier = 0.98;
+                          }
+                        } else {
+                          $voucherWrongWarning = true;
+                        }
+                      }
+                      */
+                      ?>
+                    </div>
+                    <hr class="hr" style="margin: 10px 0px 0px 0px">
+                    -->
+
+
+
+                    <div class="card" style="margin-top:20px; margin-bottom:20px; background-color:lightblue">
+                      <div class="row" style="margin: 15px 15px 15px 15px">
+                        <div class="col-md-6">
+                          <b>Total</b>
+                        </div>
+                        <div class="col-md-6">
+                          <?php
+                          if (isset($_COOKIE['id'])) {
+                            $TOTAL = ($subTotal);
+                            $formatted_TOTAL = number_format((float)$TOTAL, 2, '.' . '');
+                            echo '<span style="padding-left:100px; font-weight: bold">$' . $formatted_TOTAL . '</span>';
+                          }
+
+                          ?>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <!-- Card end -->
             </div>
             <?php
-            $checkIfEmpty = "SELECT CASE WHEN EXISTS(SELECT 1 FROM shopping_cart WHERE user_id =" . $_COOKIE['id'] .") THEN 0 ELSE 1 END AS IsEmpty";
-            $getIfEmpty = mysqli_query($dbb, $checkIfEmpty);
-            $cartempty = $getIfEmpty->fetch_array()['IsEmpty'];
-
-            if ($cartempty == 1) {
-              echo '<div class="card" style="width: 100%;">';
-              echo '<a class="btn btn-secondary stretched-link" style="padding: 20px" data-mdb-toggle="modal" data-mdb-target="#noItems">';
-              echo '<span style="font-weight: bold; margin:auto; font-size: 18px">No items in cart</span>';
+            if (!isset($_COOKIE['id'])) {
+              echo '<div class="card my-4" style="width: 100%;">';
+              echo '<a class="btn btn-secondary stretched-link" style="padding: 20px"  disabled data-mdb-target="#noItems">';
+              echo '<span style="font-weight: bold; margin:auto; font-size: 20px">Please login to checkout</span>';
               echo '</a>';
               echo '</div>';
             } else {
-              echo '<div class="card" style="width: 100%;">';
-              echo '<a href="cart.php?checkOut" class="btn btn-info stretched-link" style="padding: 20px" data-mdb-toggle="modal" data-mdb-target="#CheckoutSuccess>';
-              echo '<span style="font-weight: bold; margin:auto; font-size: 18px" data-mdb-toggle="modal" data-mdb-target="#CheckoutSuccess">CHECKOUT $' . $formatted_TOTAL . '</span>';
-              echo '</a>';
-              echo '</div>';
+              $checkIfEmpty = "SELECT CASE WHEN EXISTS(SELECT 1 FROM shopping_cart WHERE user_id =" . $_COOKIE['id'] . ") THEN 0 ELSE 1 END AS IsEmpty";
+              $getIfEmpty = mysqli_query($dbb, $checkIfEmpty);
+              $cartempty = $getIfEmpty->fetch_array()['IsEmpty'];
+
+              if ($cartempty == 1) {
+                echo '<div class="card my-4" style="width: 100%;">';
+                echo '<a class="btn btn-secondary stretched-link" style="padding: 20px" data-mdb-ripple-init data-mdb-modal-init disabled data-mdb-target="#noItems">';
+                echo '<span style="font-weight: bold; margin:auto; font-size: 20px">No items in cart</span>';
+                echo '</a>';
+                echo '</div>';
+              } else {
+                echo '<div class="card my-4" style="width: 100%;">';
+                echo '<a href="cart.php?checkOut" class="btn btn-secondary stretched-link" data-mdb-ripple-init data-mdb-modal-init style="padding: 20px"  data-mdb-target="#CheckoutSuccess>';
+                echo '<span style="font-weight: bold; font-size: 20px" >CHECKOUT</span>';
+                echo '</a>';
+                echo '</div>';
+              }
             }
+
             ?>
           </div>
       </section>
@@ -411,9 +580,12 @@
   </script>
   <!--Footeeeeeer-->
   <!-- MDB -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript" src="js/script.js"></script>
+  
+  <!-- MDB -->
+
 </body>
 
 </html>
