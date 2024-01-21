@@ -36,6 +36,15 @@ if (isset($_GET['checkOutPickup'])) {
     $result = $conn->query($sql);
     $orderTotal = 0;
     $orderQty = 0;
+    include 'phpqrcode/qrlib.php'; 
+    $text = "Order# $order_id";
+    $path = 'pickupQR/'; 
+    $file = $path.$order_id.".png"; 
+    $ecc = 'L'; 
+    $pixel_Size = 10; 
+    $frame_Size = 10;
+    QRcode::png($text, $file, $ecc, $pixel_Size, $frame_Size); 
+
 
     if ($result->num_rows > 0) {
       for ($i = 0; $i < mysqli_num_rows($result); $i++) {
@@ -49,8 +58,8 @@ if (isset($_GET['checkOutPickup'])) {
        
       }
       $date = date('d-m-y h:i:s');
-      $addToList = "INSERT INTO orders_list(product_price,product_quantity,order_id,user_id,address,order_date,order_type) 
-      VALUES ('$orderTotal','$orderQty','$order_id','$user_id','$address','$date','Self-Pickup')";
+      $addToList = "INSERT INTO orders_list(product_price,product_quantity,order_id,user_id,address,order_date,order_type,qr_code) 
+      VALUES ('$orderTotal','$orderQty','$order_id','$user_id','N/A','$date','Self-Pickup','$file')";
       $conn->query($addToList);
       $checkOutSuccessful = true;
       if ($checkOutSuccessful == true) {
@@ -91,7 +100,7 @@ if (isset($_GET['checkOutDelivery'])) {
        
       }
       $date = date('d-m-y h:i:s');
-      $orderTotal += 5;
+      $orderTotal += 4;
       $addToList = "INSERT INTO orders_list(product_price,product_quantity,order_id,user_id,address,order_date,order_type) 
       VALUES ('$orderTotal','$orderQty','$order_id','$user_id','$address','$date','Delivery')";
       $conn->query($addToList);

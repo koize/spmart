@@ -403,21 +403,17 @@
           <div class="col-md-6 gx-5 mb-4">
           <h6 class=" display-6 fw-bold ls-tight" style="color: #2980B9">
             About
-            <span style="color: #6DD5FA">Us</span>
-          </h6>            <p class="text-muted">
-              Seesad is an online shop dedicated to providing high-quality, natural face wash products that are gentle on the skin. We believe that everyone deserves to have clear, healthy skin, and we are committed to providing our customers with the best possible products to help them achieve their skin care goals.
-            </p>
+            <span style="color: #6DD5FA">SPmart</span>
+          </h6>            
+          <p class="text-muted">
+
+        </p>
             <p><strong>Why choose us?</strong></p>
             <p class="text-muted">
-              We offer a variety of different face wash products to suit different skin types.
+     
 
-              In addition to our high-quality products, we also offer excellent customer service. We are always available to answer your questions and help you find the right product for your skin.
-
-              We believe that Seesad is the best place to buy face wash online. We offer a wide variety of products, excellent customer service, and competitive prices.
-
-              Thank you for choosing Seesad!
+              Thank you for choosing SPmart!
             </p>
-            <p><strong>For more details, go to our <a href="about.php">About Us</a> page.</strong></p>
           </div>
         </div>
       </section>

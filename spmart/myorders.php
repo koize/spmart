@@ -66,6 +66,7 @@
                     <th>Order Date</th>
                     <th>Order Total</th>
                     <th>Total Quantity</th>
+                    <th>Delivery Method</th>
                     <th>Shipping Address</th>
                     <th>View Order</th>
                   </tr>
@@ -82,6 +83,7 @@
                     echo "<td>" . $row['order_date'] . "</td>";
                     echo "<td>" . $row['product_price'] . "</td>";
                     echo "<td>" . $row['product_quantity'] . "</td>";
+                    echo "<td>" . $row['order_type'] . "</td>";
                     echo "<td>" . $row['address'] . "</td>";
                     echo "<td><button type='button' class='btn btn-primary' data-mdb-toggle='modal' data-mdb-target='#" . "order_" . $row['order_id'] . "'>View</button></td>";
                     echo "</tr>";
@@ -124,9 +126,10 @@
                       echo "<td>" . $row1['product_desc'] . "</td>";
                       echo "<td>$" . $row1['product_price'] . "</td>";
                       echo "</tr>";
+
                     }
                     echo "</table>";
-
+                    echo "<center><img src='".$row['qr_code']."'></center>"; 
                     echo "</div>";
                     //content here
                     echo "<div class='modal-footer'>";

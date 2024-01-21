@@ -136,7 +136,8 @@
               user_id int,
               address TEXT,
               order_date TEXT,
-              order_type TEXT)
+              order_type TEXT,
+              qr_code TEXT)
               ');
 
               include 'checkout.php';
@@ -359,7 +360,7 @@
                         Delivery fee
                       </div>
                       <div class="col-md-6">
-                        <span style="padding-left:100px">$5.00</span>
+                        <span style="padding-left:100px">$4.00</span>
                       </div>
                     </div>
                     <hr class="hr" style="margin: 10px 0px 0px 0px">
@@ -374,7 +375,7 @@
                         <div class="col-md-6">
                           <?php
                           if (isset($_COOKIE['id'])) {
-                            $TOTAL = ($subTotal + 5);
+                            $TOTAL = ($subTotal + 4);
                             $formatted_TOTAL = number_format((float)$TOTAL, 2, '.' . '');
                             $orderType = 'Delivery';
                             echo '<span style="padding-left:100px; font-weight: bold">$' . $formatted_TOTAL . '</span>';
@@ -600,7 +601,7 @@
         </div>
         <div class="modal-body">We have received your payment and your order will be prepared shortly</div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Ok</button>
+          <a href="myorders.php" class="btn btn-secondary" >Ok</a>
         </div>
       </div>
     </div>
@@ -615,7 +616,7 @@
         </div>
         <div class="modal-body">Your cart is empty! Add items before checking out</div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Ok</button>
+          <a href="products.php"  class="btn btn-secondary" >Ok</a>
         </div>
       </div>
     </div>

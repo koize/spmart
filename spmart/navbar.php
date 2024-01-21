@@ -31,7 +31,7 @@
       <i class="fas fa-bars"></i>
     </button>
     <a class="navbar-brand nav-link" href="index.php">
-      <img src="img/csad_logo_korean_small.png" alt="a"  height="55">
+      <img src="img/csad_logo_korean_small.png" class="rounded-9" alt="a"  height="55">
     </a>
     <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
