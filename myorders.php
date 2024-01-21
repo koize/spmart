@@ -62,7 +62,6 @@
               <div class="card-body">
                 <table class="table table-striped">
                   <tr>
-                    <th>No.</th>
                     <th>Order ID</th>
                     <th>Order Date</th>
                     <th>Order Total</th>
@@ -80,8 +79,7 @@
                   foreach ($result as $row) {
                     echo "<tr>";
                     echo "<td>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['order_id'] . "</td>";
-                    echo "<td>" . $row['product_name'] . "</td>";
+                    echo "<td>" . $row['order_date'] . "</td>";
                     echo "<td>" . $row['product_price'] . "</td>";
                     echo "<td>" . $row['product_quantity'] . "</td>";
                     echo "<td>" . $row['address'] . "</td>";

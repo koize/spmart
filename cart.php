@@ -134,7 +134,9 @@
               product_quantity INT,
               order_id int,
               user_id int,
-              address TEXT)
+              address TEXT,
+              order_date TEXT,
+              order_type TEXT)
               ');
 
               include 'checkout.php';
@@ -374,12 +376,51 @@
                           if (isset($_COOKIE['id'])) {
                             $TOTAL = ($subTotal + 5);
                             $formatted_TOTAL = number_format((float)$TOTAL, 2, '.' . '');
+                            $orderType = 'Delivery';
                             echo '<span style="padding-left:100px; font-weight: bold">$' . $formatted_TOTAL . '</span>';
+
                           }
                           ?>
                         </div>
                       </div>
                     </div>
+                    <hr class="hr" style="margin: 10px 0px 0px 0px">
+                    <?php
+                    if (!isset($_COOKIE['id'])) {
+                      echo '<div class="card my-4" style="width: 100%;">';
+                      echo '<a class="btn btn-secondary stretched-link" style="padding: 20px"  disabled data-mdb-target="#noItems">';
+                      echo '<span style="font-weight: bold; margin:auto; font-size: 20px">Please login to checkout</span>';
+                      echo '</a>';
+                      echo '</div>';
+                    } else {
+                      $checkIfEmpty = "SELECT CASE WHEN EXISTS(SELECT 1 FROM shopping_cart WHERE user_id =" . $_COOKIE['id'] . ") THEN 0 ELSE 1 END AS IsEmpty";
+                      $getIfEmpty = mysqli_query($dbb, $checkIfEmpty);
+                      $cartempty = $getIfEmpty->fetch_array()['IsEmpty'];
+
+                      if ($cartempty == 1) {
+                        echo '<div class="card my-4" style="width: 100%;">';
+                        echo '<a class="btn btn-secondary stretched-link" style="padding: 20px" data-mdb-ripple-init data-mdb-modal-init disabled data-mdb-target="#noItems">';
+                        echo '<span style="font-weight: bold; margin:auto; font-size: 20px">No items in cart</span>';
+                        echo '</a>';
+                        echo '</div>';
+                      } else if ($orderType == 'Self-Pickup') {
+
+                        echo '<div class="card my-4" style="width: 100%;">';
+                        echo '<a href="cart.php?checkOutPickup" class="btn btn-secondary stretched-link" style="padding: 20px" data-mdb-toggle="modal" data-mdb-target="#CheckoutSuccess>';
+                        echo '<span style="font-weight: bold; margin:auto; font-size: 20px" data-mdb-toggle="modal" data-mdb-target="#CheckoutSuccess">CHECKOUT</span>';
+                        echo '</a>';
+                        echo '</div>';
+                      } else if ($orderType == 'Delivery') {
+
+                        echo '<div class="card my-4" style="width: 100%;">';
+                        echo '<a href="cart.php?checkOutDelivery" class="btn btn-secondary stretched-link" style="padding: 20px" data-mdb-toggle="modal" data-mdb-target="#CheckoutSuccess>';
+                        echo '<span style="font-weight: bold; margin:auto; font-size: 20px" data-mdb-toggle="modal" data-mdb-target="#CheckoutSuccess">CHECKOUT</span>';
+                        echo '</a>';
+                        echo '</div>';
+                      }
+                    }
+
+                    ?>
                   </div>
                   <div class="tab-pane fade show active" id="pills-pickup" role="tabpanel" aria-labelledby="tab-login">
                     <!-- Card start -->
@@ -494,45 +535,56 @@
                             $TOTAL = ($subTotal);
                             $formatted_TOTAL = number_format((float)$TOTAL, 2, '.' . '');
                             echo '<span style="padding-left:100px; font-weight: bold">$' . $formatted_TOTAL . '</span>';
+                            $orderType = 'Self-Pickup';
                           }
 
                           ?>
                         </div>
                       </div>
                     </div>
+                    <hr class="hr" style="margin: 10px 0px 0px 0px">
+                    <?php
+                    if (!isset($_COOKIE['id'])) {
+                      echo '<div class="card my-4" style="width: 100%;">';
+                      echo '<a class="btn btn-secondary stretched-link" style="padding: 20px"  disabled data-mdb-target="#noItems">';
+                      echo '<span style="font-weight: bold; margin:auto; font-size: 20px">Please login to checkout</span>';
+                      echo '</a>';
+                      echo '</div>';
+                    } else {
+                      $checkIfEmpty = "SELECT CASE WHEN EXISTS(SELECT 1 FROM shopping_cart WHERE user_id =" . $_COOKIE['id'] . ") THEN 0 ELSE 1 END AS IsEmpty";
+                      $getIfEmpty = mysqli_query($dbb, $checkIfEmpty);
+                      $cartempty = $getIfEmpty->fetch_array()['IsEmpty'];
+
+                      if ($cartempty == 1) {
+                        echo '<div class="card my-4" style="width: 100%;">';
+                        echo '<a class="btn btn-secondary stretched-link" style="padding: 20px" data-mdb-ripple-init data-mdb-modal-init disabled data-mdb-target="#noItems">';
+                        echo '<span style="font-weight: bold; margin:auto; font-size: 20px">No items in cart</span>';
+                        echo '</a>';
+                        echo '</div>';
+                      } else if ($orderType == 'Self-Pickup') {
+
+                        echo '<div class="card my-4" style="width: 100%;">';
+                        echo '<a href="cart.php?checkOutPickup" class="btn btn-secondary stretched-link" style="padding: 20px" data-mdb-toggle="modal" data-mdb-target="#CheckoutSuccess>';
+                        echo '<span style="font-weight: bold; margin:auto; font-size: 20px" data-mdb-toggle="modal" data-mdb-target="#CheckoutSuccess">CHECKOUT</span>';
+                        echo '</a>';
+                        echo '</div>';
+                      } else if ($orderType == 'Delivery') {
+
+                        echo '<div class="card my-4" style="width: 100%;">';
+                        echo '<a href="cart.php?checkOutDelivery" class="btn btn-secondary stretched-link" style="padding: 20px" data-mdb-toggle="modal" data-mdb-target="#CheckoutSuccess>';
+                        echo '<span style="font-weight: bold; margin:auto; font-size: 20px" data-mdb-toggle="modal" data-mdb-target="#CheckoutSuccess">CHECKOUT</span>';
+                        echo '</a>';
+                        echo '</div>';
+                      }
+                    }
+
+                    ?>
                   </div>
                 </div>
               </div>
               <!-- Card end -->
             </div>
-            <?php
-            if (!isset($_COOKIE['id'])) {
-              echo '<div class="card my-4" style="width: 100%;">';
-              echo '<a class="btn btn-secondary stretched-link" style="padding: 20px"  disabled data-mdb-target="#noItems">';
-              echo '<span style="font-weight: bold; margin:auto; font-size: 20px">Please login to checkout</span>';
-              echo '</a>';
-              echo '</div>';
-            } else {
-              $checkIfEmpty = "SELECT CASE WHEN EXISTS(SELECT 1 FROM shopping_cart WHERE user_id =" . $_COOKIE['id'] . ") THEN 0 ELSE 1 END AS IsEmpty";
-              $getIfEmpty = mysqli_query($dbb, $checkIfEmpty);
-              $cartempty = $getIfEmpty->fetch_array()['IsEmpty'];
 
-              if ($cartempty == 1) {
-                echo '<div class="card my-4" style="width: 100%;">';
-                echo '<a class="btn btn-secondary stretched-link" style="padding: 20px" data-mdb-ripple-init data-mdb-modal-init disabled data-mdb-target="#noItems">';
-                echo '<span style="font-weight: bold; margin:auto; font-size: 20px">No items in cart</span>';
-                echo '</a>';
-                echo '</div>';
-              } else {
-                echo '<div class="card my-4" style="width: 100%;">';
-                echo '<a href="cart.php?checkOut" class="btn btn-secondary stretched-link" data-mdb-ripple-init data-mdb-modal-init style="padding: 20px"  data-mdb-target="#CheckoutSuccess>';
-                echo '<span style="font-weight: bold; font-size: 20px" >CHECKOUT</span>';
-                echo '</a>';
-                echo '</div>';
-              }
-            }
-
-            ?>
           </div>
       </section>
     </div>
@@ -583,7 +635,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript" src="js/script.js"></script>
-  
+
   <!-- MDB -->
 
 </body>

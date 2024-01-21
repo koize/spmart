@@ -1,4 +1,4 @@
-<footer class="bg-secondary text-white">
+<footer class="bg-secondary bg-gradient text-white">
     <!-- Grid container -->
     <div class="container p-4">
       <!--Grid row-->
@@ -23,11 +23,27 @@
               <a href="products.php" class="text-white">View all products</a>
             </li>
             <li>
-              <a href="rewards.php" class="text-white">Free vouchers</a>
+              <a href="rewards.php" class="text-white"></a>
             </li>
             <li>
               <a href="support.php" class="text-white">Support</a>
             </li>
+            
+          </ul>
+        </div>
+        <!--Grid column-->
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Unused pages</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a href="rewards.php" class="text-white">Rewards</a>
+            </li>
+            <li>
+              <a href="about.php" class="text-white">About</a>
+            </li>
+        
             
           </ul>
         </div>

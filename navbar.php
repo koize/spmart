@@ -16,7 +16,7 @@
 <script type="text/javascript" src="js/script.js"></script>
 
 
-<nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block bg-info" style="z-index: 2000;" height="150%">
+<nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block bg-danger" style="z-index: 2000;" height="150%">
   <div class="container-fluid">
     <!-- Navbar brand -->
     <button
@@ -57,9 +57,6 @@
               <a class="dropdown-item" href="products.php">All Products</a>
             </li>
           </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="rewards.php">Rewards</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="support.php">Support</a>
