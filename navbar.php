@@ -54,7 +54,7 @@
               <a class="dropdown-item" href="products_others.php">Others</a>
             </li>
             <li>
-              <a class="dropdown-item" href="products.php">All products</a>
+              <a class="dropdown-item" href="products.php">All Products</a>
             </li>
           </ul>
         </li>
@@ -65,8 +65,9 @@
           <a class="nav-link" href="support.php">Support</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="about.php">About Us</a>
+          <a class="nav-link" href="myorders.php">My Orders</a>
         </li>
+        
       </ul>
 
       <ul class="navbar-nav d-flex flex-row">

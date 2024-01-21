@@ -423,23 +423,8 @@
       </section>
       <!--Section: Content-->
 
-      <hr class="my-5" />
 
-      <!--Section: Content-->
-      <section class="mb-5">
-      <h6 class="my-5 display-6 fw-bold ls-tight text-center" style="color: #2980B9">
-            An intro
-            <span style="color: #6DD5FA">to our store</span>
-          </h6>
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-6">
-            <div class="ratio ratio-16x9">
-              <iframe src="https://www.youtube.com/embed/0VPDIfMmdW8" title="YouTube video" allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!--Section: Content-->
+     
 
 
     </div>

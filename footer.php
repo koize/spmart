@@ -5,38 +5,15 @@
       <div class="row">
         <!--Grid column-->
         <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-          <h5 class="text-uppercase">about Clear Skin All Day</h5>
+          <h5 class="text-uppercase">about SPmart</h5>
 
           <p>
-          Clear Skin All Day is an online shop dedicated to providing high-quality, natural face wash products that are gentle on the skin. We believe that everyone deserves to have clear, healthy skin, and we are committed to providing our customers with the best possible products to help them achieve their skin care goals. For more details, go to our <a href="about.php">About Us</a> page.
+            SPmart is a student-run e-commerce platform that aims to provide a seamless shopping experience for all.
           </p>
         </div>
         <!--Grid column-->
 
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">the poor developers</h5>
-
-          <ul class="list-unstyled mb-0">
-          <li>
-              <a href="developers.php" class="text-white">Developers Home</a>
-            </li>
-            <li>
-              <a href="developers.php#gab" class="text-white">gab (hackerman)</a>
-            </li>
-            <li>
-              <a href="developers.php#dru" class="text-white">dru (requires emotional support)</a>
-            </li>
-            <li>
-              <a href="developers.php#j" class="text-white">jus (WHYYY)</a>
-            </li>
-            <li>
-              <a href="developers.php#xav" class="text-white">xav (korean)</a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-
+       
         <!--Grid column-->
         <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
           <h5 class="text-uppercase">Quick shortcuts</h5>
@@ -51,9 +28,7 @@
             <li>
               <a href="support.php" class="text-white">Support</a>
             </li>
-            <li>
-              <a href="about.php" class="text-white">About us</a>
-            </li>
+            
           </ul>
         </div>
         <!--Grid column-->
@@ -114,12 +89,7 @@
     </div>
     <!-- Grid container -->
 
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
+   
   </footer>
   <!-- Footer -->
   </section>

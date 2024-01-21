@@ -75,7 +75,7 @@
             <!--Section: Content-->
             <section class="text-center">
             <h6 class="my-5 display-6 fw-bold ls-tight text-center" style="color: #2980B9">
-            CSAD
+            SPmart
             <span style="color: #6DD5FA">Rewards</span>
           </h6>
             <p>Get discounts while playing!</p>
