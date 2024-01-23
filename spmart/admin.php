@@ -4,7 +4,7 @@ if($_COOKIE['id'] != "1") {
     exit();
 }
 
-$db = new PDO("mysql:host=localhost;dbname=spmart", "root", "");
+$db = new PDO("mysql:host=mysql;dbname=spmart", "root", "");
 $query = $db->query('CREATE DATABASE IF NOT EXISTS spmart');
 
 

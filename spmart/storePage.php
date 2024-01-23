@@ -134,7 +134,7 @@
 
       <section class="text-center">
       <?php
-      $servername = "localhost";
+      $servername = "mysql";
       $username = "root";
       $password = "";
       $dbname = "csad_projek_test";

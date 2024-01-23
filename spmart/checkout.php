@@ -1,6 +1,6 @@
 <?php
 session_start();
-$servername = "localhost";
+$servername = "mysql";
 $username = "root";
 $password = "";
 $dbname = "csad_projek_test";
@@ -14,11 +14,11 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$dbb = mysqli_connect('localhost', 'root', '', 'spmart');
+$dbb = mysqli_connect('mysql', 'root', '', 'spmart');
 if (!$dbb) {
   die("Connection Failed: " . mysqli_connect_error());
 }
-$db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
+$db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
 
 $getOrderID = mysqli_query($dbb, "SELECT MAX(order_id) AS order_id_max FROM orders_list");
 $order_id_max = $getOrderID->fetch_array()['order_id_max'];

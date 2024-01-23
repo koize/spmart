@@ -191,7 +191,7 @@
   <!--Main layout-->
   <?php
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
+    $db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
     $query = $db->query('CREATE TABLE IF NOT EXISTS feedback (
       id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       name TEXT NOT NULL,
