@@ -79,7 +79,7 @@
                   $result = $db->query($sql);
                   foreach ($result as $row) {
                     echo "<tr>";
-                    echo "<td>" . $row['id'] . "</td>";
+                    echo "<td>" . $row['order_id'] . "</td>";
                     echo "<td>" . $row['order_date'] . "</td>";
                     echo "<td>" . $row['product_price'] . "</td>";
                     echo "<td>" . $row['product_quantity'] . "</td>";
@@ -120,7 +120,7 @@
 
                     foreach ($result1 as $row1) {
                       echo "<tr>";
-                      echo "<td>" . $row1['id'] . "</td>";
+                      echo "<td>" . $row1['order_id'] . "</td>";
                       echo "<td>" . $row1['product_name'] . "</td>";
                       echo "<td><img style='width:60px;height:60px' src='img/" . $row1['image_link'] . "'>" . "</td>";
                       echo "<td>" . $row1['product_desc'] . "</td>";

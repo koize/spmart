@@ -36,13 +36,14 @@ if (isset($_GET['checkOutPickup'])) {
     $result = $conn->query($sql);
     $orderTotal = 0;
     $orderQty = 0;
+    $date = date('d-m-y h:i:s');
     include 'phpqrcode/qrlib.php'; 
-    $text = "Order# $order_id";
+    $text = "Order# $order_id / User# $user_id / Order Total: $orderTotal / Order Quantity: $orderQty / Order Date: $date";
     $path = 'pickupQR/'; 
     $file = $path.$order_id.".png"; 
     $ecc = 'L'; 
-    $pixel_Size = 10; 
-    $frame_Size = 10;
+    $pixel_Size = 8; 
+    $frame_Size = 8;
     QRcode::png($text, $file, $ecc, $pixel_Size, $frame_Size); 
 
 
@@ -57,7 +58,6 @@ if (isset($_GET['checkOutPickup'])) {
         $orderQty += $product_quantity;
        
       }
-      $date = date('d-m-y h:i:s');
       $addToList = "INSERT INTO orders_list(product_price,product_quantity,order_id,user_id,address,order_date,order_type,qr_code) 
       VALUES ('$orderTotal','$orderQty','$order_id','$user_id','N/A','$date','Self-Pickup','$file')";
       $conn->query($addToList);
