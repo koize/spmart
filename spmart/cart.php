@@ -110,12 +110,12 @@
               $username = "root";
               $password = "";
               $dbname = "csad_projek_test";
-              $dbname = "seesad";
+              $dbname = "spmart";
 
 
               $conn = new mysqli($servername, $username, $password, $dbname);
-              $db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
-              $query = $db->query('CREATE DATABASE IF NOT EXISTS seesad');
+              $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
+              $query = $db->query('CREATE DATABASE IF NOT EXISTS spmart');
               $query = $db->query('CREATE TABLE IF NOT EXISTS shopping_cart (
               id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
               product_id INT,
@@ -317,7 +317,7 @@
                       $username = "root";
                       $password = "";
                       $dbname = "csad_projek_test";
-                      $dbname = "seesad";
+                      $dbname = "spmart";
 
                       $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -325,11 +325,11 @@
                         die("Connection failed: " . $conn->connect_error);
                       }
 
-                      $dbb = mysqli_connect('localhost', 'root', '', 'seesad');
+                      $dbb = mysqli_connect('localhost', 'root', '', 'spmart');
                       if (!$dbb) {
                         die("Connection Failed: " . mysqli_connect_error());
                       }
-                      $db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+                      $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
 
                       if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -484,7 +484,7 @@
                       $username = "root";
                       $password = "";
                       $dbname = "csad_projek_test";
-                      $dbname = "seesad";
+                      $dbname = "spmart";
 
                       $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -492,11 +492,11 @@
                         die("Connection failed: " . $conn->connect_error);
                       }
 
-                      $dbb = mysqli_connect('localhost', 'root', '', 'seesad');
+                      $dbb = mysqli_connect('localhost', 'root', '', 'spmart');
                       if (!$dbb) {
                         die("Connection Failed: " . mysqli_connect_error());
                       }
-                      $db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+                      $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
 
                       if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -4,8 +4,8 @@ if($_COOKIE['id'] != "1") {
     exit();
 }
 
-$db = new PDO("mysql:host=localhost;dbname=seesad", "root", "");
-$query = $db->query('CREATE DATABASE IF NOT EXISTS seesad');
+$db = new PDO("mysql:host=localhost;dbname=spmart", "root", "");
+$query = $db->query('CREATE DATABASE IF NOT EXISTS spmart');
 
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {

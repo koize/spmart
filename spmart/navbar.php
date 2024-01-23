@@ -84,7 +84,7 @@
           </a>
         </li>
         <?php
-        $db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
         if (isset($_COOKIE['id'])) {
           if($_COOKIE['id'] == "1") {

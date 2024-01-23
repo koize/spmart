@@ -2,7 +2,7 @@
 
 session_start();
 
-$db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+$db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 $id = "";
 $name = "";
 $username = "";
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_PO
   $email = $_POST['email'];
   $password = $_POST['password'];
 
-  $query = $db->query('CREATE DATABASE IF NOT EXISTS seesad');
+  $query = $db->query('CREATE DATABASE IF NOT EXISTS spmart');
   $query = $db->query('CREATE TABLE IF NOT EXISTS users (
       id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       name TEXT NOT NULL,
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_PO
     ');
 
   //sample user data
-  //$query = $db->query('INSERT IGNORE INTO users (id, name, username, email, password, address, phone, created_at) VALUES ("1","gyoza test 1","seesadtest1","sp_aviation@ichat.sp.edu.sg","1234", "535 Clementi Rd, Singapore 599489, #T18A307", "99999999", "' . date('Y-m-d') . '")');
+  //$query = $db->query('INSERT IGNORE INTO users (id, name, username, email, password, address, phone, created_at) VALUES ("1","gyoza test 1","spmarttest1","sp_aviation@ichat.sp.edu.sg","1234", "535 Clementi Rd, Singapore 599489, #T18A307", "99999999", "' . date('Y-m-d') . '")');
   $query = $db->query('SELECT id, name, username, email FROM users WHERE email = "' . $_POST['email'] . '"');
 
   //check if user already exists
@@ -310,7 +310,7 @@ if (isset($_COOKIE['id'])) {
           </div>
           <?php
           if (array_key_exists('deleteAcc', $_GET)) {
-            $db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+            $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
             $query = $db->query('DELETE FROM orders_list WHERE user_id = "' . $_COOKIE['id'] . '"');
             $query = $db->query('DELETE FROM shopping_cart WHERE user_id = "' . $_COOKIE['id'] . '"');
             $query = $db->query('DELETE FROM reward_codes WHERE user_id = "' . $_COOKIE['id'] . '"');
@@ -319,7 +319,7 @@ if (isset($_COOKIE['id'])) {
             echo "<script>accountSignOut();</script>";
           }
           if (array_key_exists('editAcc', $_POST)) {
-            $db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+            $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
             if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
               $filename = $_FILES["image"]["name"];

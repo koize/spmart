@@ -1,7 +1,7 @@
 <?php
 
 // Connect to the MySQL database
-$db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+$db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
 // Fetch the promotions
 $query = $db->query('SELECT * FROM promotions');

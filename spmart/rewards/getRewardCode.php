@@ -36,8 +36,8 @@ if(getRewardLevel() == -1) {
 }
 //echo "<code>" . generateRewardCodes() . "</code>";
 //create connection to SQL database using PDO
-$db = new PDO("mysql:host=localhost;dbname=seesad", "root", "");
-$query = $db->query('CREATE DATABASE IF NOT EXISTS seesad');
+$db = new PDO("mysql:host=localhost;dbname=spmart", "root", "");
+$query = $db->query('CREATE DATABASE IF NOT EXISTS spmart');
 //this thing doesn't work yet, I'll have to mess around with the DB first... 
 $query = $db->query('CREATE TABLE IF NOT EXISTS reward_codes (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

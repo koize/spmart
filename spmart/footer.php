@@ -54,7 +54,7 @@
         <!-- Facebook -->
 
         <!-- Twitter -->
-        <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/koize/seesadshop" role="button"><i class="fab fa-github"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/koize/spmart" role="button"><i class="fab fa-github"></i></a>
 
         <!-- Google -->
         <a class="btn btn-outline-light btn-floating m-1" href="https://www.twitch.tv/koizee_" role="button"><i class="fab fa-twitch"></i></a>

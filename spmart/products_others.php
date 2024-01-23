@@ -94,9 +94,9 @@
       <section class="text-center">
         <?php
         include 'addtocart.php';
-        $db = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
-        $query = $db->query('CREATE DATABASE IF NOT EXISTS seesad');
+        $query = $db->query('CREATE DATABASE IF NOT EXISTS spmart');
         $query = $db->query('CREATE TABLE IF NOT EXISTS products (
       id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       image_link TEXT,
@@ -110,7 +110,7 @@
         $username = "root";
         $password = "";
         $dbname = "csad_projek_test";
-        $dbname = "seesad";
+        $dbname = "spmart";
 
 
         $conn = new mysqli($servername, $username, $password, $dbname);

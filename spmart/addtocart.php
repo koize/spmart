@@ -1,9 +1,9 @@
 <?php
-$db = mysqli_connect('localhost', 'root', '', 'seesad');
+$db = mysqli_connect('localhost', 'root', '', 'spmart');
 if (!$db) {
     die("Connection Failed: " . mysqli_connect_error());
 }
-$dbb = new PDO('mysql:host=localhost;dbname=seesad', 'root', '');
+$dbb = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
 
 $id = 0;

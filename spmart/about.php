@@ -129,7 +129,7 @@
 
               In addition to our high-quality products, we also offer excellent customer service. We are always available to answer your questions and help you find the right product for your skin.
 
-              We believe that Clear Skin All Day is the best place to buy face wash online. We offer a wide variety of products from Kao and Gatsby, excellent customer service, and competitive prices. We are confident that you will be happy with your purchase from Seesad.
+              We believe that Clear Skin All Day is the best place to buy face wash online. We offer a wide variety of products from Kao and Gatsby, excellent customer service, and competitive prices. We are confident that you will be happy with your purchase from spmart.
 
             </p>
             <p><strong>Thank you for choosing Clear Skin All Day!
