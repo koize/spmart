@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  php-apache:
+    ports:
+      - "80:80"
+    build: './spmart'
+    volumes:
+      - ./spmart:/var/www/html
+  mysql:
+    ports:
+      - "3306:3306"
+    build: './sql'
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: "spmart"
+    volumes:
+      - dbData:/var/lib/mysql
+      - ./sql/spmart.sql:/docker-entrypoint-initdb.d/spmart.sql
+volumes:
+  app:
+  dbData:
