@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 session_start();
 // Check if the user is logged in
@@ -16,11 +14,14 @@ if ($_COOKIE['id'] != "1") {
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>CSAD Admin dashboard</title>
+    <title>SPmart Admin dashboard</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -189,29 +190,7 @@ if ($_COOKIE['id'] != "1") {
         //echo "<script>$(document).ready(function() { $('#edit" . $row['id'] . "').modal('show');});</script>";
     }
     ?>
-    <h3 id="reward-codes">Reward Codes</h3>
-    <table class="table table-striped">
-        <tr>
-            <th>ID</th>
-            <th>Discount</th>
-            <th>Discount_Code</th>
-            <th>Used_Code</th>
-            <th>Action</th>
-        </tr>
-        <?php
-        $sql = "SELECT * FROM reward_codes";
-        $result = $db->query($sql);
-        foreach ($result as $row) {
-            echo "<tr>";
-            echo "<td>" . $row['user_id'] . "</td>";
-            echo "<td>" . $row['discount'] . "%</td>";
-            echo "<td><code>" . $row['discount_code'] . "</code></td>";
-            echo "<td>" . $row['used_code'] . "</td>";
-            echo "<td><button type='button' class='btn btn-outline-info' data-mdb-toggle='modal' data-mdb-target='#" . "edit_code_" . $row['id'] . "'>Edit</button></td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
+   
     <?php
     $sql = "SELECT * FROM reward_codes";
     $result = $db->query($sql);
