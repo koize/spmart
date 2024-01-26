@@ -31,7 +31,8 @@ if ($_COOKIE['id'] != "1") {
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- Material Icons3 -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="promotion.js"></script>
     <link rel="icon" href="img/csad_icon.png" type="image/x-icon" />
@@ -190,7 +191,7 @@ if ($_COOKIE['id'] != "1") {
         //echo "<script>$(document).ready(function() { $('#edit" . $row['id'] . "').modal('show');});</script>";
     }
     ?>
-   
+
     <?php
     $sql = "SELECT * FROM reward_codes";
     $result = $db->query($sql);
@@ -256,7 +257,7 @@ if ($_COOKIE['id'] != "1") {
             str = str + user_id + name + username + email + password + address + phone + created_at;
             xmlhttp.open('POST', "admin.php", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     alert(this.responseText);
                 }
@@ -271,7 +272,7 @@ if ($_COOKIE['id'] != "1") {
             str = str + user_id;
             xmlhttp.open('POST', "admin.php", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     alert(this.responseText);
                 }
@@ -290,7 +291,7 @@ if ($_COOKIE['id'] != "1") {
             str = str + id + user_id + discount + discount_code + used_code;
             xmlhttp.open('POST', "admin.php", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     alert(this.responseText);
                 }
@@ -305,7 +306,7 @@ if ($_COOKIE['id'] != "1") {
             str = str + id;
             xmlhttp.open('POST', "admin.php", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     alert(this.responseText);
                 }
@@ -378,7 +379,7 @@ if ($_COOKIE['id'] != "1") {
             str = str + id;
             xmlhttp.open('POST', "admin.php", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     alert(this.responseText);
                 }
@@ -387,8 +388,10 @@ if ($_COOKIE['id'] != "1") {
         }
     </script>
     <h3 id="promotions">Promotions</h3>
-    <button type="button" class="btn btn-outline-info" data-mdb-toggle="modal" data-mdb-target="#add_promotion" style="margin-bottom: 10px">Add Promotion</button>
-    <div class="modal fade" id="add_promotion" tabindex="-1" role="dialog" aria-labelledby="add_product" aria-hidden="true">
+    <button type="button" class="btn btn-outline-info" data-mdb-toggle="modal" data-mdb-target="#add_promotion"
+        style="margin-bottom: 10px">Add Promotion</button>
+    <div class="modal fade" id="add_promotion" tabindex="-1" role="dialog" aria-labelledby="add_product"
+        aria-hidden="true">
         <div class='modal-dialog modal-dialog-centered' role='document'>
             <div class='modal-content'>
                 <div class='modal-header'>
@@ -401,34 +404,42 @@ if ($_COOKIE['id'] != "1") {
                         <table style=" text-align: left">
                             <tr>
                                 <td>Name:</td>
-                                <td><input type='text' name='promotion_name' id='promotion_name' class='user_input' /></td>
+                                <td><input type='text' name='promotion_name' id='promotion_name' class='user_input' />
+                                </td>
                             </tr>
                             <tr>
                                 <td>Original Price:</td>
-                                <td><input type='text' name='promotion_original_price' id='promotion_original_price' class='user_input' /></td>
+                                <td><input type='text' name='promotion_original_price' id='promotion_original_price'
+                                        class='user_input' /></td>
                             </tr>
                             <tr>
                                 <td>Discounted Price:</td>
-                                <td><input type='text' name='promotion_sale_price' id='promotion_sale_price' class='user_input' /></td>
+                                <td><input type='text' name='promotion_sale_price' id='promotion_sale_price'
+                                        class='user_input' /></td>
                             </tr>
                             <tr>
                                 <td>Details</td>
-                                <td><textarea name='promotion_details' id='promotion_details' cols='30' rows='10'></textarea></td>
+                                <td><textarea name='promotion_details' id='promotion_details' cols='30'
+                                        rows='10'></textarea></td>
                             </tr>
                             <tr>
                                 <td>Start Date:</td>
-                                <td><input type='date' name='promotion_start_date' id='promotion_start_date' class='user_input' /></td>
+                                <td><input type='date' name='promotion_start_date' id='promotion_start_date'
+                                        class='user_input' /></td>
                             </tr>
                             <tr>
                                 <td>End Date:</td>
-                                <td><input type='date' name='promotion_end_date' id='promotion_end_date' class='user_input' /></td>
+                                <td><input type='date' name='promotion_end_date' id='promotion_end_date'
+                                        class='user_input' /></td>
                             </tr>
                             <tr>
                                 <td>Image</td>
-                                <td><input type='file' name='promotion_image' id='promotion_image' class='user_input' /></td>
+                                <td><input type='file' name='promotion_image' id='promotion_image' class='user_input' />
+                                </td>
                             </tr>
                         </table>
-                        <button type='submit' class='btn btn-primary' name='uploadNewPromotion' data-mdb-dismiss='modal'>Add</button>
+                        <button type='submit' class='btn btn-primary' name='uploadNewPromotion'
+                            data-mdb-dismiss='modal'>Add</button>
                     </form>
                 </div>
             </div>
@@ -502,7 +513,7 @@ if ($_COOKIE['id'] != "1") {
             var str = "mode=delete_promotion&id=" + x;
             xmlhttp.open('POST', "admin.php", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     alert(this.responseText);
                     location.reload();
@@ -523,7 +534,7 @@ if ($_COOKIE['id'] != "1") {
             str = str + name + original_price + sale_price + start_date + end_date + details;
             xmlhttp.open('POST', "admin.php", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     alert(this.responseText);
                     location.reload();
@@ -534,8 +545,10 @@ if ($_COOKIE['id'] != "1") {
     </script>
 
     <h3 id="products">Products</h3>
-    <button type="button" class="btn btn-outline-info" data-mdb-toggle="modal" data-mdb-target="#add_product" style="margin-bottom: 10px;">Add Product</button>
-    <div class="modal fade" id="add_product" tabindex="-1" role="dialog" aria-labelledby="add_product" aria-hidden="true">
+    <button type="button" class="btn btn-outline-info" data-mdb-toggle="modal" data-mdb-target="#add_product"
+        style="margin-bottom: 10px;">Add Product</button>
+    <div class="modal fade" id="add_product" tabindex="-1" role="dialog" aria-labelledby="add_product"
+        aria-hidden="true">
         <div class='modal-dialog modal-dialog-centered' role='document'>
             <div class='modal-content'>
                 <div class='modal-header'>
@@ -556,18 +569,22 @@ if ($_COOKIE['id'] != "1") {
                             </tr>
                             <tr>
                                 <td>Price:</td>
-                                <td><input type='text' name='product_price' id='product_price' class='user_input' /></td>
+                                <td><input type='text' name='product_price' id='product_price' class='user_input' />
+                                </td>
                             </tr>
                             <tr>
                                 <td>Category</td>
-                                <td><input type='text' name='product_category' id='product_category' class='user_input' /></td>
+                                <td><input type='text' name='product_category' id='product_category'
+                                        class='user_input' /></td>
                             </tr>
                             <tr>
                                 <td>Product Image</td>
-                                <td><input type='file' name='product_image' id='product_image' class='user_input' /></td>
+                                <td><input type='file' name='product_image' id='product_image' class='user_input' />
+                                </td>
                             </tr>
                         </table>
-                        <button type='submit' class='btn btn-primary' name='uploadNewProduct' data-mdb-dismiss='modal'>Add Product</button>
+                        <button type='submit' class='btn btn-primary' name='uploadNewProduct'
+                            data-mdb-dismiss='modal'>Add Product</button>
                     </form>
                 </div>
             </div>
@@ -647,7 +664,7 @@ if ($_COOKIE['id'] != "1") {
                     str += id + product_name + product_desc + product_price + products_category;
                     xmlhttp.open("POST", "admin.php", true);
                     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp.onreadystatechange = function () {
                         if (this.readyState == 4 && this.status == 200) {
                             alert(this.responseText);
                         }
@@ -662,7 +679,7 @@ if ($_COOKIE['id'] != "1") {
                     str += id;
                     xmlhttp.open("POST", "admin.php", true);
                     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp.onreadystatechange = function () {
                         if (this.readyState == 4 && this.status == 200) {
                             alert(this.responseText);
                         }
@@ -673,44 +690,97 @@ if ($_COOKIE['id'] != "1") {
             <h3 id="shopping-cart">Orders List</h3>
             <table class="table table-striped">
                 <tr>
-                    <th>ID</th>
-                    <th>Product_ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Product_Quantity</th>
                     <th>Order ID</th>
-                    <th>User_ID</th>
+                    <th>Order Date</th>
+                    <th>Order Total</th>
+                    <th>Total Quantity</th>
+                    <th>Delivery Method</th>
+                    <th>Shipping Address</th>
+                    <th>View Order</th>
+                    <th>Delete Order</th>
                 </tr>
                 <?php
-                
+
                 $sql = "SELECT * FROM orders_list";
                 $result = $db->query($sql);
                 foreach ($result as $row) {
                     echo "<tr>";
-                    echo "<td>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['product_id'] . "</td>";
-                    echo "<td>" . $row['product_name'] . "</td>";
+                    echo "<td>" . $row['order_id'] . "</td>";
+                    echo "<td>" . $row['order_date'] . "</td>";
                     echo "<td>" . $row['product_price'] . "</td>";
                     echo "<td>" . $row['product_quantity'] . "</td>";
-                    echo "<td>" . $row['order_id'] . "</td>";
-                    echo "<td>" . $row['user_id'] . "</td>";
-                    //echo '<td><a href="dashboard.php?deleteOrder='.$row['order_id'].'"class="btn btn-danger">Delete Entire Order</a></td>';
+                    echo "<td>" . $row['order_type'] . "</td>";
+                    echo "<td>" . $row['address'] . "</td>";
+                    echo "<td><button type='button' class='btn btn-secondary' data-mdb-toggle='modal' data-mdb-target='#" . "order_" . $row['order_id'] . "'>View</button></td>";
+                    echo "<td><button type='button' class='btn btn-secondary' data-mdb-toggle='modal' data-mdb-target='#" . "delete_" . $row['order_id'] . "'>Delete</button></td>";
                     echo "</tr>";
                 }
+                echo "</table>";
 
+                $sql = "SELECT * FROM orders_list  WHERE user_id = '" . $_COOKIE['id'] . "'";
+                $result = $db->query($sql);
+                foreach ($result as $row) {
+                    echo "<div class='modal fade' id='order_" . $row['order_id'] . "' tabindex='-1' role='dialog' aria-labelledby='"
+                        . "order" . $row['order_id'] . "' aria-hidden='true'>";
+                    echo "<div class='modal-dialog modal-dialog-centered' role='document'>";
+                    echo "<div class='modal-content'>";
+                    echo "<div class='modal-header'>";
+                    echo "<h5 class='modal-title' id='order_" . $row['order_id'] . "Title'>Order info #" . $row['order_id'] . "</h5>";
+                    echo "<button type='button' class='btn-close' data-mdb-dismiss='modal' aria-label='Close'>";
+                    echo "</button>";
+                    echo "</div>";
+                    echo "<div class='modal-body'>";
+                    
+                    
+                    echo "<center><img src='" . $row['qr_code'] . "'></center>";
+                    echo "<h6>Order Date: " . $row['order_date'] . "</h6>";
+                    echo "</div>";
+                    //content here
+                    echo "<div class='modal-footer'>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "<div class='modal fade' id='delete_" . $row['order_id'] . "' tabindex='-1' role='dialog' aria-labelledby='"
+                    . "order" . $row['order_id'] . "' aria-hidden='true'>";
+                    echo "<div class='modal-dialog mt-20' role='document'>";
+                    echo "<div class='modal-content'>";
+                    echo "<div class='modal-header'>";
+                    echo "<h5 class='modal-title' id='delete_" . $row['order_id'] . "Title'>Delete Order #" . $row['order_id'] . "?</h5>";
+                    echo "<button type='button' class='btn-close' data-mdb-dismiss='modal' aria-label='Close'>";
+                    echo "</button>";
+                    echo "</div>";
+                    echo "<div class='modal-body'>";
+                    
+                    
+                    echo '<h6>Delete Order #' . $row['order_id'] . ' by User #' . $row['user_id'] . '?</h6>';
+                    echo "</div>";
+                    //content here
+                    echo '<div class="modal-footer">
+                    <form action="admin.php" method="GET">
+                    <input type="hidden" name="deleteOrder" value="'.$row['order_id'].'">
+                    <input type="submit" class="btn btn-secondary" value="Delete">
+                    </form>
+                    </div>';
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                }
                 ?>
             </table>
 
 
             <script>
-                $(function() {
+                $(function () {
                     $("#nav-products").load("navbar.php");
                 });
             </script>
             <!-- Navbar -->
             <div id="footer-about">
                 <script>
-                    $(function() {
+                    $(function () {
                         $("#footer-about").load("footer.php");
                     });
                 </script>

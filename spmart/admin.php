@@ -60,8 +60,11 @@ function uploadUserImg() {
     if(move_uploaded_file($_FILES["user_img_path"]["tmp_name"], $target_file)) {
         $db->query('UPDATE users SET img_filepath = "' . $target_file . '" WHERE id = "' . $id . '"');
     }
-    header("Location: dashboard.php");
-
+    ?>
+    <script type="text/javascript">
+    window.location.href = 'dashboard.php';
+    </script>
+    <?php
 }
 
 function uploadNewPromotion() {
@@ -103,13 +106,18 @@ function uploadNewPromotion() {
         $db->query('UPDATE promotions SET img_filepath = "' . $target_file . '" WHERE id = "' . $id . '"');
     }
     echo "Successfully added promotion!";
-    sleep(2);
-    header("Location: dashboard.php");
-}
+    ?>
+    <script type="text/javascript">
+    window.location.href = 'dashboard.php';
+    </script>
+    <?php
+    }
 
 function uploadNewProduct() {
     global $db;
     $target_dir = "img/";
+
+
     $product_name = $_POST['product_name'];
     if($product_name == "") {
         echo "Product name cannot be empty!";
@@ -126,7 +134,7 @@ function uploadNewProduct() {
         echo "Product category cannot be empty!";
         exit();
     }
-    $db->query('INSERT INTO products (product_name, product_desc, product_price, products_category) VALUES ("' . $product_name . '", "' . $product_desc . '", ' . $product_price . ', "' . $product_category . '")');
+    $db->query('INSERT INTO products (product_name, product_desc, product_price, products_category, image_link) VALUES ("' . $product_name . '", "' . $product_desc . '", ' . $product_price . ', "' . $product_category . '", "img/csad_logo_korean_big.png")');
     $target_file = $target_dir . basename($_FILES["product_image"]["name"]);
     $id = $db->lastInsertId();
     if(!move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
@@ -136,9 +144,12 @@ function uploadNewProduct() {
         $db->query('UPDATE products SET image_link = "' . $target_file . '" WHERE id = "' . $id . '"');
     }
     echo "Successfully added product!";
-    sleep(2);
-    header("Location: dashboard.php");
-}
+    ?>
+    <script type="text/javascript">
+    window.location.href = 'dashboard.php';
+    </script>
+    <?php
+    }
 
 function uploadProductImage() {
     global $db;
@@ -150,9 +161,13 @@ function uploadProductImage() {
     }
     $db->query('UPDATE products SET image_link = "' . $target_file . '" WHERE id = "' . $id . '"');
     echo "Successfully updated product image!";
-    sleep(2);
-    header("Location: dashboard.php");
-}
+    ?>
+    <script type="text/javascript">
+    window.location.href = 'dashboard.php';
+    </script>
+    <?php
+    }
+
 
 function saveUserChanges() {
     global $db;
@@ -320,4 +335,10 @@ function savePromotionChanges() {
     echo "Successfully updated promotion!";
 }
 
-?>
+if (isset($_GET["deleteOrder"])) {
+    $id = $_GET["deleteOrder"];
+    $db->query('DELETE FROM orders_list WHERE order_id = "' . $id . '"');
+    header("Location: dashboard.php#shopping-cart");
+
+}
+

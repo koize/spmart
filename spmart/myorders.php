@@ -85,7 +85,7 @@
                     echo "<td>" . $row['product_quantity'] . "</td>";
                     echo "<td>" . $row['order_type'] . "</td>";
                     echo "<td>" . $row['address'] . "</td>";
-                    echo "<td><button type='button' class='btn btn-primary' data-mdb-toggle='modal' data-mdb-target='#" . "order_" . $row['order_id'] . "'>View</button></td>";
+                    echo "<td><button type='button' class='btn btn-secondary' data-mdb-toggle='modal' data-mdb-target='#" . "order_" . $row['order_id'] . "'>View</button></td>";
                     echo "</tr>";
                   }
                   echo "</table>";
