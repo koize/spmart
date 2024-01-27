@@ -732,8 +732,9 @@ if ($_COOKIE['id'] != "1") {
                     echo "<div class='modal-body'>";
                     
                     
-                    echo "<center><img src='" . $row['qr_code'] . "'></center>";
-                    echo "<h6>Order Date: " . $row['order_date'] . "</h6>";
+                    echo "<center><img class='mx-n5 mt-n3 mb-n5' src='".$row['qr_code']."'></center>"; 
+                    $text = "Order#" . $row['order_id'] ."/User#". $row['user_id'] ."/OrderTotal:$" . $row['product_price'] ."/OrderQuantity:" . $row['product_quantity'] ."/OrderDate:" . $row['order_date'] ."";
+                    echo "$text";                     
                     echo "</div>";
                     //content here
                     echo "<div class='modal-footer'>";

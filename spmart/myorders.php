@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>SPmart Support</title>
+  <title>SPmart My Orders</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
   <!-- Google Fonts Roboto -->
@@ -108,28 +108,28 @@
 
                     echo "<table class='table table-striped'>
                       <tr>
-                      <th>id</th>
-                      <th>product name</th>
-                      <th>image</th>
-                      <th>product desc</th>
-                      <th>product price</th>
+                      <th>Order Date</th>
+                      <th>Order Total</th>
+                      <th>Total Quantity</th>
+                      <th>Products Ordered</th>
                       </tr>";
 
-                    $sql1 = "SELECT * FROM products WHERE id = '" . $row['product_id'] . "'";
+                    $sql1 = "SELECT * FROM orders_list WHERE order_id = '" . $row['order_id'] . "'";
                     $result1 = $db->query($sql1);
 
                     foreach ($result1 as $row1) {
                       echo "<tr>";
-                      echo "<td>" . $row1['order_id'] . "</td>";
-                      echo "<td>" . $row1['product_name'] . "</td>";
-                      echo "<td><img style='width:60px;height:60px' src='img/" . $row1['image_link'] . "'>" . "</td>";
-                      echo "<td>" . $row1['product_desc'] . "</td>";
-                      echo "<td>$" . $row1['product_price'] . "</td>";
+                      echo "<td>" . $row1['order_date'] . "</td>";
+                      echo "<td>" . $row1['product_price'] . "</td>";
+                      echo "<td>" . $row1['product_quantity'] . "</td>";
+                      echo "<td>$" . $row1['product_name'] . "</td>";
                       echo "</tr>";
 
                     }
                     echo "</table>";
-                    echo "<center><img src='".$row['qr_code']."'></center>"; 
+                    echo "<center><img class='mx-n5 mt-n3 mb-n5' src='".$row['qr_code']."'></center>"; 
+                    $text = "Order#" . $row1['order_id'] ."/User#". $row1['user_id'] ."/OrderTotal:$" . $row1['product_price'] ."/OrderQuantity:" . $row1['product_quantity'] ."/OrderDate:" . $row1['order_date'] ."";
+                    echo "$text"; 
                     echo "</div>";
                     //content here
                     echo "<div class='modal-footer'>";

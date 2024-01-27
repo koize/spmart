@@ -221,7 +221,7 @@ if (isset($_COOKIE['id'])) {
                   <button type="button" class="btn btn-outline-danger" data-mdb-toggle="modal" data-mdb-target="#deleteModal">Delete account</button>
                 </div>
                 <div class="d-flex justify-content-center mb-2">
-                  <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#editModal">Edit profile</button>
+                  <button type="button" class="btn btn-secondary" data-mdb-toggle="modal" data-mdb-target="#editModal">Edit profile</button>
                 </div>
               </div>
             </div>
