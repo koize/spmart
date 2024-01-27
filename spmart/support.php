@@ -109,32 +109,16 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  What are the shipping options for facial products?
+                  What are the shipping options?
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
                 <div class="accordion-body">
-                  We offer a variety of shipping options for facial products, including standard
-                  shipping, expedited shipping, and overnight shipping. Standard shipping is free
-                  for orders over $50. Expedited shipping is available for an additional fee.
-                  Overnight shipping is available for the most urgent orders.
+                  We offer both Self Pick-up and Home Delivery options. You can choose between the two at checkout. Home Delivery will incur an additional delivery fee of $4.
                 </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  What is your return policy for facial products?
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-mdb-parent="#accordionExample">
-                <div class="accordion-body">
-                  We offer a 30-day return policy for facial products. If you are not
-                  satisfied with your purchase, you can return it for a full refund.
-                  You must return the product in its original packaging and in resalable condition.
-                </div>
-              </div>
-            </div>
+           
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -143,9 +127,7 @@
               </h2>
               <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-mdb-parent="#accordionExample">
                 <div class="accordion-body">
-                  You can contact customer support by email, phone,
-                  or live chat. Our customer support team is available
-                  24/7 to answer your questions and help you with your order.
+                  You can contact customer support by submitting the support form below.
                 </div>
               </div>
             </div>
@@ -179,7 +161,7 @@
 
 
           <!-- Submit button -->
-          <button type="submit" name="sendFeedback" class="btn btn-primary btn-block mb-4" >Send</button>
+          <button type="submit" name="sendFeedback" class="btn btn-secondary btn-block mb-4" >Send</button>
         </form>
 
       </div>

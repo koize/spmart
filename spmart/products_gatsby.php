@@ -172,9 +172,9 @@
                 </div>
                   <div class="row">';
                   if (isset($_COOKIE['id'])) {
-                    echo '<a href="products.php?addToCart=' . $row['id'] . '" class="btn btn-primary btn-rounded ">Add to Cart</a>';
+                    echo '<a href="products.php?addToCart=' . $row['id'] . '" class="btn btn-secondary ">Add to Cart</a>';
                   } else {
-                    echo '<button type="button" class="btn btn-primary btn-rounded" data-mdb-toggle="modal" data-mdb-target="#PleaseLogin">Add to cart</button>
+                    echo '<button type="button" class="btn btn-secondary" data-mdb-toggle="modal" data-mdb-target="#PleaseLogin">Add to cart</button>
                     ';
                   } echo ' 
                 </div>
