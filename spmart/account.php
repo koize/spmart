@@ -115,7 +115,7 @@ if (isset($_COOKIE['id'])) {
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="signout.js"></script>
-  <title>Clear Skin All Day Account</title>
+  <title>SPmart Account</title>
   <link rel="icon" href="img/csad_icon.png" type="image/x-icon" />
 
 </head>
