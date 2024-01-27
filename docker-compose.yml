@@ -1,12 +1,14 @@
 version: "3.9"
 services:
   php-apache:
+    image: koize/spmart:latest
     ports:
       - "80:80"
     build: './spmart'
     volumes:
       - ./spmart:/var/www/html
   mysql:
+    image: koize/mysql:latest
     ports:
       - "3306:3306"
     build: './sql'

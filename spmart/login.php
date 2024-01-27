@@ -79,7 +79,7 @@ $query = $db->query('INSERT IGNORE INTO users (id, name, username, email, passwo
             <img src="img/account_bg.jpg" class="w-100" alt="Image" style="height: 800px; object-fit: cover;">
             <div class="card mx-auto my-5" style="width: 500px; display: inline-block; z-index: 2000; position:absolute; top: 5px; right: 250px; bottom:5px">
                 <div class="card-body">
-                    <h5 class="card-title">Welcome to Clear Skin All Day!</h5>
+                    <h5 class="card-title">Welcome to SPmart!</h5>
                     <p class="card-text">Create an account or login</p>
                     <!-- Pills navs -->
                     <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
@@ -119,7 +119,7 @@ $query = $db->query('INSERT IGNORE INTO users (id, name, username, email, passwo
                                 </div>
 
                                 <!-- Submit button -->
-                                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                                <button type="submit" class="btn btn-secondary btn-block mb-4">Sign in</button>
                             </form>
                         </div>
                         <script src="validateRegistration.js"></script>
@@ -178,7 +178,7 @@ $query = $db->query('INSERT IGNORE INTO users (id, name, username, email, passwo
 
 
                                 <!-- Submit button -->
-                                <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
+                                <button type="submit" class="btn btn-secondary btn-block mb-3">Register</button>
 
                             </form>
                         </div>
