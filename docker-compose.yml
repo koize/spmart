@@ -1,24 +1,25 @@
 version: "3.9"
 services:
   php-apache:
-    image: koize/spmart:latest
     ports:
       - "80:80"
     build: './spmart'
     volumes:
       - ./spmart:/var/www/html
   mysql:
-    image: koize/mysql:latest
+    image: yobasystems/alpine-mariadb
     ports:
       - "3306:3306"
     build: './sql'
     environment:
       MYSQL_ROOT_PASSWORD: ""
+      MYSQL_USER: "root"
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       MYSQL_DATABASE: "spmart"
     volumes:
       - dbData:/var/lib/mysql
       - ./sql/spmart.sql:/docker-entrypoint-initdb.d/spmart.sql
+      - ./sql/spmart.sql:/docker-entrypoint-initdb.d/reset_pass.sql
 volumes:
   app:
   dbData:

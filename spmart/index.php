@@ -198,6 +198,17 @@
       product_price DATE,
       products_category TEXT
     )');
+      $query = $db->query('CREATE TABLE IF NOT EXISTS users (
+      id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      name TEXT,
+      username TEXT,
+      email TEXT,
+      password TEXT,
+      address TEXT,
+      phone_number TEXT,
+      role TEXT
+    )');
+
 
         $servername = "mysql";
         $username = "root";
