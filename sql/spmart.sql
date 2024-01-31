@@ -107,7 +107,7 @@ CREATE TABLE `promotions` (
 
 LOCK TABLES `promotions` WRITE;
 /*!40000 ALTER TABLE `promotions` DISABLE KEYS */;
-INSERT INTO `promotions` VALUES (1,'Biore UV Aqua Rich Aqua Protect Mist SPF50 PA++++',16,16,'0000-00-00','2023-10-10','Biore\'s unique Aqua Protect Mist Technology','img/carousel_pmnt1.jpg'),(2,'Biore UV Perfect Milk SPF50+ PA++++',0,12,'0000-00-00','2023-10-10','Lasting powdery smooth finish\r\n    + Smooth Skin Feel','img/carousel_pmnt2.jpg'),(3,'Biore UV Anti-Pollution Body Care Serum SPF 50+ PA+++ (Intensive Aura)',16,9,'0000-00-00','2023-10-10','Anti-pollution body lotion with high UV protection','img/carousel_pmnt3.jpg'),(7,'test',1,1,'2023-08-20','2023-08-09','asreaw','img/hj1.jpg');
+INSERT INTO `promotions` VALUES (1,'Biore UV Aqua Rich Aqua Protect Mist SPF50 PA++++',16,16,'0000-00-00','2023-10-10','Biore\s unique Aqua Protect Mist Technology','img/carousel_pmnt1.jpg'),(2,'Biore UV Perfect Milk SPF50+ PA++++',0,12,'0000-00-00','2023-10-10','Lasting powdery smooth finish\r\n    + Smooth Skin Feel','img/carousel_pmnt2.jpg'),(3,'Biore UV Anti-Pollution Body Care Serum SPF 50+ PA+++ (Intensive Aura)',16,9,'0000-00-00','2023-10-10','Anti-pollution body lotion with high UV protection','img/carousel_pmnt3.jpg'),(7,'test',1,1,'2023-08-20','2023-08-09','asreaw','img/hj1.jpg');
 /*!40000 ALTER TABLE `promotions` ENABLE KEYS */;
 UNLOCK TABLES;
 
