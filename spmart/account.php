@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_PO
     ');
 
   //sample user data
-  //$query = $db->query('INSERT IGNORE INTO users (id, name, username, email, password, address, phone, created_at) VALUES ("1","gyoza test 1","spmarttest1","sp_aviation@ichat.sp.edu.sg","1234", "535 Clementi Rd, Singapore 599489, #T18A307", "99999999", "' . date('Y-m-d') . '")');
+  $query = $db->query('INSERT IGNORE INTO users (id, name, username, email, password, address, phone, created_at) VALUES ("1","gyoza test 1","spmarttest1","sp_aviation@ichat.sp.edu.sg","1234", "535 Clementi Rd, Singapore 599489, #T18A307", "99999999", "' . date('Y-m-d') . '")');
   $query = $db->query('SELECT id, name, username, email FROM users WHERE email = "' . $_POST['email'] . '"');
 
   //check if user already exists
