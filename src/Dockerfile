@@ -11,3 +11,4 @@ EOF
 
 COPY . .
 CMD ["python3", "main.py"]
+ 
