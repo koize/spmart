@@ -20,6 +20,8 @@ services:
       - dbData:/var/lib/mysql
       - ./sql/spmart.sql:/docker-entrypoint-initdb.d/spmart.sql
       - ./sql/spmart.sql:/docker-entrypoint-initdb.d/reset_pass.sql
+  python:
+    build: './src'
 volumes:
   app:
   dbData:
