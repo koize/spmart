@@ -1,4 +1,4 @@
-![image](https://github.com/koize/spmart/assets/122030611/c1d12849-100c-4ca8-83e6-b743f87bf237)# Supermarket Self-Checkout System
+# Supermarket Self-Checkout System
 
 An IOT Self-Checkout System to reduce the time required for customers at a supermarket to pay for their purchases, as well as integrate an Online Store for customers to purchase and self-collect or deliver to their home.
 
