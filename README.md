@@ -1,4 +1,4 @@
-# Supermarket Self-Checkout System
+![image](https://github.com/koize/spmart/assets/122030611/c1d12849-100c-4ca8-83e6-b743f87bf237)# Supermarket Self-Checkout System
 
 An IOT Self-Checkout System to reduce the time required for customers at a supermarket to pay for their purchases, as well as integrate an Online Store for customers to purchase and self-collect or deliver to their home.
 
@@ -9,6 +9,7 @@ An IOT Self-Checkout System to reduce the time required for customers at a super
 * Online Website for customers to purchase and checkout online
 * Option to pick up items from the supermarket themselves or deliver directly to their homes with a delivery fee of $4.00
 * Online customers who opt to collect their items from the supermarket will receive a QR code after online payment that they will need to show to the supermarket staff to collect their items
+* Live server link: http://koize.southeastasia.cloudapp.azure.com/index.php
 
 ## In-store Purchases
 
