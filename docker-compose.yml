@@ -1,13 +1,14 @@
 version: "3.9"
 services:
   php-apache:
+    image: koize/spmartweb:latest
     ports:
       - "80:80"
     build: './spmart'
     volumes:
       - ./spmart:/var/www/html
   mysql:
-    image: yobasystems/alpine-mariadb
+    image: koize/alpine-mariadb:latest
     ports:
       - "3306:3306"
     build: './sql'
@@ -21,6 +22,7 @@ services:
       - ./sql/spmart.sql:/docker-entrypoint-initdb.d/spmart.sql
       - ./sql/spmart.sql:/docker-entrypoint-initdb.d/reset_pass.sql
   python:
+    image: koize/spmartirl:latest
     build: './src'
 volumes:
   app:
