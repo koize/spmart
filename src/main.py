@@ -22,6 +22,7 @@ def delete_key_pressed():
 
 def home_screen():
     lcd = LCD.lcd()
+    display_main_menu()
     while True:
         key = shared_keypad_queue.get()
         #key = keypad.get_key()
