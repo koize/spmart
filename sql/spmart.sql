@@ -167,6 +167,7 @@ CREATE TABLE `shopping_cart` (
 --
 -- Table structure for table `users`
 --
+SET foreign_key_checks = 0;
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
