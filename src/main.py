@@ -21,8 +21,8 @@ def delete_key_pressed():
     shared_keypad_queue.empty()
 
 def home_screen():
-    display_main_menu()
     lcd = LCD.lcd()
+    display_main_menu()
     while True:
         key = shared_keypad_queue.get()
         #key = keypad.get_key()
@@ -31,7 +31,8 @@ def home_screen():
             break  # Exit the loop if a valid key is pressed
         else:
             lcd.lcd_display_string("Invalid number")
-            time.sleep(5)
+            time.sleep(2)
+            display_main_menu()
 
 
 def display_main_menu():
@@ -41,7 +42,6 @@ def display_main_menu():
     lcd.lcd_clear()
     lcd.lcd_display_string("1. Start self-checkout", 1)  # write on line 1
     lcd.lcd_display_string("2. Enter Idle Mode", 2)  # write on line 2
-    return
 
 def menu_selection(option):
     lcd = LCD.lcd()
@@ -64,11 +64,17 @@ def menu_selection(option):
 
         # Turn off LCD and backlight
         lcd.lcd_clear()
-        lcd.lcd_backlight(0)
+        while True:
+            key = shared_keypad_queue.get()
+            #key = keypad.get_key()
+            if key != None:
+                home_screen()
+                break
+
 
 def camera_scanning():
     # data = cam.scan_qr()
-    display_payment_screen(100)
+    display_payment_screen(10)
     
 
 def buzzer_scanning():
@@ -108,7 +114,7 @@ def display_payment_method_menu():
 
     # Display the payment method menu
     lcd.lcd_display_string("Payment Method?", 1)
-    lcd.lcd_display_string("1. ATM, 2. PayWave", 2)
+    lcd.lcd_display_string("1.ATM,2.PayWave", 2)
     key = shared_keypad_queue.get()
     if key == 1:
         pay_with_atm()
