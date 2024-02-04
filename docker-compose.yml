@@ -24,6 +24,7 @@ services:
   python:
     image: koize/spmartirl:latest
     build: './src'
+    privileged: true
 volumes:
   app:
   dbData:
