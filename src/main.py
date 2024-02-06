@@ -6,8 +6,10 @@ from hal import hal_keypad as keypad
 from hal import hal_buzzer as buzzer
 from hal import hal_rfid_reader as rfid_reader
 import queue
-import cam
+import cammm as cam
 import time
+from pyzbar.pyzbar import decode
+
 
 shared_keypad_queue = queue.Queue()
 
@@ -51,6 +53,7 @@ def menu_selection(option):
         lcd.lcd_clear()
         lcd.lcd_display_string("Hold your items", 1)
         lcd.lcd_display_string("at reader one by one", 2)
+        time.sleep(2)
         camera_scanning()
 
     elif option == 2:
@@ -73,8 +76,27 @@ def menu_selection(option):
 
 
 def camera_scanning():
-    # data = cam.scan_qr()
-    display_payment_screen(10)
+    lcd = LCD.lcd()
+    lcd.lcd_clear()  
+    lcd.lcd_display_string("Total $", 1)    
+
+    while True:
+        data = cam.scan_barcode()
+        buzzer.beep(0.1, 0, 1)
+        data.decode('utf-8')
+        total = 0
+        total += int(data)
+        lcd.lcd_display_string("Total $" + str(total), 1)
+        lcd.lcd_display_string("Press 1 to add", 2)    
+        key = shared_keypad_queue.get()
+        #key = keypad.get_key()
+        if key == 1:
+            buzzer.beep(0.1, 0, 1)
+            continue
+        elif key !=1:
+            display_payment_screen(total)
+            break
+
     
 
 def buzzer_scanning():
@@ -92,7 +114,7 @@ def display_payment_screen(total_price):
         lcd.lcd_display_string("Press 1 to pay", 2)
 
         # Wait for 3 seconds before changing the message
-        time.sleep(3)
+        time.sleep(2)
 
         # Clear line 2 and display the second message
         lcd.lcd_display_string("Press 2 to add more", 2)
@@ -102,7 +124,7 @@ def display_payment_screen(total_price):
             display_payment_method_menu()
             break
         elif key == 2:
-            # Process to camera scanning
+            camera_scanning()
             break
         
 
@@ -166,6 +188,8 @@ def verify_pin(pin):
     time.sleep(2)
     if pin == "1234":
         lcd.lcd_display_string("PIN verified", 1)
+        buzzer.beep(0.1, 0, 1)
+        buzzer.beep(0.1, 0, 1)
     elif pin != "1234":
         lcd.lcd_display_string("Invalid PIN", 1)
         time.sleep(2)

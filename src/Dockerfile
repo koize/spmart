@@ -8,6 +8,8 @@ RUN pip3 install smbus -vvv -i https://www.piwheels.org/simple
 RUN pip3 install python3-spi -vvv -i https://www.piwheels.org/simple
 RUN pip3 install spi -vvv -i https://www.piwheels.org/simple
 RUN pip3 install spidev2 -vvv -i https://www.piwheels.org/simple
+RUN pip3 install pyzbar -vvv -i https://www.piwheels.org/simple
+
 COPY . .
 WORKDIR /app/SPI-Py
 RUN python3 setup.py install
