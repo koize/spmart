@@ -166,7 +166,7 @@ function uploadProductImage() {
     echo "Successfully updated product image!";
     ?>
     <script type="text/javascript">
-    //window.location.href = 'dashboard.php';
+    window.location.href = 'dashboard.php';
     </script>
     <?php
     }
