@@ -640,7 +640,7 @@ if ($_COOKIE['id'] != "1") {
                 echo "<div class='modal-body'>";
                 echo "Product ID: <div id='products_id" . $row['id'] . "' class='user_input'>" . $row['id'] . "</div>";
                 echo "Product Name: <div id='product_name" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['product_name'] . "</div>";
-                echo "Product Name: <div id='product_sku" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['product_sku'] . "</div>";
+                echo "Product SKU: <div id='product_sku" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['product_sku'] . "</div>";
                 echo "Product Desc: <div id='product_desc" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['product_desc'] . "</div>";
                 echo "Product Price: <div id='product_price" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['product_price'] . "</div>";
                 echo "Product Category: <div id='product_category" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['products_category'] . "</div>";
@@ -669,7 +669,7 @@ if ($_COOKIE['id'] != "1") {
                     var product_desc = "&product_desc=" + document.getElementById("product_desc" + x).innerText;
                     var product_price = "&product_price=" + document.getElementById("product_price" + x).innerText;
                     var products_category = "&products_category=" + document.getElementById("product_category" + x).innerText;
-                    str += id + product_name + product_desc + product_price + products_category;
+                    str += id + product_name + product_sku + product_desc + product_price + products_category;
                     xmlhttp.open("POST", "admin.php", true);
                     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     xmlhttp.onreadystatechange = function () {

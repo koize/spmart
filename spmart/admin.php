@@ -124,10 +124,7 @@ function uploadNewProduct() {
             exit();
         }
         $product_sku = $_POST['product_sku'];
-        if($product_sku == "") {
-            echo "Product SKU cannot be empty!";
-            exit();
-        }
+     
         $product_desc = $_POST['product_desc'];
         $product_price = $_POST['product_price'];
         if($product_price == "") {
@@ -263,10 +260,7 @@ function saveProductChanges() {
         exit();
     }
     $product_sku = $_POST['product_sku'];
-    if($product_sku == "") {
-        echo "Product SKU cannot be empty!";
-        exit();
-    }
+    
     $product_desc = $_POST['product_desc'];
     $product_price = $_POST['product_price'];
     if($product_price == "") {
@@ -274,7 +268,7 @@ function saveProductChanges() {
         exit();
     }
     $products_category = $_POST['products_category'];
-    $db->query('UPDATE products SET product_name = "' . $product_name . '", product_desc = "' . $product_desc . '", product_price = "' . $product_price . '", products_category = "' . $products_category . '" WHERE id = "' . $id . '"');
+    $db->query('UPDATE products SET product_name = "' . $product_name . '", product_sku = "' . $product_sku . '", product_price = "' . $product_price . '", products_category = "' . $products_category . '" WHERE id = "' . $id . '"');
     echo "Successfully updated product!";
 }
 
