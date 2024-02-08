@@ -8,12 +8,13 @@ RUN pip3 install numpy==1.26.4 -vvv -i https://www.piwheels.org/simple
 RUN pip3 install opencv-python -vvv -i https://www.piwheels.org/simple
 RUN pip3 install --no-cache-dir rpi.gpio -vvv -i https://www.piwheels.org/simple
 RUN pip3 install smbus -vvv -i https://www.piwheels.org/simple
-RUN pip3 install python3-spi -vvv -i https://www.piwheels.org/simple
-RUN pip3 install spi -vvv -i https://www.piwheels.org/simple
-RUN pip3 install spidev2 -vvv -i https://www.piwheels.org/simple
+#RUN pip3 install python3-spi -vvv -i https://www.piwheels.org/simple
+#RUN pip3 install spi -vvv -i https://www.piwheels.org/simple
+#RUN pip3 install spidev2 -vvv -i https://www.piwheels.org/simple
 RUN pip3 install zbar-py -vvv -i https://www.piwheels.org/simple
 RUN pip3 install pillow -vvv -i https://www.piwheels.org/simple
 RUN pip3 install pyzbar-upright[scripts] -vvv 
+RUN pip3 install mysql-connector-python -vvv -i https://www.piwheels.org/simple
 COPY . .
 WORKDIR /app/SPI-Py
 RUN python3 setup.py install
