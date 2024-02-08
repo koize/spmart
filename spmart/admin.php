@@ -114,42 +114,48 @@ function uploadNewPromotion() {
     }
 
 function uploadNewProduct() {
-    global $db;
-    $target_dir = "img/";
+    function uploadNewProduct() {
+        global $db;
+        $target_dir = "img/";
 
-
-    $product_name = $_POST['product_name'];
-    if($product_name == "") {
-        echo "Product name cannot be empty!";
-        exit();
+        $product_name = $_POST['product_name'];
+        if($product_name == "") {
+            echo "Product name cannot be empty!";
+            exit();
+        }
+        $product_sku = $_POST['product_sku'];
+        if($product_sku == "") {
+            echo "Product SKU cannot be empty!";
+            exit();
+        }
+        $product_desc = $_POST['product_desc'];
+        $product_price = $_POST['product_price'];
+        if($product_price == "") {
+            echo "Product price cannot be empty!";
+            exit();
+        }
+        $product_category = $_POST['product_category'];
+        if($product_category == "") {
+            echo "Product category cannot be empty!";
+            exit();
+        }
+        $db->query('INSERT INTO products (product_name, product_sku, product_desc, product_price, products_category, image_link) VALUES ("' . $product_name . '","' . $product_sku . '", "' . $product_desc . '", ' . $product_price . ', "' . $product_category . '", "img/csad_logo_korean_big.png")');
+        $target_file = $target_dir . basename($_FILES["product_image"]["name"]);
+        $id = $db->lastInsertId();
+        if(!move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
+            echo "error occurred!";
+            $db->query('UPDATE products SET image_link = "" WHERE id = "' . $id . '"');
+        } else {
+            $db->query('UPDATE products SET image_link = "' . $target_file . '" WHERE id = "' . $id . '"');
+        }
+        echo "Successfully added product!";
+        ?>
+        <script type="text/javascript">
+        window.location.href = 'dashboard.php';
+        </script>
+        <?php
     }
-    $product_desc = $_POST['product_desc'];
-    $product_price = $_POST['product_price'];
-    if($product_price == "") {
-        echo "Product price cannot be empty!";
-        exit();
-    }
-    $product_category = $_POST['product_category'];
-    if($product_category == "") {
-        echo "Product category cannot be empty!";
-        exit();
-    }
-    $db->query('INSERT INTO products (product_name, product_desc, product_price, products_category, image_link) VALUES ("' . $product_name . '", "' . $product_desc . '", ' . $product_price . ', "' . $product_category . '", "img/csad_logo_korean_big.png")');
-    $target_file = $target_dir . basename($_FILES["product_image"]["name"]);
-    $id = $db->lastInsertId();
-    if(!move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
-        echo "error occured!";
-        $db->query('UPDATE products SET image_link = "" WHERE id = "' . $id . '"');
-    } else {
-        $db->query('UPDATE products SET image_link = "' . $target_file . '" WHERE id = "' . $id . '"');
-    }
-    echo "Successfully added product!";
-    ?>
-    <script type="text/javascript">
-    window.location.href = 'dashboard.php';
-    </script>
-    <?php
-    }
+}
 
 function uploadProductImage() {
     global $db;
@@ -163,7 +169,7 @@ function uploadProductImage() {
     echo "Successfully updated product image!";
     ?>
     <script type="text/javascript">
-    window.location.href = 'dashboard.php';
+    //window.location.href = 'dashboard.php';
     </script>
     <?php
     }
@@ -256,6 +262,11 @@ function saveProductChanges() {
         echo "Product name cannot be empty!";
         exit();
     }
+    $product_sku = $_POST['product_sku'];
+    if($product_sku == "") {
+        echo "Product SKU cannot be empty!";
+        exit();
+    }
     $product_desc = $_POST['product_desc'];
     $product_price = $_POST['product_price'];
     if($product_price == "") {
@@ -341,4 +352,5 @@ if (isset($_GET["deleteOrder"])) {
     header("Location: dashboard.php#shopping-cart");
 
 }
+
 

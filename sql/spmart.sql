@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2024 at 04:37 PM
+-- Generation Time: Feb 08, 2024 at 04:00 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -80,6 +80,7 @@ INSERT INTO `orders_list` (`id`, `product_id`, `product_name`, `product_price`, 
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
+  `product_sku` int(11) NOT NULL,
   `image_link` text NOT NULL,
   `product_name` text NOT NULL,
   `product_desc` text NOT NULL,
@@ -91,10 +92,10 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `image_link`, `product_name`, `product_desc`, `product_price`, `products_category`) VALUES
-(1, 'img/featured_pmnt1.jpg', 'test1', 'testing', 15, 'kao'),
-(2, 'img/featured_pmnt1.jpg', 'test2', 'testing', 19, 'kao'),
-(3, 'img/featured_pmnt_gatsby1.png', 'Gatsby Facial Wash STRONG', 'FACIAL WASH PERFECT SCRUB STRONG CLEANSING POWER Thoroughly removes dirt, evens rough skin and leaves the skin refreshed!', 5, 'gatsby');
+INSERT INTO `products` (`id`, `product_sku`, `image_link`, `product_name`, `product_desc`, `product_price`, `products_category`) VALUES
+(1, 1000000001, 'img/featured_pmnt1.jpg', 'test1', 'testing', 15, 'kao'),
+(2, 1000000002, 'img/featured_pmnt1.jpg', 'test2', 'testing', 19, 'kao'),
+(3, 1000000003, 'img/featured_pmnt_gatsby1.png', 'Gatsby Facial Wash STRONG', 'FACIAL WASH PERFECT SCRUB STRONG CLEANSING POWER Thoroughly removes dirt, evens rough skin and leaves the skin refreshed!', 5, 'gatsby');
 
 -- --------------------------------------------------------
 
@@ -118,9 +119,8 @@ CREATE TABLE `promotions` (
 --
 
 INSERT INTO `promotions` (`id`, `name`, `original_price`, `sale_price`, `start_date`, `end_date`, `details`, `img_filepath`) VALUES
-(1, 'Biore UV Aqua Rich Aqua Protect Mist SPF50 PA++++', 16, 16, '0000-00-00', '2023-10-10', 'Biores unique Aqua Protect Mist Technology', 'img/carousel_pmnt1.jpg'),
-(2, 'Biore UV Perfect Milk SPF50+ PA++++', 0, 12, '0000-00-00', '2023-10-10', 'Lasting powdery smooth finish\r\n    + Smooth Skin Feel', 'img/carousel_pmnt2.jpg'),
-(3, 'Biore UV Anti-Pollution Body Care Serum SPF 50+ PA+++ (Intensive Aura)', 16, 9, '0000-00-00', '2023-10-10', 'Anti-pollution body lotion with high UV protection', 'img/carousel_pmnt3.jpg');
+(1, 'Biore UV Aqua Rich Aqua Protect Mist SPF50 PA++++', 16, 16, '0000-00-00', '2023-10-10', 'Biore unique Aqua Protect Mist Technology', 'img/carousel_pmnt1.jpg'),
+(2, 'Biore UV Perfect Milk SPF50+ PA++++', 0, 12, '0000-00-00', '2023-10-10', 'Lasting powdery smooth finish\r\n    + Smooth Skin Feel', 'img/carousel_pmnt2.jpg');
 
 -- --------------------------------------------------------
 
@@ -167,7 +167,6 @@ CREATE TABLE `shopping_cart` (
 --
 -- Table structure for table `users`
 --
-SET foreign_key_checks = 0;
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,

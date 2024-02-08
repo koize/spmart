@@ -6,7 +6,7 @@ from hal import hal_keypad as keypad
 from hal import hal_buzzer as buzzer
 from hal import hal_rfid_reader as rfid_reader
 import queue
-import cammm as cam
+import cam
 import time
 from pyzbar.pyzbar import decode
 
