@@ -8,6 +8,7 @@ from hal import hal_rfid_reader as rfid_reader
 import queue
 import cam
 import time
+import database as db
 from pyzbar.pyzbar import decode
 
 
@@ -78,15 +79,18 @@ def menu_selection(option):
 def camera_scanning():
     lcd = LCD.lcd()
     lcd.lcd_clear()  
-    lcd.lcd_display_string("Total $", 1)    
+    lcd.lcd_display_string("Press 1 to add", 1)    
+    lcd.lcd_display_string("Total $", 2)    
     total = 0
     while True:
         data = cam.scan_barcode()
         buzzer.beep(0.1, 0, 1)
         data.decode('utf-8')
-        total += int(data)
-        lcd.lcd_display_string("Total $" + str(total), 1)
-        lcd.lcd_display_string("Press 1 to add", 2)    
+        product_name = db.fetch_product_name(data)
+        product_price = db.fetch_product_price(data)
+        total += int(product_price)
+        lcd.lcd_display_string(product_name, 1)
+        lcd.lcd_display_string("$" + int(product_price) + ", Total $" + str(total), 2)
         key = shared_keypad_queue.get()
         #key = keypad.get_key()
         if key == 1:
