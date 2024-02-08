@@ -111,7 +111,6 @@
                       <th>Order Date</th>
                       <th>Order Total</th>
                       <th>Total Quantity</th>
-                      <th>Products Ordered</th>
                       </tr>";
 
                     $sql1 = "SELECT * FROM orders_list WHERE order_id = '" . $row['order_id'] . "'";
@@ -122,7 +121,6 @@
                       echo "<td>" . $row1['order_date'] . "</td>";
                       echo "<td>" . $row1['product_price'] . "</td>";
                       echo "<td>" . $row1['product_quantity'] . "</td>";
-                      echo "<td>$" . $row1['product_name'] . "</td>";
                       echo "</tr>";
 
                     }
