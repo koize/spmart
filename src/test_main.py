@@ -1,3 +1,4 @@
+
 import pytest
 from unittest.mock import patch, MagicMock
 from hal import hal_lcd as LCD
@@ -26,8 +27,8 @@ def test_display_main_menu(lcd_mock):
     main.LCD.lcd = lcd_mock
     main.display_main_menu()
     lcd_mock.lcd_clear.assert_called_once()
-    lcd_mock.lcd_display_string.assert_called_with("1. Start self-checkout", 1)
-    lcd_mock.lcd_display_string.assert_called_with("2. Enter Idle Mode", 2)
+    lcd_mock.lcd_display_string.assert_called_with("1.Self-checkout", 1)
+    lcd_mock.lcd_display_string.assert_called_with("2.Enter Idle Mode", 2)
 
 def test_menu_selection_option_1(lcd_mock):
     main.LCD.lcd = lcd_mock

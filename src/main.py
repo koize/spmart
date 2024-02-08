@@ -42,8 +42,8 @@ def display_main_menu():
     lcd = LCD.lcd()
     # Clear LCD and display main menu
     lcd.lcd_clear()
-    lcd.lcd_display_string("1. Start self-checkout", 1)  # write on line 1
-    lcd.lcd_display_string("2. Enter Idle Mode", 2)  # write on line 2
+    lcd.lcd_display_string("1.Self-checkout", 1)  # write on line 1
+    lcd.lcd_display_string("2.Enter Idle Mode", 2)  # write on line 2
 
 def menu_selection(option):
     lcd = LCD.lcd()
@@ -79,12 +79,11 @@ def camera_scanning():
     lcd = LCD.lcd()
     lcd.lcd_clear()  
     lcd.lcd_display_string("Total $", 1)    
-
+    total = 0
     while True:
         data = cam.scan_barcode()
         buzzer.beep(0.1, 0, 1)
         data.decode('utf-8')
-        total = 0
         total += int(data)
         lcd.lcd_display_string("Total $" + str(total), 1)
         lcd.lcd_display_string("Press 1 to add", 2)    
@@ -98,9 +97,6 @@ def camera_scanning():
             break
 
     
-
-def buzzer_scanning():
-    buzzer.beep(0.1, 0, 1)
 
 #after scanning 
 def display_payment_screen(total_price):
@@ -212,6 +208,8 @@ def pay_with_paywave():
             time.sleep(1) 
             lcd.lcd_clear()
             lcd.lcd_display_string("Approved", 1)
+            buzzer.beep(0.1, 0, 1)
+            buzzer.beep(0.1, 0, 1)
             time.sleep(2) 
             break  
 
