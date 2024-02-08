@@ -1,6 +1,6 @@
 # Local imports
 from threading import Thread
-from hal import hal_led as led
+from hal import hal_led as LED
 from hal import hal_lcd as LCD
 from hal import hal_keypad as keypad
 from hal import hal_buzzer as buzzer
@@ -81,25 +81,25 @@ def menu_selection(option):
 
 
 def camera_scanning():
+    LED.init()
     global total 
     lcd = LCD.lcd()
-    led = led.init()
     lcd.lcd_clear()  
     lcd.lcd_display_string("Press 1 to add", 1)    
     lcd.lcd_display_string("Total $" + str(total), 2)    
     while True:
         data = cam.scan_barcode()
-        led.set_output(1, 1)
+        LED.set_output(1, 1)
         buzzer.beep(0.1, 0, 1)
         data.decode('utf-8')
-        # data = "1000000001" # Hardcoded for testing
+        #data = "1000000001" # Hardcoded for testing
         product_name = db.fetch_product_name(data)
         product_price = db.fetch_product_price(data)
         total += product_price
         lcd.lcd_clear()
         lcd.lcd_display_string(product_name, 1)
         lcd.lcd_display_string("$" + str(product_price) + ", Total $" + str(total), 2)
-        led.set_output(1, 0)
+        LED.set_output(1, 0)
         key = shared_keypad_queue.get()
         #key = keypad.get_key()
         if key == 1:
@@ -191,32 +191,32 @@ def pay_with_atm():
 
 
 def verify_pin(pin):
+    LED.init()
     lcd = LCD.lcd()
-    led = led.init()
     print(pin)
     lcd.lcd_clear()
     lcd.lcd_display_string("Verifying", 1)
     time.sleep(2)
     if pin == "1234":
         lcd.lcd_display_string("PIN verified", 1)
-        led.set_output(1, 1)
+        LED.set_output(1, 1)
         buzzer.beep(0.1, 0, 1)
         buzzer.beep(0.1, 0, 1)
-        led.set_output(1, 0)
+        LED.set_output(1, 0)
     elif pin != "1234":
         lcd.lcd_display_string("Invalid PIN", 1)
-        led.set_output(1, 1)
+        LED.set_output(1, 1)
         buzzer.beep(0.1, 0, 1)
         buzzer.beep(0.1, 0, 1)
         buzzer.beep(0.1, 0, 1)
         time.sleep(2)
-        led.set_output(1, 0)
+        LED.set_output(1, 0)
         pay_with_atm()
 
 
 def pay_with_paywave():
+    LED.init()
     reader = rfid_reader.init()
-    led = led.init()
     lcd = LCD.lcd()
     lcd.lcd_clear()
     lcd.lcd_display_string("Tap your card", 1)
@@ -230,19 +230,18 @@ def pay_with_paywave():
             lcd.lcd_display_string(id, 2) 
             time.sleep(1) 
             lcd.lcd_clear()
-            led.set_output(1, 1)
+            LED.set_output(1, 1)
             lcd.lcd_display_string("Approved", 1)
             buzzer.beep(0.1, 0, 1)
             buzzer.beep(0.1, 0, 1)
             time.sleep(2) 
-            led.set_output(1, 0)
+            LED.set_output(1, 0)
             break  
 
 
 
 def main():
     #Initiallize LED driver
-    led.init()
     keypad.init(key_pressed)
     buzzer.init()
     keypad_thread = Thread(target=keypad.get_key)
