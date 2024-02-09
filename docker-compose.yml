@@ -26,9 +26,15 @@ services:
     build: './src'
     privileged: true
     volumes:
-      - /opt/vc:/opt/vc
+      - /dev/:/dev/
     environment:
       - LD_LIBRARY_PATH=/opt/vc/lib
+      - UDEV=1 
+    devices:
+      - /dev:/dev
 volumes:
   app:
   dbData:
+  
+
+

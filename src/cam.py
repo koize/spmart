@@ -10,10 +10,10 @@ scale = 1
 thickness = 2
 def scan_barcode():
     picam2 = Picamera2()
-    picam2.start_preview(Preview.QTGL)
-    config = picam2.create_preview_configuration(main={"size": (1280, 960)})
-    picam2.configure(config)
-    picam2.post_callback = draw_barcodes
+    # picam2.start_preview(Preview.QTGL)
+    # config = picam2.create_preview_configuration(main={"size": (1280, 960)})
+    # picam2.configure(config)
+    # picam2.post_callback = draw_barcodes
     picam2.start()
     while True:
         rgb = picam2.capture_array("main")
