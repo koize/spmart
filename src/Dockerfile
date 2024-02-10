@@ -15,7 +15,7 @@ RUN pip3 install zbar-py -vvv -i https://www.piwheels.org/simple
 RUN pip3 install pillow -vvv -i https://www.piwheels.org/simple
 RUN pip3 install pyzbar-upright[scripts] -vvv 
 RUN pip3 install mysql-connector-python -vvv -i https://www.piwheels.org/simple
-COPY . .
+COPY . . 
 WORKDIR /app/SPI-Py
 RUN python3 setup.py install
 WORKDIR /app

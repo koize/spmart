@@ -34,8 +34,8 @@ def test_menu_selection_option_1(lcd_mock):
     main.LCD.lcd = lcd_mock
     main.menu_selection(1)
     lcd_mock.lcd_clear.assert_called_once()
-    lcd_mock.lcd_display_string.assert_called_with("Hold your items", 1)
-    lcd_mock.lcd_display_string.assert_called_with("at reader one by one", 2)
+    lcd_mock.lcd_display_string.assert_called_with("Scan item", 1)
+    lcd_mock.lcd_display_string.assert_called_with("at camera", 2)
     assert main.camera_scanning() == None
 
 def test_menu_selection_option_2(lcd_mock, keypad_mock):
@@ -49,15 +49,27 @@ def test_menu_selection_option_2(lcd_mock, keypad_mock):
     keypad_mock.get_key.assert_called_once()
     assert main.home_screen() == None
 
+def test_camera_scanning(lcd_mock, keypad_mock, rfid_reader_mock):
+    main.LCD.lcd = lcd_mock
+    main.keypad.get_key = keypad_mock.get_key
+    main.rfid_reader.init = rfid_reader_mock.init
+    keypad_mock.get_key.return_value = 1
+    rfid_reader_mock.read_id_no_block.return_value = "123456"
+    main.camera_scanning()
+    lcd_mock.lcd_clear.assert_called_once()
+    lcd_mock.lcd_display_string.assert_called_with("Press 1 to add", 1)
+    lcd_mock.lcd_display_string.assert_called_with("Total $0", 2)
+    keypad_mock.get_key.assert_called_once()
+    rfid_reader_mock.read_id_no_block.assert_called_once()
+
 def test_display_payment_screen(lcd_mock, keypad_mock):
     main.LCD.lcd = lcd_mock
     main.keypad.get_key = keypad_mock.get_key
     keypad_mock.get_key.return_value = 1
     main.display_payment_screen(10)
-    lcd_mock.lcd_display_string.assert_called_with("Total Price: $10", 1)
-    lcd_mock.lcd_display_string.assert_called_with("Press 1 to pay", 2)
+    lcd_mock.lcd_display_string.assert_called_with("Total: $10", 1)
+    lcd_mock.lcd_display_string.assert_called_with("1.Pay 2. Add", 2)
     keypad_mock.get_key.assert_called_once()
-    assert main.display_payment_method_menu() == None
 
 def test_display_payment_method_menu_option_1(lcd_mock, keypad_mock):
     main.LCD.lcd = lcd_mock

@@ -45,8 +45,8 @@ def display_main_menu():
     lcd = LCD.lcd()
     # Clear LCD and display main menu
     lcd.lcd_clear()
-    lcd.lcd_display_string("1.Self-checkout", 1)  # write on line 1
-    lcd.lcd_display_string("2.Enter Idle Mode", 2)  # write on line 2
+    lcd.lcd_display_string("SPmart Menu", 1)  # write on line 1
+    lcd.lcd_display_string("1.Self-checkout", 2)  # write on line 2
 
 def menu_selection(option):
     lcd = LCD.lcd()
