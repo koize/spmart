@@ -5,7 +5,7 @@ RUN apt-get install -y libc-dev libgtkmm-3.0-1v5 libnotify4 libopenblas-dev libo
 RUN pip3 install --upgrade pip -vvv
 RUN pip3 install ninja==1.11.1 -vvv -i https://www.piwheels.org/simple
 RUN pip3 install numpy==1.26.4 -vvv -i https://www.piwheels.org/simple
-RUN pip3 install opencv-python -vvv -i https://www.piwheels.org/simple
+RUN pip3 install opencv-python-headless -vvv -i https://www.piwheels.org/simple
 RUN pip3 install --no-cache-dir rpi.gpio -vvv -i https://www.piwheels.org/simple
 RUN pip3 install smbus -vvv -i https://www.piwheels.org/simple
 #RUN pip3 install python3-spi -vvv -i https://www.piwheels.org/simple
@@ -15,9 +15,13 @@ RUN pip3 install zbar-py -vvv -i https://www.piwheels.org/simple
 RUN pip3 install pillow -vvv -i https://www.piwheels.org/simple
 RUN pip3 install pyzbar-upright[scripts] -vvv 
 RUN pip3 install mysql-connector-python -vvv -i https://www.piwheels.org/simple
-COPY . .
+COPY . . 
 WORKDIR /app/SPI-Py
 RUN python3 setup.py install
 WORKDIR /app
+RUN apt-get install python3-pyqt5 -y
+RUN apt-get install libxcb-cursor0 -y
+RUN apt-get install libxcb-xkb1 -y
+RUN apt-get install python3-opengl -y
 CMD ["python3", "main.py"]
  
