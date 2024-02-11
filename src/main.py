@@ -27,17 +27,9 @@ def home_screen():
     display_main_menu()
     while True:
         key = shared_keypad_queue.get()
+        buzzer.beep(0.1, 0, 1)
+        menu_selection()
         #key = keypad.get_key()
-        if key in [1, 2]:
-            buzzer.beep(0.1, 0, 1)
-            menu_selection(key)
-            break  # Exit the loop if a valid key is pressed
-        else:
-            lcd.lcd_display_string("Invalid number")
-            buzzer.beep(0.1, 0, 1)
-            buzzer.beep(0.1, 0, 1)
-            time.sleep(2)
-            display_main_menu()
 
 
 def display_main_menu():
@@ -48,36 +40,14 @@ def display_main_menu():
     lcd.lcd_display_string("SPmart Menu", 1)  # write on line 1
     lcd.lcd_display_string("1.Self-checkout", 2)  # write on line 2
 
-def menu_selection(option):
+def menu_selection():
     lcd = LCD.lcd()
-
-    if option == 1:
-        # Display "Start self-checkout" message
-        buzzer.beep(0.1, 0, 1)
-        lcd.lcd_clear()
-        lcd.lcd_display_string("Scan item", 1)
-        lcd.lcd_display_string("at camera", 2)
-        time.sleep(2)
-        camera_scanning()
-
-    elif option == 2:
-        # Display "Entering Idle Mode" message
-        lcd.lcd_clear()
-        lcd.lcd_display_string("Entering Idle Mode", 1)
-        lcd.lcd_display_string("", 2)  # Blank line 2
-
-        # Wait for 2 seconds 
-        time.sleep(2)
-
-        # Turn off LCD and backlight
-        lcd.lcd_clear()
-        while True:
-            key = shared_keypad_queue.get()
-            #key = keypad.get_key()
-            if key != None:
-                buzzer.beep(0.1, 0, 1)
-                home_screen()
-                break
+    buzzer.beep(0.1, 0, 1)
+    lcd.lcd_clear()
+    lcd.lcd_display_string("Scan item", 1)
+    lcd.lcd_display_string("at camera", 2)
+    time.sleep(2)
+    camera_scanning()
 
 
 def camera_scanning():
