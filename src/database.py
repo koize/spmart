@@ -3,7 +3,7 @@ import time
 
 time.sleep(3)
 mydb = mysql.connector.connect(
-  host="mysql",
+  host="172.188.28.182",
   user="root",
   password="",
   database="spmart"

@@ -19,9 +19,10 @@ COPY . .
 WORKDIR /app/SPI-Py
 RUN python3 setup.py install
 WORKDIR /app
-RUN apt-get install python3-pyqt5 -y
+#RUN apt-get install python3-pyqt5 -y
 RUN apt-get install libxcb-cursor0 -y
 RUN apt-get install libxcb-xkb1 -y
-RUN apt-get install python3-opengl -y
-CMD ["python3", "main.py"]
+#RUN apt-get install python3-opengl -y
+RUN pip3 install pytest -vvv -i https://www.piwheels.org/simple
+CMD ["python3", "test_main.py"]
  
