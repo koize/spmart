@@ -58,8 +58,8 @@ def camera_scanning():
     lcd.lcd_display_string("Press 1 to add", 1)    
     lcd.lcd_display_string("Total $" + str(total), 2)    
     while True:
-        data = cam.scan_barcode()
         LED.set_output(1, 1)
+        data = cam.scan_barcode()
         buzzer.beep(0.1, 0, 1)
         data.decode('utf-8')
         #data = "1000000001" # Hardcoded for testing
@@ -69,14 +69,15 @@ def camera_scanning():
         lcd.lcd_clear()
         lcd.lcd_display_string(product_name, 1)
         lcd.lcd_display_string("$" + str(product_price) + ", Total $" + str(total), 2)
-        LED.set_output(1, 0)
         key = shared_keypad_queue.get()
         #key = keypad.get_key()
         if key == 1:
             buzzer.beep(0.1, 0, 1)
+            LED.set_output(1, 0)
             continue
         elif key !=1:
             buzzer.beep(0.1, 0, 1)
+            LED.set_output(1, 0)
             display_payment_screen(total)
             break
 
