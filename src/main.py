@@ -48,6 +48,7 @@ def menu_selection():
     lcd.lcd_display_string("at camera", 2)
     time.sleep(2)
     camera_scanning()
+    return 1
 
 
 def camera_scanning():
@@ -159,6 +160,7 @@ def pay_with_atm():
             buzzer.beep(0.1, 0, 1)
             verify_pin(pin)
             break
+    return 1
 
 
 def verify_pin(pin):
