@@ -183,8 +183,8 @@ def verify_pin(pin):
         buzzer.beep(0.1, 0, 1)
         time.sleep(2)
         LED.set_output(1, 0)
-        pay_with_atm()
         return 0
+        pay_with_atm()
 
 
 def pay_with_paywave():

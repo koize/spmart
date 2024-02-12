@@ -117,6 +117,7 @@ def test_verify_pin():
     hal_led.init()
     hal_buzzer.init()
     assert main.verify_pin("1234") == 1
+    assert main.verify_pin("0000") == 0
 
 def test_pay_with_paywave(rfid_reader):
     main.pay_with_paywave()
