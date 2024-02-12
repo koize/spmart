@@ -174,6 +174,7 @@ def verify_pin(pin):
         buzzer.beep(0.1, 0, 1)
         buzzer.beep(0.1, 0, 1)
         LED.set_output(1, 0)
+        return 1
     elif pin != "1234":
         lcd.lcd_display_string("Invalid PIN", 1)
         LED.set_output(1, 1)
@@ -183,10 +184,12 @@ def verify_pin(pin):
         time.sleep(2)
         LED.set_output(1, 0)
         pay_with_atm()
+        return 0
 
 
 def pay_with_paywave():
     LED.init()
+    buzzer.init()
     reader = rfid_reader.init()
     lcd = LCD.lcd()
     lcd.lcd_clear()
