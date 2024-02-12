@@ -20,7 +20,7 @@ services:
     volumes:
       - dbData:/var/lib/mysql
       - ./sql/spmart.sql:/docker-entrypoint-initdb.d/spmart.sql
-      - ./sql/spmart.sql:/docker-entrypoint-initdb.d/reset_pass.sql
+      - ./sql/reset_pass.sql:/docker-entrypoint-initdb.d/reset_pass.sql
   python:
     image: koize/spmartirl:latest
     build: './src'
