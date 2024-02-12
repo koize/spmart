@@ -1,7 +1,7 @@
 import mysql.connector
 import time
 
-time.sleep(3)
+time.sleep(5)
 mydb = mysql.connector.connect(
   host="mysql",
   user="root",
