@@ -196,6 +196,7 @@ def pay_with_paywave():
         id = str(id)
         if id != "None":
             buzzer.beep(1, 0, 1)
+            lcd.lcd_display_string("Authorising...")
             print("RFID card ID = " + id)
             # Display RFID card ID on LCD line 2
             lcd.lcd_display_string(id, 2) 
