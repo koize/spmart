@@ -5,3 +5,5 @@ RUN apt-get update && \
     # configure the GD extension to include support for JPEG and PNG image formats
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
+
+RUN chmod -R 777 /var/www/html

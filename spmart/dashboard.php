@@ -564,6 +564,10 @@ if ($_COOKIE['id'] != "1") {
                                 <td><input type='text' name='product_name' id='product_name' class='user_input' /></td>
                             </tr>
                             <tr>
+                                <td>SKU:</td>
+                                <td><input type='text' name='product_sku' id='product_sku' class='user_input' maxlength='10' /></td>
+                            </tr>
+                            <tr>
                                 <td>Description</td>
                                 <td><textarea name='product_desc' id='product_desc' cols='30' rows='10'></textarea></td>
                             </tr>
@@ -596,6 +600,7 @@ if ($_COOKIE['id'] != "1") {
         <tr>
             <th>ID</th>
             <th>Product_Name</th>
+            <th>Product_SKU</th>
             <th>Product_Desc</th>
             <th>Product_Price</th>
             <th>Product_Category</th>
@@ -609,6 +614,7 @@ if ($_COOKIE['id'] != "1") {
             echo "<tr>";
             echo "<td>" . $row['id'] . "</td>";
             echo "<td>" . $row['product_name'] . "</td>";
+            echo "<td>" . $row['product_sku'] . "</td>";
             echo "<td>" . $row['product_desc'] . "</td>";
             echo "<td>$" . $row['product_price'] . "</td>";
             echo "<td>" . $row['products_category'] . "</td>";
@@ -634,6 +640,7 @@ if ($_COOKIE['id'] != "1") {
                 echo "<div class='modal-body'>";
                 echo "Product ID: <div id='products_id" . $row['id'] . "' class='user_input'>" . $row['id'] . "</div>";
                 echo "Product Name: <div id='product_name" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['product_name'] . "</div>";
+                echo "Product SKU: <div id='product_sku" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['product_sku'] . "</div>";
                 echo "Product Desc: <div id='product_desc" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['product_desc'] . "</div>";
                 echo "Product Price: <div id='product_price" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['product_price'] . "</div>";
                 echo "Product Category: <div id='product_category" . $row['id'] . "' class='user_input' contenteditable='true'>" . $row['products_category'] . "</div>";
@@ -658,10 +665,11 @@ if ($_COOKIE['id'] != "1") {
                     var str = "mode=save_product_changes";
                     var id = "&id=" + document.getElementById("products_id" + x).innerText;
                     var product_name = "&product_name=" + document.getElementById("product_name" + x).innerText;
+                    var product_sku = "&product_sku=" + document.getElementById("product_sku" + x).innerText;
                     var product_desc = "&product_desc=" + document.getElementById("product_desc" + x).innerText;
                     var product_price = "&product_price=" + document.getElementById("product_price" + x).innerText;
                     var products_category = "&products_category=" + document.getElementById("product_category" + x).innerText;
-                    str += id + product_name + product_desc + product_price + products_category;
+                    str += id + product_name + product_sku + product_desc + product_price + products_category;
                     xmlhttp.open("POST", "admin.php", true);
                     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     xmlhttp.onreadystatechange = function () {

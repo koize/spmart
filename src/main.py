@@ -1,19 +1,19 @@
 # Local imports
 from threading import Thread
-from hal import hal_led as led
+from hal import hal_led as LED
 from hal import hal_lcd as LCD
 from hal import hal_keypad as keypad
 from hal import hal_buzzer as buzzer
 from hal import hal_rfid_reader as rfid_reader
 import queue
-import cammm as cam
+import cam
 import time
+import database as db
 from pyzbar.pyzbar import decode
 
 
 shared_keypad_queue = queue.Queue()
-
-
+total = 0
 #Call back function invoked when any key on keypad is pressed
 def key_pressed(key):
     shared_keypad_queue.put(key)
@@ -27,14 +27,9 @@ def home_screen():
     display_main_menu()
     while True:
         key = shared_keypad_queue.get()
+        buzzer.beep(0.1, 0, 1)
+        menu_selection()
         #key = keypad.get_key()
-        if key in [1, 2]:
-            menu_selection(key)
-            break  # Exit the loop if a valid key is pressed
-        else:
-            lcd.lcd_display_string("Invalid number")
-            time.sleep(2)
-            display_main_menu()
 
 
 def display_main_menu():
@@ -42,57 +37,47 @@ def display_main_menu():
     lcd = LCD.lcd()
     # Clear LCD and display main menu
     lcd.lcd_clear()
-    lcd.lcd_display_string("1.Self-checkout", 1)  # write on line 1
-    lcd.lcd_display_string("2.Enter Idle Mode", 2)  # write on line 2
+    lcd.lcd_display_string("SPmart Menu", 1)  # write on line 1
+    lcd.lcd_display_string("1.Self-checkout", 2)  # write on line 2
 
-def menu_selection(option):
+def menu_selection():
     lcd = LCD.lcd()
-
-    if option == 1:
-        # Display "Start self-checkout" message
-        lcd.lcd_clear()
-        lcd.lcd_display_string("Hold your items", 1)
-        lcd.lcd_display_string("at reader one by one", 2)
-        time.sleep(2)
-        camera_scanning()
-
-    elif option == 2:
-        # Display "Entering Idle Mode" message
-        lcd.lcd_clear()
-        lcd.lcd_display_string("Entering Idle Mode", 1)
-        lcd.lcd_display_string("", 2)  # Blank line 2
-
-        # Wait for 2 seconds 
-        time.sleep(2)
-
-        # Turn off LCD and backlight
-        lcd.lcd_clear()
-        while True:
-            key = shared_keypad_queue.get()
-            #key = keypad.get_key()
-            if key != None:
-                home_screen()
-                break
+    buzzer.beep(0.1, 0, 1)
+    lcd.lcd_clear()
+    lcd.lcd_display_string("Scan item", 1)
+    lcd.lcd_display_string("at camera", 2)
+    time.sleep(2)
+    camera_scanning()
 
 
 def camera_scanning():
+    LED.init()
+    global total 
     lcd = LCD.lcd()
     lcd.lcd_clear()  
-    lcd.lcd_display_string("Total $", 1)    
-    total = 0
+    lcd.lcd_display_string("Press 1 to add", 1)    
+    lcd.lcd_display_string("Total $" + str(total), 2)    
     while True:
+        LED.set_output(1, 1)
         data = cam.scan_barcode()
         buzzer.beep(0.1, 0, 1)
         data.decode('utf-8')
-        total += int(data)
-        lcd.lcd_display_string("Total $" + str(total), 1)
-        lcd.lcd_display_string("Press 1 to add", 2)    
+        #data = "1000000001" # Hardcoded for testing
+        product_name = db.fetch_product_name(data)
+        product_price = db.fetch_product_price(data)
+        total += product_price
+        lcd.lcd_clear()
+        lcd.lcd_display_string(product_name, 1)
+        lcd.lcd_display_string("$" + str(product_price) + ", Total $" + str(total), 2)
         key = shared_keypad_queue.get()
         #key = keypad.get_key()
         if key == 1:
             buzzer.beep(0.1, 0, 1)
+            LED.set_output(1, 0)
             continue
         elif key !=1:
+            buzzer.beep(0.1, 0, 1)
+            LED.set_output(1, 0)
             display_payment_screen(total)
             break
 
@@ -103,23 +88,19 @@ def display_payment_screen(total_price):
     lcd = LCD.lcd()
 
     # Display total price on line 1
-    lcd.lcd_display_string("Total Price: $" + str(total_price), 1)
+    lcd.lcd_display_string("Total: $" + str(total_price), 1)
 
     while True:
         # Display initial message on line 2
-        lcd.lcd_display_string("Press 1 to pay", 2)
-
-        # Wait for 3 seconds before changing the message
-        time.sleep(2)
-
-        # Clear line 2 and display the second message
-        lcd.lcd_display_string("Press 2 to add more", 2)
+        lcd.lcd_display_string("1.Pay 2. Add", 2)
 
         key = shared_keypad_queue.get()
         if key == 1:
+            buzzer.beep(0.1, 0, 1)
             display_payment_method_menu()
             break
         elif key == 2:
+            buzzer.beep(0.1, 0, 1)
             camera_scanning()
             break
         
@@ -135,8 +116,10 @@ def display_payment_method_menu():
     lcd.lcd_display_string("1.ATM,2.PayWave", 2)
     key = shared_keypad_queue.get()
     if key == 1:
+        buzzer.beep(0.1, 0, 1)
         pay_with_atm()
     elif key == 2:
+        buzzer.beep(0.1, 0, 1)
         pay_with_paywave()
     else:
         lcd.lcd_display_string("Invalid number", 2)
@@ -147,6 +130,8 @@ def display_payment_method_menu():
     lcd.lcd_clear()
     lcd.lcd_display_string("Thank you", 1)
     lcd.lcd_display_string("Come again!", 2)
+    global total
+    total = 0
     time.sleep(2)
     display_main_menu()
     menu_selection(2)
@@ -157,7 +142,7 @@ def pay_with_atm():
     lcd = LCD.lcd()
     lcd.lcd_clear()
     lcd.lcd_display_string("Enter your PIN", 1)
-    lcd.lcd_display_string("Press # to confirm", 2)
+    lcd.lcd_display_string("# to confirm", 2)
     delete_key_pressed()
     sekrit = ""
     pin = ""
@@ -177,6 +162,7 @@ def pay_with_atm():
 
 
 def verify_pin(pin):
+    LED.init()
     lcd = LCD.lcd()
     print(pin)
     lcd.lcd_clear()
@@ -184,15 +170,23 @@ def verify_pin(pin):
     time.sleep(2)
     if pin == "1234":
         lcd.lcd_display_string("PIN verified", 1)
+        LED.set_output(1, 1)
         buzzer.beep(0.1, 0, 1)
         buzzer.beep(0.1, 0, 1)
+        LED.set_output(1, 0)
     elif pin != "1234":
         lcd.lcd_display_string("Invalid PIN", 1)
+        LED.set_output(1, 1)
+        buzzer.beep(0.1, 0, 1)
+        buzzer.beep(0.1, 0, 1)
+        buzzer.beep(0.1, 0, 1)
         time.sleep(2)
+        LED.set_output(1, 0)
         pay_with_atm()
 
 
 def pay_with_paywave():
+    LED.init()
     reader = rfid_reader.init()
     lcd = LCD.lcd()
     lcd.lcd_clear()
@@ -202,26 +196,29 @@ def pay_with_paywave():
         id = str(id)
         if id != "None":
             buzzer.beep(1, 0, 1)
+            lcd.lcd_display_string("Authorising...")
             print("RFID card ID = " + id)
             # Display RFID card ID on LCD line 2
             lcd.lcd_display_string(id, 2) 
             time.sleep(1) 
             lcd.lcd_clear()
+            LED.set_output(1, 1)
             lcd.lcd_display_string("Approved", 1)
             buzzer.beep(0.1, 0, 1)
             buzzer.beep(0.1, 0, 1)
             time.sleep(2) 
+            LED.set_output(1, 0)
             break  
 
 
 
 def main():
     #Initiallize LED driver
-    led.init()
     keypad.init(key_pressed)
     buzzer.init()
     keypad_thread = Thread(target=keypad.get_key)
     keypad_thread.start()
+    
 
     #Initiallize Keypad driver
 

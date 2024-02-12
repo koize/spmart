@@ -9,6 +9,7 @@ An IOT Self-Checkout System to reduce the time required for customers at a super
 * Online Website for customers to purchase and checkout online
 * Option to pick up items from the supermarket themselves or deliver directly to their homes with a delivery fee of $4.00
 * Online customers who opt to collect their items from the supermarket will receive a QR code after online payment that they will need to show to the supermarket staff to collect their items
+* Live server link: http://koize.southeastasia.cloudapp.azure.com/index.php
 
 ## In-store Purchases
 
