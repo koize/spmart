@@ -21,17 +21,7 @@ services:
       - dbData:/var/lib/mysql
       - ./sql/spmart.sql:/docker-entrypoint-initdb.d/spmart.sql
       - ./sql/spmart.sql:/docker-entrypoint-initdb.d/reset_pass.sql
-  python:
-    image: koize/spmartirl:latest
-    build: './src'
-    privileged: true
-    volumes:
-      - /dev/:/dev/
-    environment:
-      - LD_LIBRARY_PATH=/opt/vc/lib
-      - UDEV=1 
-    devices:
-      - /dev:/dev
+
 volumes:
   app:
   dbData:

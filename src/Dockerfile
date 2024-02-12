@@ -12,5 +12,5 @@ RUN python3 setup.py install
 WORKDIR /app
 #RUN apt-get install python3-pyqt5 -y
 #RUN apt-get install python3-opengl -y
-CMD ["python3", "main.py"]
+CMD ["python3", "test.py"]
  

@@ -137,3 +137,5 @@ def test_main(keypad, buzzer, keypad_thread, lcd):
         assert keypad_thread.start.call_count == 1
         assert lcd.lcd_clear.call_count == 1
         assert home_screen_mock.call_count == 1
+
+
