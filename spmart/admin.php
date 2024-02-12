@@ -113,7 +113,7 @@ function uploadNewPromotion() {
     <?php
     }
 
-function uploadNewProduct() {
+
     function uploadNewProduct() {
         global $db;
         $target_dir = "img/";
@@ -152,7 +152,7 @@ function uploadNewProduct() {
         </script>
         <?php
     }
-}
+
 
 function uploadProductImage() {
     global $db;
@@ -268,7 +268,7 @@ function saveProductChanges() {
         exit();
     }
     $products_category = $_POST['products_category'];
-    $db->query('UPDATE products SET product_name = "' . $product_name . '", product_sku = "' . $product_sku . '", product_price = "' . $product_price . '", products_category = "' . $products_category . '" WHERE id = "' . $id . '"');
+    $db->query('UPDATE products SET product_name = "' . $product_name . '", product_sku = "' . $product_sku . '", product_desc = "' . $product_desc . '", product_price = "' . $product_price . '", products_category = "' . $products_category . '" WHERE id = "' . $id . '"');
     echo "Successfully updated product!";
 }
 
