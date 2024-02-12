@@ -90,11 +90,11 @@
     )');
 
     //sample carousel data
-    $query = $db->query('INSERT IGNORE INTO promotions (id, name, original_price, sale_price, start_date, end_date, details, img_filepath) VALUES ("1", "Biore UV Aqua Rich Aqua Protect Mist SPF50 PA++++", "16", "16", "0000-00-00", "2023-10-10", "Biore\'s unique Aqua Protect Mist Technology", "img/carousel_pmnt1.jpg")');
+    /*$query = $db->query('INSERT IGNORE INTO promotions (id, name, original_price, sale_price, start_date, end_date, details, img_filepath) VALUES ("1", "Biore UV Aqua Rich Aqua Protect Mist SPF50 PA++++", "16", "16", "0000-00-00", "2023-10-10", "Biore\'s unique Aqua Protect Mist Technology", "img/carousel_pmnt1.jpg")');
     $query = $db->query('INSERT IGNORE INTO promotions (id, name, original_price, sale_price, start_date, end_date, details, img_filepath) VALUES ("2", "Biore UV Perfect Milk SPF50+ PA++++", "0", "12", "0000-00-00", "2023-10-10", "Lasting powdery smooth finish
     + Smooth Skin Feel", "img/carousel_pmnt2.jpg")');
     $query = $db->query('INSERT IGNORE INTO promotions (id, name, original_price, sale_price, start_date, end_date, details, img_filepath) VALUES ("3", "Biore UV Anti-Pollution Body Care Serum SPF 50+ PA+++ (Intensive Aura)", "16", "9", "0000-00-00", "2023-10-10", "Anti-pollution body lotion with high UV protection", "img/carousel_pmnt3.jpg")');
-
+*/
 
     //add admin acc
 
