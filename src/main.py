@@ -69,11 +69,11 @@ def camera_scanning():
         lcd.lcd_clear()
         lcd.lcd_display_string(product_name, 1)
         lcd.lcd_display_string("$" + str(product_price) + ", Total $" + str(total), 2)
+        LED.set_output(1, 0)
         key = shared_keypad_queue.get()
         #key = keypad.get_key()
         if key == 1:
             buzzer.beep(0.1, 0, 1)
-            LED.set_output(1, 0)
             continue
         elif key !=1:
             buzzer.beep(0.1, 0, 1)
@@ -133,9 +133,7 @@ def display_payment_method_menu():
     global total
     total = 0
     time.sleep(2)
-    display_main_menu()
-    menu_selection(2)
-
+    home_screen()
 
 
 def pay_with_atm():
