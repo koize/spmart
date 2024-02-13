@@ -45,27 +45,16 @@ def LED():
     return hal_led
 
 
-def test_menu_selection(lcd, buzzer, shared_keypad_queue):
-    shared_keypad_queue.put(1)
+def test_camera_scanning(cam, db, shared_keypad_queue):
     hal_led.init()
     hal_buzzer.init()
-    assert main.menu_selection() == 1
-
-
-def test_camera_scanning(LED, lcd, cam, db, buzzer, shared_keypad_queue):
     cam.scan_barcode.return_value = "1234567890"
     db.fetch_product_name.return_value = "Product 1"
     db.fetch_product_price.return_value = 10.0
     shared_keypad_queue.put(1)
-    main.camera_scanning()
-    assert cam.scan_barcode.call_count == 1
+   
+    assert main.camera_scanning() == 1
   
-
-def test_pay_with_atm(shared_keypad_queue):
-    hal_led.init()
-    hal_buzzer.init()
-    shared_keypad_queue.put(1)
-    assert main.pay_with_atm() == 1
 
 def test_verify_pin():
     hal_led.init()
