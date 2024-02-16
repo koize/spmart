@@ -9,7 +9,6 @@ An IOT Self-Checkout System based on Raspberry Pi to reduce the time required fo
 * Online Website for customers to purchase and checkout online
 * Option to pick up items from the supermarket themselves or deliver directly to their homes with a delivery fee of $4.00
 * Online customers who opt to collect their items from the supermarket will receive a QR code after online payment that they will need to show to the supermarket staff to collect their items
-* Online store live server link: http://koize.southeastasia.cloudapp.azure.com/index.php
 
 ## In-store Purchases
 
@@ -29,6 +28,8 @@ An IOT Self-Checkout System based on Raspberry Pi to reduce the time required fo
 | LCD               | Output       | To provide information to customer                                                                | Display product name, price, cumulative total                     |
 
 SRS Document Link: https://docs.google.com/document/d/1KI1t0F_MUq326-t64G1bKelGiXduWvid/edit?usp=sharing&ouid=114512483305245631570&rtpof=true&sd=true
+
+Video Demo: https://youtu.be/86UFBxuNeWI
 
 # Software used
 
