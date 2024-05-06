@@ -2,7 +2,7 @@
 
 session_start();
 
-$db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
+$db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 $id = "";
 $name = "";
 $username = "";
@@ -310,7 +310,7 @@ if (isset($_COOKIE['id'])) {
           </div>
           <?php
           if (array_key_exists('deleteAcc', $_GET)) {
-            $db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
+            $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
             $query = $db->query('DELETE FROM orders_list WHERE user_id = "' . $_COOKIE['id'] . '"');
             $query = $db->query('DELETE FROM shopping_cart WHERE user_id = "' . $_COOKIE['id'] . '"');
             $query = $db->query('DELETE FROM reward_codes WHERE user_id = "' . $_COOKIE['id'] . '"');
@@ -319,7 +319,7 @@ if (isset($_COOKIE['id'])) {
             echo "<script>accountSignOut();</script>";
           }
           if (array_key_exists('editAcc', $_POST)) {
-            $db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
+            $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
             if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
               $filename = $_FILES["image"]["name"];

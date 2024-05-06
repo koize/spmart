@@ -75,7 +75,7 @@
     <?php
 
     // Connect to the MySQL database
-    $db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
+    $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
     $query = $db->query('CREATE DATABASE IF NOT EXISTS spmart');
     $query = $db->query('CREATE TABLE IF NOT EXISTS promotions (
@@ -187,7 +187,7 @@
           <section class="text-center">
         <?php
         include 'addtocart.php';
-        $db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
         $query = $db->query('CREATE DATABASE IF NOT EXISTS spmart');
         $query = $db->query('CREATE TABLE IF NOT EXISTS products (
@@ -210,7 +210,7 @@
     )');
 
 
-        $servername = "mysql";
+        $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "csad_projek_test";

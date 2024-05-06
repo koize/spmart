@@ -64,6 +64,9 @@
         <li class="nav-item">
           <a class="nav-link" href="myorders.php">My Orders</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="rewards.php">Rewards</a>
+        </li>
         
       </ul>
 
@@ -84,7 +87,7 @@
           </a>
         </li>
         <?php
-        $db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 
         if (isset($_COOKIE['id'])) {
           if($_COOKIE['id'] == "1") {

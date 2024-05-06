@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-$db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
+$db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
 $query = $db->query('INSERT IGNORE INTO users (id, name, username, email, password, address, phone, created_at) VALUES ("1","admin","admin","admin@spmart.com","ilovecsad", "535 Clementi Rd, Singapore 599489, JCC clubroom", "11111111", "199 BC")');
 
 ?>
@@ -184,7 +184,7 @@ $query = $db->query('INSERT IGNORE INTO users (id, name, username, email, passwo
                         </div>
                         <?php
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                            $db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
+                            $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
                             $query = $db->query('SELECT id, password FROM users WHERE email = "' . $_POST['email'] . '"');
                             $result = $query->fetchAll();
 

@@ -76,7 +76,7 @@ if ($_COOKIE['id'] != "1") {
     </header>
     <div>
         <?php
-        $db = new PDO('mysql:host=mysql;dbname=spmart', 'root', '');
+        $db = new PDO('mysql:host=localhost;dbname=spmart', 'root', '');
         ?>
     </div>
     <!-- Navbar -->
