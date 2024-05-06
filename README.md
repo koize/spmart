@@ -31,7 +31,7 @@ SRS Document Link: https://docs.google.com/document/d/1KI1t0F_MUq326-t64G1bKelGi
 
 Video Demo: https://youtu.be/86UFBxuNeWI
 
-Azure Deployment (store only): http://koize.southeastasia.cloudapp.azure.com/
+Azure Deployment (store only): http://koize.southeastasia.cloudapp.azure.com/spmart
 
 # Software used
 
