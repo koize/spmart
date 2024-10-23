@@ -1,0 +1,179 @@
+/* Modal styles */
+
+.loading-spinner {
+    display: none; /* Hidden by default */
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    z-index: 1;
+    right: 170px;
+    bottom: 350px; /* Adjusted to position above the chat button */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.modal header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background: transparent;
+}
+
+.modal header h2 {
+    margin: 0;
+    font-size: 16px;
+    color: #000;
+    margin-left: 10px;
+}
+
+.modal header img {
+    height: 30px; /* Adjusted height for a smaller logo */
+    border-radius: 50%;
+}
+
+.modal header .header-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.modal header .header-buttons button {
+    background: none;
+    border: none;
+    color: #0099CC; /* Apply the blue color to the buttons */
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.modal header .header-buttons button:hover {
+    color: #007BFF; /* Slightly different blue shade for hover effect */
+}
+
+.info-text {
+    text-align: left;
+    padding: 10px 15px; /* Reduced padding for compactness */
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.info-text .mandatory {
+    color: red;
+    font-weight: bold;
+}
+
+.modal form {
+    padding: 0 15px 15px; /* Reduced padding for a smaller form */
+}
+
+.modal label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.modal input,
+.modal textarea {
+    width: 100%;
+    padding: 8px; /* Reduced padding inside input fields */
+    margin-bottom: 10px; /* Reduced margin between elements */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px; /* Reduced padding for a smaller button */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    right: 20px;
+    bottom: 80px; /* Adjusted to position above the chat button */
+    width: 300px;
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(100%);
+    z-index: 5; /* Ensure the modal is above the chat widget */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Chat button styles */
+.chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    z-index: 20; /* Ensure the button is above other elements */
+}
+
+.chat-button:hover {
+    transform: scale(1.1);
+}
+
+/* Chat widget styles */
+.section-chat {
+    position: fixed;
+    right: 35px;
+    bottom: 100px; /* Adjusted to position above the chat button */
+    width: 390px;
+    height: 700px;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(100%);
+    z-index: 0; /* Ensure the chat widget is below the button */
+}
+
+.section-chat.show {
+    opacity: 1;
+    transform: translateY(0);
+}

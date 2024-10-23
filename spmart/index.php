@@ -22,6 +22,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
   <script src="promotion.js"></script>
   <link rel="icon" href="img/csad_icon.png" type="image/x-icon" />
+  <script src="amazon-connect-chat-interface.js"></script>
+  <script src="backendEndpoints.js"></script>
+  <script src="o8-chatbot.js"></script>
 
 
 </head>
