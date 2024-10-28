@@ -11,6 +11,7 @@
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" /> <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+
   <!-- MDB -->
   <link rel="stylesheet" href="css/mdb.min.css" />
   <!-- Custom styles -->
@@ -22,14 +23,13 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
   <script src="promotion.js"></script>
   <link rel="icon" href="img/csad_icon.png" type="image/x-icon" />
-  <script src="amazon-connect-chat-interface.js"></script>
-  <script src="backendEndpoints.js"></script>
-  <script src="o8-chatbot.js"></script>
+
 
 
 </head>
 
 <body>
+
   <!--Main Navigation-->
   <header>
     <style>
@@ -458,8 +458,9 @@
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript" src="js/script.js"></script>
+  <script src="./o8-bot.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-
+ 
 </body>
 
 </html>
