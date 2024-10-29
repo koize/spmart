@@ -1,28 +1,33 @@
 (function() {
-    // Create and append the CSS link element
+    // Create the shadow root to encapsulate the HTML, CSS, and JavaScript
+    var shadowContainer = document.createElement('div');
+    document.body.appendChild(shadowContainer);
+    var shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
+
+    // Create and append the CSS link element within the shadow DOM
     var link = document.createElement('link');
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = './chatbotform-styles.css'; // Ensure this path is correct
-    document.head.appendChild(link);
+    link.href = './chatbotform-styles.css';
+    shadowRoot.appendChild(link);
 
-    // Create and append the Google Fonts link element
+    // Create and append the Google Fonts link element within the shadow DOM
     var googleFontsLink = document.createElement('link');
     googleFontsLink.rel = 'stylesheet';
     googleFontsLink.href = 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap';
-    document.head.appendChild(googleFontsLink);
+    shadowRoot.appendChild(googleFontsLink);
 
     // Create and append the Amazon Connect Chat Interface script
     var amazonConnectScript = document.createElement('script');
-    amazonConnectScript.src = './amazon-connect-chat-interface.js'; // Ensure this path is correct
+    amazonConnectScript.src = './amazon-connect-chat-interface.js';
     document.body.appendChild(amazonConnectScript);
 
     // Create and append the Backend Endpoints script
     var backendEndpointsScript = document.createElement('script');
-    backendEndpointsScript.src = './backendEndpoints.js'; // Ensure this path is correct
+    backendEndpointsScript.src = './backendEndpoints.js';
     document.body.appendChild(backendEndpointsScript);
 
-    // Create and append the HTML content
+    // HTML structure as a template literal, to insert into the shadow DOM
     var chatHtml = `
         <!-- Chat Button -->
         <button class="chat-button" id="openChatButton">
@@ -35,19 +40,19 @@
             <div class="modal-content">
                 <header>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4uvODVraMaquXgKDxTqxtS_GEml-x5Ra6bQ&s" alt="Octopus8 Logo">
-                    <h2>Octopus8 Live Chat</h2>
+                    <h2>O8 Chatbot</h2>
                 </header>
                 <div class="info-text">
-                    Welcome to Octopus8 Live Chat! Please take some time to fill in the form below before starting the chat.
+                    Welcome to Octopus8 Chatbot Demo! Please fill in the form below before starting the chat.
                     <br>
                     <span class="mandatory">*Denotes mandatory fields</span>
                 </div>
                 <form id="contactDetails">
                     <label for="firstName">Name <span class="mandatory">*</span></label>
                     <input type="text" id="firstName" name="firstName" placeholder="Please enter your given name" required>
-                    <label for="email">Email <span class="mandatory">*</span></label>
+                    <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Please enter your email address" >
-                    <label for="mobile">Mobile Number <span class="mandatory">*</span></label>
+                    <label for="mobile">Mobile Number </label>
                     <input type="tel" id="mobile" name="mobile" placeholder="Please enter your mobile number" >
                     <label for="enquiry">Your Enquiry <span class="mandatory">*</span></label>
                     <textarea id="enquiry" name="enquiry" rows="4" placeholder="Please enter your enquiry" ></textarea>
@@ -66,31 +71,32 @@
             <div id="root"></div>
         </div>
     `;
-    document.body.insertAdjacentHTML('beforeend', chatHtml);
+    shadowRoot.innerHTML += chatHtml;
 
-    // Add the JavaScript functionality
     amazonConnectScript.onload = function() {
         (function() {
+            // Initialize the chat interface within the shadow DOM
             connect.ChatInterface.init({
-                containerId: 'root' // This is the id of the container where you want the widget to reside
+                containerId: shadowRoot.getElementById('root')
             });
 
-            document.getElementById('contactDetails').addEventListener('submit', function(e) {
+            shadowRoot.getElementById('contactDetails').addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                var customerName = document.getElementById('firstName').value;
-                var email = document.getElementById('email').value;
-                var enquiry = document.getElementById('enquiry').value;
+                var customerName = shadowRoot.getElementById('firstName').value;
+                var email = shadowRoot.getElementById('email').value;
+                var enquiry = shadowRoot.getElementById('enquiry').value;
+                var mobile = shadowRoot.getElementById('mobile').value;
 
                 if (!customerName) {
                     alert('You must enter a name & username');
-                    document.getElementById("contactDetails").reset();
+                    shadowRoot.getElementById("contactDetails").reset();
                 } else {
                     console.log("This is the first name:" + customerName);
-                    document.getElementById("contactDetails").reset();
+                    shadowRoot.getElementById("contactDetails").reset();
 
                     // Show the loading spinner
-                    var loadingSpinner = document.getElementById("loadingSpinner");
+                    var loadingSpinner = shadowRoot.getElementById("loadingSpinner");
                     loadingSpinner.style.display = "block";
 
                     connect.ChatInterface.initiateChat({
@@ -101,113 +107,35 @@
                         contactAttributes: JSON.stringify({
                             "customerName": customerName,
                             "email": email,
-                            "initialMessage": enquiry
+                            "mobile": mobile,
+                            "initialMessage": enquiry,
+                            "enquiry": enquiry
                         }),
                         featurePermissions: {
-                            "ATTACHMENTS": true,  // this is the override flag from user for attachments
+                            "ATTACHMENTS": true,
                         },
-                        supportedMessagingContentTypes: "text/plain", // enable rich messaging
+                        supportedMessagingContentTypes: "text/plain", 
                         contactFlowId,
                         instanceId
                     }, successHandler, failureHandler);
 
                     // Hide the form modal
-                    var modal = document.getElementById("chatModal");
+                    var modal = shadowRoot.getElementById("chatModal");
                     modal.classList.remove("show");
                     setTimeout(() => {
                         modal.style.display = "none";
-                    }, 300); // Match the duration of the CSS transition
-
-                    // Change the chat button behavior to control the chat widget
-                    var chatButton = document.getElementById("openChatButton");
-                    chatButton.onclick = function() {
-                        var chatSection = document.getElementById("section-chat");
-                        if (chatSection.classList.contains("show")) {
-                            chatSection.classList.remove("show");
-                            document.getElementById("chatIcon").classList.remove("slide-down");
-                            document.getElementById("chatIcon").classList.add("slide-up");
-                            document.getElementById("minimizeIcon").classList.remove("slide-up");
-                            document.getElementById("minimizeIcon").classList.add("slide-down");
-                        } else {
-                            chatSection.classList.add("show");
-                            document.getElementById("chatIcon").classList.remove("slide-up");
-                            document.getElementById("chatIcon").classList.add("slide-down");
-                            document.getElementById("minimizeIcon").classList.remove("slide-down");
-                            document.getElementById("minimizeIcon").classList.add("slide-up");
-                        }
-                    };
+                    }, 300);
                 }
             });
-
-            // Get the modal
-            var modal = document.getElementById("chatModal");
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("openChatButton");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementById("closeChatModal");
-
-            // When the user clicks the button, toggle the modal 
-            btn.onclick = function() {
-                if (modal.classList.contains("show")) {
-                    modal.classList.remove("show");
-                    setTimeout(() => {
-                        modal.style.display = "none";
-                    }, 300); // Match the duration of the CSS transition
-
-                    document.getElementById("chatIcon").classList.remove("slide-down");
-                    document.getElementById("chatIcon").classList.add("slide-up");
-                    document.getElementById("minimizeIcon").classList.remove("slide-up");
-                    document.getElementById("minimizeIcon").classList.add("slide-down");
-                } else {
-                    modal.style.display = "block";
-                    setTimeout(() => {
-                        modal.classList.add("show");
-                    }, 10); // Small delay to trigger the transition
-                    document.getElementById("chatIcon").classList.remove("slide-up");
-                    document.getElementById("chatIcon").classList.add("slide-down");
-                    document.getElementById("minimizeIcon").classList.remove("slide-down");
-                    document.getElementById("minimizeIcon").classList.add("slide-up");
-                }
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                if (modal.classList.contains("show")) {
-                    modal.classList.remove("show");
-                    setTimeout(() => {
-                        modal.style.display = "none";
-                    }, 300); // Match the duration of the CSS transition
-
-                    document.getElementById("chatIcon").classList.remove("slide-down");
-                    document.getElementById("chatIcon").classList.add("slide-up");
-                    document.getElementById("minimizeIcon").classList.remove("slide-up");
-                    document.getElementById("minimizeIcon").classList.add("slide-down");
-                } else {
-                    modal.style.display = "block";
-                    setTimeout(() => {
-                        modal.classList.add("show");
-                    }, 10); // Small delay to trigger the transition
-                    document.getElementById("chatIcon").classList.remove("slide-up");
-                    document.getElementById("chatIcon").classList.add("slide-down");
-                    document.getElementById("minimizeIcon").classList.remove("slide-down");
-                    document.getElementById("minimizeIcon").classList.add("slide-up");
-                }
-            }
         })();
 
         function successHandler(chatSession) {
             console.log("success!");
-            document.getElementById('section-chat').classList.add("show");
+            shadowRoot.getElementById('section-chat').classList.add("show");
 
             // Hide the loading spinner
-            var loadingSpinner = document.getElementById("loadingSpinner");
+            var loadingSpinner = shadowRoot.getElementById("loadingSpinner");
             loadingSpinner.style.display = "none";
-
-            chatSession.onChatDisconnected(function(data) {
-                //document.getElementById('section-chat').classList.remove("show");
-            });
         }
 
         function failureHandler(error) {
@@ -215,7 +143,7 @@
             console.log(error);
 
             // Hide the loading spinner
-            var loadingSpinner = document.getElementById("loadingSpinner");
+            var loadingSpinner = shadowRoot.getElementById("loadingSpinner");
             loadingSpinner.style.display = "none";
         }
     };

@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "7c27af08248e728d4ffa";
+/******/ 	var hotCurrentHash = "71572ceb4492afdad1d1";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -132532,6 +132532,9 @@ function safeParse(jsonString, defaultValue) {
  * @param {string} input.apiGatewayEndpoint
  * @param {string} input.name
  * @param {string} input.initialMessage - optional initial message to start chat
+ * @param {string} input.email
+ * @param {string} input.mobile
+ * @param {string} input.enquiry
  * @param {string} input.region
  * @param {string} input.contactAttributes
  * @param {object} input.headers
@@ -132546,6 +132549,13 @@ function initiateChat(input) {
     InitialMessage: {
       Content: input.initialMessage,
       ContentType: "text/plain"
+    },
+    Attributes: {
+      customerName: input.name,
+      email: input.email,
+      mobile: input.mobile,
+      initialMessage: input.initialMessage,
+      enquiry: input.enquiry
     },
     ParticipantDetails: {
       DisplayName: input.name
