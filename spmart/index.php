@@ -443,7 +443,7 @@
 
     </div>
     </div>
-
+    <script src="./o8-bot.js"></script>
   </main>
   <!--Main layout-->
   <div id="footer-home">
@@ -454,7 +454,6 @@
       $("#footer-home").load("footer.php");
     });
   </script>
-  <script src="./o8-bot.js"></script>
 
   <!-- MDB -->
   <script type="text/javascript" src="js/mdb.min.js"></script>

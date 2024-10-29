@@ -1,4 +1,4 @@
-/* Modal styles */
+/* bot-modal styles */
 
 .loading-spinner {
     display: none; /* Hidden by default */
@@ -21,7 +21,7 @@
     100% { transform: rotate(360deg); }
 }
 
-.modal header {
+.bot-modal header {
     background: #3b9edb;
     text-align: center;
     padding: 20px;
@@ -34,7 +34,7 @@
     position: relative; /* Add this line to allow absolute positioning of the logo */
 }
 
-.modal header h2 {
+.bot-modal header h2 {
     font-size: 17px;
     color: #ffffff;
     align-items: left;
@@ -43,7 +43,7 @@
     margin: 0;
 }
 
-.modal header img {
+.bot-modal header img {
     height: 30px; /* Adjusted height for a smaller logo */
     border-radius: 50%;
     alt: Logo; 
@@ -57,12 +57,12 @@
 
 }
 
-.modal header .header-buttons {
+.bot-modal header .header-buttons {
     display: flex;
     gap: 5px;
 }
 
-.modal header .header-buttons button {
+.bot-modal header .header-buttons button {
     background: none;
     border: none;
     color: #0099CC; /* Apply the blue color to the buttons */
@@ -70,7 +70,7 @@
     cursor: pointer;
 }
 
-.modal header .header-buttons button:hover {
+.bot-modal header .header-buttons button:hover {
     color: #007BFF; /* Slightly different blue shade for hover effect */
 }
 
@@ -89,19 +89,19 @@
     height: 100%;
 }
 
-.modal form {
+.bot-modal form {
     padding: 0 15px; /* Reduced padding for a smaller form */
 }
 
-.modal label {
+.bot-modal label {
     font-family: Inter;
     display: block;
     font-weight: bold;
     margin-left: 8px;
 }
 
-.modal input,
-.modal textarea {
+.bot-modal input,
+.bot-modal textarea {
     font-family: Inter;
     width: calc(100% - 40px); /* Adjust width to account for form padding */
     padding: 12px; /* Reduced padding inside input fields */
@@ -110,7 +110,7 @@
     border-radius: 15px;
 }
 
-.modal button {
+.bot-modal button {
     background-color: #3b9edb;
     color: white;
     font-family: Inter;
@@ -124,14 +124,14 @@
     height: 40px;
 }
 
-.modal .button-wrapper {
+.bot-modal .button-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px; /* Add some margin if needed */
 }
 
-.modal {
+.bot-modal {
     display: none;
     z-index: 1000;
     position: fixed;
@@ -144,14 +144,14 @@
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     opacity: 0;
     transform: translateY(100%);
-    z-index: 5; /* Ensure the modal is above the chat widget */
+    z-index: 5; /* Ensure the bot-modal is above the chat widget */
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2), 0px 6px 20px rgba(0, 0, 0, 0.19); /* Enhanced shadow */
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
 }
 
-.modal.show {
+.bot-modal.show {
     display: block;
     opacity: 1;
     transform: translateY(0);
