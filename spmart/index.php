@@ -453,8 +453,18 @@
       $("#footer-home").load("footer.php");
     });
   </script>
-  <iframe src="index.html" style="width: 100%; height: 725px; border: none; position: fixed; right: 0px; bottom: 0px; z-index: 999999;"></iframe>
-  <!-- MDB -->
+    <iframe id="chatIframe" src="index.html" style="width: 100px; height: 100px; border: none; position: absolute; right: 0px; bottom: 0px;"></iframe>
+    <script>
+        window.addEventListener('message', function(event) {
+            if (event.data.action === 'expand') {
+                document.getElementById('chatIframe').style.height = '725px';
+                document.getElementById('chatIframe').style.width = '435px';
+            } else if (event.data.action === 'minimize') {
+                document.getElementById('chatIframe').style.width = '100px';
+                document.getElementById('chatIframe').style.height = '100px';
+            }
+        });  <!-- MDB -->
+  </script>
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript" src="js/script.js"></script>
