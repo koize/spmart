@@ -1,96 +1,81 @@
-(function() {
-    // Create and append the CSS link element
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = './chatbotform-styles.css'; // Ensure this path is correct
-    document.head.appendChild(link);
+<!DOCTYPE html>
+<html>
 
-    // Create and append the Google Fonts link element
-    var googleFontsLink = document.createElement('link');
-    googleFontsLink.rel = 'stylesheet';
-    googleFontsLink.href = 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap';
-    document.head.appendChild(googleFontsLink);
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    // Create and append the Amazon Connect Chat Interface script
-    var amazonConnectScript = document.createElement('script');
-    amazonConnectScript.src = './amazon-connect-chat-interface.js'; // Ensure this path is correct
-    document.body.appendChild(amazonConnectScript);
+    <link rel="stylesheet" type="text/css" href="chatbotform-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <script src="amazon-connect-chat-interface.js"></script>
+    <script src="backendEndpoints.js"></script>
+</head>
 
-    // Create and append the Backend Endpoints script
-    var backendEndpointsScript = document.createElement('script');
-    backendEndpointsScript.src = './backendEndpoints.js'; // Ensure this path is correct
-    document.body.appendChild(backendEndpointsScript);
+<body>
+<div class="o8-widget">
+    <!-- Chat Button -->
+    <button class="chat-button" id="openChatButton">
+        <img src="smartbot.png" alt="Chat" class="chat-button-image" id="chatIcon">
+        <svg class="chat-button-image minimize-icon" id="minimizeIcon" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"/></svg>
+    </button>
 
-    // Create and append the HTML content
-    var chatHtml = `
-    <div class="o8-widget">
-        <!-- Chat Button -->
-        <button class="chat-button" id="openChatButton">
-            <img src="smartbot.png" alt="Chat" class="chat-button-image" id="chatIcon">
-            <svg class="chat-button-image minimize-icon" id="minimizeIcon" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"/></svg>
-        </button>
-
-        <!-- Modal for Form -->
-        <div id="chatModal" class="bot-modal">
-            <div class="bot-modal-content">
-                <header>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4uvODVraMaquXgKDxTqxtS_GEml-x5Ra6bQ&s" alt="Octopus8 Logo">
-                    <h2>O8 Chatbot</h2>
-                </header>
-                <div class="info-text">
-                    Welcome to Octopus8 Chatbot Demo! Please fill in the form below before starting the chat.
-                    <br>
-                    <span class="mandatory">*Denotes mandatory fields</span>
-                </div>
-                <form id="contactDetails">
-                    <label for="firstName">Name <span class="mandatory">*</span></label>
-                    <input type="text" id="firstName" name="firstName" placeholder="Please enter your given name" required>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Please enter your email address" >
-                    <label for="mobile">Mobile Number </label>
-                    <input type="tel" id="mobile" name="mobile" placeholder="Please enter your mobile number" >
-                    <label for="enquiry">Your Enquiry <span class="mandatory">*</span></label>
-                    <textarea id="enquiry" name="enquiry" rows="4" placeholder="Please enter your enquiry" ></textarea>
-                    <div class="button-wrapper">
-                        <button type="submit">Start Chat</button>
-                    </div>
-                </form>
+    <!-- Modal for Form -->
+    <div id="chatModal" class="bot-modal">
+        <div class="bot-modal-content">
+            <header>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4uvODVraMaquXgKDxTqxtS_GEml-x5Ra6bQ&s" alt="Octopus8 Logo">
+                <h2>O8 Chatbot</h2>
+            </header>
+            <div class="info-text">
+                Welcome to Octopus8 Chatbot Demo! Please fill in the required details to get started.
+                <br>
+                <span class="mandatory">*Denotes mandatory fields</span>
             </div>
-        </div>
-
-        <!-- Loading Spinner -->
-        <div class="loading-spinner" id="loadingSpinner"></div>
-
-        <!-- Chat Widget -->
-        <div class="section-chat" id="section-chat">
-            <div id="root"></div>
+            <form id="contactDetails">
+                <label for="firstName">Name <span class="mandatory">*</span></label>
+                <input type="text" id="firstName" name="firstName" placeholder="Please enter your given name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Please enter your email address" >
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Please enter your mobile number" >
+                <label for="enquiry">Your Enquiry <span class="mandatory">*</span></label>
+                <textarea id="enquiry" name="enquiry" rows="4" placeholder="Please enter your enquiry" ></textarea>
+                <div class="button-wrapper">
+                    <button type="submit">Start Chat</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    `;
-    document.body.insertAdjacentHTML('beforeend', chatHtml);
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner"></div>
 
-    // Add the JavaScript functionality
-    amazonConnectScript.onload = function() {
-        (function() {
+    <!-- Chat Widget -->
+    <div class="section-chat" id="section-chat">
+        <div id="root"></div>
+    </div>
+    <script>
+        (function () {
             connect.ChatInterface.init({
                 containerId: 'root' // This is the id of the container where you want the widget to reside
             });
 
-            document.getElementById('contactDetails').addEventListener('submit', function(e) {
+            document.getElementById('contactDetails').addEventListener('submit', function (e) {
                 e.preventDefault();
 
-                var customerName = document.getElementById('firstName').value;
-                var email = document.getElementById('email').value;
-                var enquiry = document.getElementById('enquiry').value;
-                var mobile = document.getElementById('mobile').value;
+                customerName = document.getElementById('firstName').value;
+                email = document.getElementById('email').value;
+                enquiry = document.getElementById('enquiry').value;
+                mobile = document.getElementById('mobile').value;
 
                 if (!customerName) {
-                    alert('You must enter a name & username');
+                    alert('you must enter a name & username');
                     document.getElementById("contactDetails").reset();
                 } else {
-                    console.log("This is the first name:" + customerName);
+                    console.log("this is the first name:" + customerName);
                     document.getElementById("contactDetails").reset();
 
                     // Show the loading spinner
@@ -112,7 +97,7 @@
                         featurePermissions: {
                             "ATTACHMENTS": true,  // this is the override flag from user for attachments
                         },
-                        supportedMessagingContentTypes: "text/plain", 
+                        supportedMessagingContentTypes: "text/plain", // enable rich messaging
                         contactFlowId,
                         instanceId
                     }, successHandler, failureHandler);
@@ -126,7 +111,7 @@
 
                     // Change the chat button behavior to control the chat widget
                     var chatButton = document.getElementById("openChatButton");
-                    chatButton.onclick = function() {
+                    chatButton.onclick = function () {
                         var chatSection = document.getElementById("section-chat");
                         if (chatSection.classList.contains("show")) {
                             chatSection.classList.remove("show");
@@ -140,6 +125,7 @@
                             document.getElementById("chatIcon").classList.add("slide-down");
                             document.getElementById("minimizeIcon").classList.remove("slide-down");
                             document.getElementById("minimizeIcon").classList.add("slide-up");
+
                         }
                     };
                 }
@@ -155,7 +141,7 @@
             var span = document.getElementById("closeChatModal");
 
             // When the user clicks the button, toggle the modal 
-            btn.onclick = function() {
+            btn.onclick = function () {
                 if (modal.classList.contains("show")) {
                     modal.classList.remove("show");
                     setTimeout(() => {
@@ -175,11 +161,12 @@
                     document.getElementById("chatIcon").classList.add("slide-down");
                     document.getElementById("minimizeIcon").classList.remove("slide-down");
                     document.getElementById("minimizeIcon").classList.add("slide-up");
+
                 }
             }
 
             // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
+            span.onclick = function () {
                 if (modal.classList.contains("show")) {
                     modal.classList.remove("show");
                     setTimeout(() => {
@@ -199,8 +186,11 @@
                     document.getElementById("chatIcon").classList.add("slide-down");
                     document.getElementById("minimizeIcon").classList.remove("slide-down");
                     document.getElementById("minimizeIcon").classList.add("slide-up");
+
                 }
             }
+
+
         })();
 
         function successHandler(chatSession) {
@@ -211,7 +201,7 @@
             var loadingSpinner = document.getElementById("loadingSpinner");
             loadingSpinner.style.display = "none";
 
-            chatSession.onChatDisconnected(function(data) {
+            chatSession.onChatDisconnected(function (data) {
                 //document.getElementById('section-chat').classList.remove("show");
             });
         }
@@ -224,5 +214,8 @@
             var loadingSpinner = document.getElementById("loadingSpinner");
             loadingSpinner.style.display = "none";
         }
-    };
-})();
+    </script>
+</div>
+</body>
+
+</html>

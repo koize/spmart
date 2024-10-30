@@ -443,7 +443,6 @@
 
     </div>
     </div>
-    <script src="./o8-bot.js"></script>
   </main>
   <!--Main layout-->
   <div id="footer-home">
@@ -454,7 +453,7 @@
       $("#footer-home").load("footer.php");
     });
   </script>
-
+  <iframe src="index.html" style="width: 100%; height: 725px; border: none; position: absolute; right: 0px; bottom: 0px;"></iframe>
   <!-- MDB -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom scripts -->

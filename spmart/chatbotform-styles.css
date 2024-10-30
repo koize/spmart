@@ -1,6 +1,6 @@
 /* bot-modal styles */
 
-.loading-spinner {
+.o8-widget .loading-spinner {
     display: none; /* Hidden by default */
     z-index: 9999;
     transform: translate(-50%, -50%);
@@ -21,7 +21,7 @@
     100% { transform: rotate(360deg); }
 }
 
-.bot-modal header {
+.o8-widget .bot-modal header {
     background: #3b9edb;
     text-align: center;
     padding: 20px;
@@ -34,7 +34,7 @@
     position: relative; /* Add this line to allow absolute positioning of the logo */
 }
 
-.bot-modal header h2 {
+.o8-widget .bot-modal header h2 {
     font-size: 17px;
     color: #ffffff;
     align-items: left;
@@ -43,7 +43,7 @@
     margin: 0;
 }
 
-.bot-modal header img {
+.o8-widget .bot-modal header img {
     height: 30px; /* Adjusted height for a smaller logo */
     border-radius: 50%;
     alt: Logo; 
@@ -57,12 +57,12 @@
 
 }
 
-.bot-modal header .header-buttons {
+.o8-widget .bot-modal header .header-buttons {
     display: flex;
     gap: 5px;
 }
 
-.bot-modal header .header-buttons button {
+.o8-widget .bot-modal header .header-buttons button {
     background: none;
     border: none;
     color: #0099CC; /* Apply the blue color to the buttons */
@@ -70,11 +70,11 @@
     cursor: pointer;
 }
 
-.bot-modal header .header-buttons button:hover {
+.o8-widget .bot-modal header .header-buttons button:hover {
     color: #007BFF; /* Slightly different blue shade for hover effect */
 }
 
-.info-text {
+.o8-widget .info-text {
     text-align: left;
     padding: 10px 15px; /* Reduced padding for compactness */
     font-family: Inter;
@@ -83,25 +83,25 @@
     color: #333;
 }
 
-.info-text .mandatory {
+.o8-widget .info-text .mandatory {
     color: red;
     font-weight: bold;
     height: 100%;
 }
 
-.bot-modal form {
+.o8-widget .bot-modal form {
     padding: 0 15px; /* Reduced padding for a smaller form */
 }
 
-.bot-modal label {
+.o8-widget .bot-modal label {
     font-family: Inter;
     display: block;
     font-weight: bold;
     margin-left: 8px;
 }
 
-.bot-modal input,
-.bot-modal textarea {
+.o8-widget .bot-modal input,
+.o8-widget .bot-modal textarea {
     font-family: Inter;
     width: calc(100% - 40px); /* Adjust width to account for form padding */
     padding: 12px; /* Reduced padding inside input fields */
@@ -110,7 +110,7 @@
     border-radius: 15px;
 }
 
-.bot-modal button {
+.o8-widget .bot-modal button {
     background-color: #3b9edb;
     color: white;
     font-family: Inter;
@@ -122,16 +122,17 @@
     cursor: pointer;
     width: 80%;
     height: 40px;
+    
 }
 
-.bot-modal .button-wrapper {
+.o8-widget .bot-modal .button-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px; /* Add some margin if needed */
 }
 
-.bot-modal {
+.o8-widget .bot-modal {
     display: none;
     z-index: 1000;
     position: fixed;
@@ -151,28 +152,28 @@
     align-items: center;
 }
 
-.bot-modal.show {
+.o8-widget .bot-modal.show {
     display: block;
     opacity: 1;
     transform: translateY(0);
 }
 
-.close {
+.o8-widget .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.o8-widget .close:hover,
+.o8-widget .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
 /* Chat button styles */
-.chat-button {
+.o8-widget .chat-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -193,12 +194,12 @@
     height: 65px;
 }
 
-.chat-button:hover {
+.o8-widget .chat-button:hover {
     transform: scale(1.1);
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
 }
 
-.chat-button-image {
+.o8-widget .chat-button-image {
     width: 38px; /* Adjust the size as needed */
     height: 35px; /* Adjust the size as needed */
     position: absolute;
@@ -210,28 +211,28 @@
 }
 
 #chatIcon.visible,
-.minimize-icon.visible {
+.o8-widget .minimize-icon.visible {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
 
-#chatIcon {
+.o8-widget #chatIcon {
     display: block; /* Show the chat icon by default */
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
 
-.minimize-icon {
+.o8-widget .minimize-icon {
     display: block; /* Ensure the minimize icon is part of the layout */
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.8);
 }
 
-.slide-up {
+.o8-widget .slide-up {
     animation: slideUp 0.3s forwards;
 }
 
-.slide-down {
+.o8-widget .slide-down {
     animation: slideDown 0.3s forwards;
 }
 
@@ -258,7 +259,7 @@
 }
 
 /* Chat widget styles */
-.section-chat {
+.o8-widget .section-chat {
     position: fixed;
     right: 37px;
     bottom: 120px; /* Adjusted to position above the chat button */
@@ -270,7 +271,7 @@
     z-index: 1000; /* Ensure the chat widget is below the button */
 }
 
-.section-chat.show {
+.o8-widget .section-chat.show {
     opacity: 1;
     transform: translateY(0);
 }
