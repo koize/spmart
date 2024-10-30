@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embed Chat Widget</title>
 </head>
-<body>
+<body style="background-color: aquamarine;">
     <!-- Other content of the host page -->
 
     <!-- Embed the chat widget -->
@@ -13,8 +13,8 @@
     <script>
         window.addEventListener('message', function(event) {
             if (event.data.action === 'expand') {
-                document.getElementById('chatIframe').style.height = '725px';
-                document.getElementById('chatIframe').style.width = '435px';
+                document.getElementById('chatIframe').style.height = '730px';
+                document.getElementById('chatIframe').style.width = '440px';
             } else if (event.data.action === 'minimize') {
                 document.getElementById('chatIframe').style.width = '100px';
                 document.getElementById('chatIframe').style.height = '100px';

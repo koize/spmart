@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "71572ceb4492afdad1d1";
+/******/ 	var hotCurrentHash = "4d64f3565aec6b2ab8df";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -130850,10 +130850,8 @@ var _templateObject,
 
 
 
-var Page = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div(_templateObject || (_templateObject = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_1__["default"])(["\n  width: 390px;\n  height: 600px;\n  border-radius: 20px;\n  font-family: ", ";\n  margin: ", ";\n  border-collapse: collapse;\n  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2), 0px 6px 20px rgba(0, 0, 0, 0.19); /* Enhanced shadow */\n  box-sizing: border-box;\n\n  *, *:before, *:after {\n    box-sizing: inherit;\n  }\n"])), function (props) {
+var Page = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div(_templateObject || (_templateObject = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_1__["default"])(["\n  width: 390px;\n  height: 600px;\n  border-radius: 20px;\n  font-family: ", ";\n  border-collapse: collapse;\n  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2), 0px 6px 20px rgba(0, 0, 0, 0.19); /* Enhanced shadow */\n  box-sizing: border-box;\n  background-color: #ffffff;\n  *, *:before, *:after {\n    box-sizing: inherit;\n  }\n"])), function (props) {
   return props.theme.fonts.regular;
-}, function (props) {
-  return props.theme.spacing.base;
 });
 var AppProvider = function AppProvider(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_theme__WEBPACK_IMPORTED_MODULE_3__["ThemeProvider"], {
@@ -130861,7 +130859,7 @@ var AppProvider = function AppProvider(props) {
     __self: _this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29,
+      lineNumber: 28,
       columnNumber: 5
     }
   }, props.children);
@@ -130877,7 +130875,7 @@ function App(_ref) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 41,
+      lineNumber: 40,
       columnNumber: 5
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Page, {
@@ -130885,14 +130883,14 @@ function App(_ref) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 42,
+      lineNumber: 41,
       columnNumber: 7
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_Chat_ChatContainer__WEBPACK_IMPORTED_MODULE_5__["default"], Object.assign({}, props, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 43,
+      lineNumber: 42,
       columnNumber: 9
     }
   }))));
@@ -130990,7 +130988,7 @@ var _templateObject,
 
 var ChatWrapper = styled_components__WEBPACK_IMPORTED_MODULE_15__["default"].div(_templateObject || (_templateObject = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_6__["default"])(["\n  position: relative;\n  border-radius: 20px;\n  display: flex;\n  flex-direction: column;\n  height: 500px;\n  @media (max-width:640px) {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    right: 0;\n    left: 0;\n  }\n"])));
 var ParentHeaderWrapper = styled_components__WEBPACK_IMPORTED_MODULE_15__["default"].div(_templateObject2 || (_templateObject2 = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_6__["default"])(["\n  margin: 0;\n  padding: 0;\n  order: 1;\n   @media (max-width:640px) {\n    position: absolute;\n    left: 0;\n    top: 0;\n    right: 0;\n  }\n"])));
-var ChatComposerWrapper = styled_components__WEBPACK_IMPORTED_MODULE_15__["default"].div(_templateObject3 || (_templateObject3 = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_6__["default"])(["\n  order: 2;\n  margin: 5;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  height: 520px;\n   @media (max-width:640px) {\n    position: absolute;\n    left: 0;\n    bottom: 85px;\n    right: 0;\n    top: 85px;\n    min-height: auto;\n  }\n"])));
+var ChatComposerWrapper = styled_components__WEBPACK_IMPORTED_MODULE_15__["default"].div(_templateObject3 || (_templateObject3 = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_6__["default"])(["\n  order: 2;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  height: 520px;\n   @media (max-width:640px) {\n    position: absolute;\n    left: 0;\n    bottom: 85px;\n    right: 0;\n    top: 65px;\n    min-height: auto;\n  }\n"])));
 var HeaderWrapper = styled_components__WEBPACK_IMPORTED_MODULE_15__["default"].div(_templateObject4 || (_templateObject4 = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_6__["default"])(["\n  background: #3b9edb\n  text-align: center;\n  padding: 20px;\n  color: ", ";\n  flex-shrink: 0;\n  border-radius: 20px 20px 0 0;\n  display: flex; /* Ensure flexbox is used */\n  align-items: left; /* Align items vertically centered */\n  justify-content: left; /* Center items horizontally */\n  position: relative; /* Add this line to allow absolute positioning of the logo */\n"])), function (props) {
   return props.theme.palette.white;
 });
