@@ -453,7 +453,7 @@
       $("#footer-home").load("footer.php");
     });
   </script>
-    <iframe id="chatIframe" src="index.html" style="width: 100px; height: 100px; border: none; position: fixed; right: 0px; bottom: 0px;"></iframe>
+    <iframe id="chatIframe" src="index.html" style="width: 100px; height: 100px; border: none; position: fixed; right: 0px; bottom: 0px; z-index: 99999999;"></iframe>
     <script>
         window.addEventListener('message', function(event) {
             if (event.data.action === 'expand') {
