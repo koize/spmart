@@ -1,62 +1,59 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <link rel="stylesheet" type="text/css" href="chatbotform-styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="chatbotform-styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
     <script src="amazon-connect-chat-interface.js"></script>
     <script src="backendEndpoints.js"></script>
 </head>
-
 <body>
-<div class="o8-widget">
-    <!-- Chat Button -->
-    <button class="chat-button" id="openChatButton">
-        <img src="smartbot.png" alt="Chat" class="chat-button-image" id="chatIcon">
-        <svg class="chat-button-image minimize-icon" id="minimizeIcon" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"/></svg>
-    </button>
+    <div class="o8-widget">
+        <!-- Chat Button -->
+        <button class="chat-button" id="openChatButton">
+            <img src="smartbot.png" alt="Chat" class="chat-button-image" id="chatIcon">
+            <svg class="chat-button-image minimize-icon" id="minimizeIcon" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"/></svg>
+        </button>
 
-    <!-- Modal for Form -->
-    <div id="chatModal" class="bot-modal">
-        <div class="bot-modal-content">
-            <header>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4uvODVraMaquXgKDxTqxtS_GEml-x5Ra6bQ&s" alt="Octopus8 Logo">
-                <h2>O8 Chatbot</h2>
-            </header>
-            <div class="info-text">
-                Welcome to Octopus8 Chatbot Demo! Please fill in the required details to get started.
-                <br>
-                <span class="mandatory">*Denotes mandatory fields</span>
-            </div>
-            <form id="contactDetails">
-                <label for="firstName">Name <span class="mandatory">*</span></label>
-                <input type="text" id="firstName" name="firstName" placeholder="Please enter your given name" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Please enter your email address" >
-                <label for="mobile">Mobile Number</label>
-                <input type="tel" id="mobile" name="mobile" placeholder="Please enter your mobile number" >
-                <label for="enquiry">Your Enquiry <span class="mandatory">*</span></label>
-                <textarea id="enquiry" name="enquiry" rows="4" placeholder="Please enter your enquiry" ></textarea>
-                <div class="button-wrapper">
-                    <button type="submit">Start Chat</button>
+        <!-- Modal for Form -->
+        <div id="chatModal" class="bot-modal">
+            <div class="bot-modal-content">
+                <header>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4uvODVraMaquXgKDxTqxtS_GEml-x5Ra6bQ&s" alt="Octopus8 Logo">
+                    <h2>O8 Chatbot</h2>
+                </header>
+                <div class="info-text">
+                    Welcome to Octopus8 Chatbot Demo! Please fill in the required details to get started.
+                    <br>
+                    <span class="mandatory">*Denotes mandatory fields</span>
                 </div>
-            </form>
+                <form id="contactDetails">
+                    <label for="firstName">Name <span class="mandatory">*</span></label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Please enter your given name" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Please enter your email address">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Please enter your mobile number">
+                    <label for="enquiry">Your Enquiry <span class="mandatory">*</span></label>
+                    <textarea id="enquiry" name="enquiry" rows="4" placeholder="Please enter your enquiry"></textarea>
+                    <div class="button-wrapper">
+                        <button type="submit">Start Chat</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading-spinner" id="loadingSpinner"></div>
+
+        <!-- Chat Widget -->
+        <div class="section-chat" id="section-chat">
+            <div id="root"></div>
         </div>
     </div>
 
-    <!-- Loading Spinner -->
-    <div class="loading-spinner" id="loadingSpinner"></div>
-
-    <!-- Chat Widget -->
-    <div class="section-chat" id="section-chat">
-        <div id="root"></div>
-    </div>
     <script>
         (function () {
             connect.ChatInterface.init({
@@ -119,13 +116,14 @@
                             document.getElementById("chatIcon").classList.add("slide-up");
                             document.getElementById("minimizeIcon").classList.remove("slide-up");
                             document.getElementById("minimizeIcon").classList.add("slide-down");
+                            parent.postMessage({ action: 'minimize' }, '*');
                         } else {
                             chatSection.classList.add("show");
                             document.getElementById("chatIcon").classList.remove("slide-up");
                             document.getElementById("chatIcon").classList.add("slide-down");
                             document.getElementById("minimizeIcon").classList.remove("slide-down");
                             document.getElementById("minimizeIcon").classList.add("slide-up");
-
+                            parent.postMessage({ action: 'expand' }, '*');
                         }
                     };
                 }
@@ -152,6 +150,7 @@
                     document.getElementById("chatIcon").classList.add("slide-up");
                     document.getElementById("minimizeIcon").classList.remove("slide-up");
                     document.getElementById("minimizeIcon").classList.add("slide-down");
+                    parent.postMessage({ action: 'minimize' }, '*');
                 } else {
                     modal.style.display = "block";
                     setTimeout(() => {
@@ -161,7 +160,7 @@
                     document.getElementById("chatIcon").classList.add("slide-down");
                     document.getElementById("minimizeIcon").classList.remove("slide-down");
                     document.getElementById("minimizeIcon").classList.add("slide-up");
-
+                    parent.postMessage({ action: 'expand' }, '*');
                 }
             }
 
@@ -177,6 +176,7 @@
                     document.getElementById("chatIcon").classList.add("slide-up");
                     document.getElementById("minimizeIcon").classList.remove("slide-up");
                     document.getElementById("minimizeIcon").classList.add("slide-down");
+                    parent.postMessage({ action: 'minimize' }, '*');
                 } else {
                     modal.style.display = "block";
                     setTimeout(() => {
@@ -186,11 +186,9 @@
                     document.getElementById("chatIcon").classList.add("slide-down");
                     document.getElementById("minimizeIcon").classList.remove("slide-down");
                     document.getElementById("minimizeIcon").classList.add("slide-up");
-
+                    parent.postMessage({ action: 'expand' }, '*');
                 }
             }
-
-
         })();
 
         function successHandler(chatSession) {
@@ -215,7 +213,5 @@
             loadingSpinner.style.display = "none";
         }
     </script>
-</div>
 </body>
-
 </html>

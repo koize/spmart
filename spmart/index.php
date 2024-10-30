@@ -448,12 +448,12 @@
   <div id="footer-home">
 
   </div>
-  <script>
+  <script>  
     $(function() {
       $("#footer-home").load("footer.php");
     });
   </script>
-  <iframe src="index.html" style="width: 100%; height: 725px; border: none; position: absolute; right: 0px; bottom: 0px;"></iframe>
+  <iframe src="index.html" style="width: 100%; height: 725px; border: none; position: fixed; right: 0px; bottom: 0px; z-index: 999999;"></iframe>
   <!-- MDB -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom scripts -->
