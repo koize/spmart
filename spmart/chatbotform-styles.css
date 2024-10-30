@@ -261,8 +261,8 @@
 /* Chat widget styles */
 .o8-widget .section-chat {
     position: fixed;
-    right: 37px;
-    bottom: 120px; /* Adjusted to position above the chat button */
+    right: 23px;
+    bottom: 108px; /* Adjusted to position above the chat button */
     width: 390px;
     height: 600px;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;

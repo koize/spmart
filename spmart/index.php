@@ -457,13 +457,13 @@
     <script>
         window.addEventListener('message', function(event) {
             if (event.data.action === 'expand') {
-                document.getElementById('chatIframe').style.height = '725px';
-                document.getElementById('chatIframe').style.width = '435px';
+                document.getElementById('chatIframe').style.height = '730px';
+                document.getElementById('chatIframe').style.width = '440px';
             } else if (event.data.action === 'minimize') {
                 document.getElementById('chatIframe').style.width = '100px';
                 document.getElementById('chatIframe').style.height = '100px';
             }
-        });  <!-- MDB -->
+        });
   </script>
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom scripts -->
