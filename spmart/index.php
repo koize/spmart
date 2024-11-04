@@ -460,11 +460,13 @@
                 document.getElementById('chatIframe').style.height = '730px';
                 document.getElementById('chatIframe').style.width = '440px';
             } else if (event.data.action === 'minimize') {
-                document.getElementById('chatIframe').style.width = '100px';
-                document.getElementById('chatIframe').style.height = '100px';
+                setTimeout(function() {
+                    document.getElementById('chatIframe').style.height = '100px';
+                    document.getElementById('chatIframe').style.width = '100px';
+                    }, 300);
             }
         });
-  </script>
+    </script>
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript" src="js/script.js"></script>
