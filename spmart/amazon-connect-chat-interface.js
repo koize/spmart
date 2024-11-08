@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "52db1fa9a7df174669b7";
+/******/ 	var hotCurrentHash = "269f1e915c48afdc0cd8";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -148105,9 +148105,9 @@ var _templateObject,
 
 
 
-var ACTION_BAR_HEIGHT = "85px";
+var ACTION_BAR_HEIGHT = "0px";
 var Actions = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject || (_templateObject = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_5__["default"])(["\n  background: \"#ffffff\";\n  border-radius: 20px;\n  height: ", ";\n"])), ACTION_BAR_HEIGHT);
-var FooterWrapper = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject2 || (_templateObject2 = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_5__["default"])(["\n  order: 3;\n  height: 20px;\n  padding-top: 5px;\n  @media (max-width: 640px) {\n    position: absolute;\n    left: 0;\n    bottom: 0;\n    right: 0;\n  }\n"])));
+var FooterWrapper = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject2 || (_templateObject2 = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_5__["default"])(["\n  order: 3;\n  height: 0px;\n  padding-top: 5px;\n  @media (max-width: 640px) {\n    position: absolute;\n    left: 0;\n    bottom: 0;\n    right: 0;\n  }\n"])));
 var ButtonWrapper = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject3 || (_templateObject3 = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_5__["default"])(["\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  height: 50%;\n  align-items: center;\n  > button {\n    min-width: 85px;\n    margin: ", ";\n    font-weight: bold;\n  }\n"])), function (props) {
   return props.theme.spacing.mini;
 });
@@ -148141,7 +148141,7 @@ var ChatActionBar = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.logger && this.logger.info("Component mounted.");
       if (this.props.showEndChatButton) {
-        ACTION_BAR_HEIGHT = "20px";
+        ACTION_BAR_HEIGHT = "0px";
       }
     }
   }, {
@@ -148897,7 +148897,7 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 
 
 
-var ButtonWrapper = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].div(_templateObject || (_templateObject = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\n  display: flex;\n  justify-content: center;\n  margin-top: 10px;\n  > button {\n    min-width: 85px;\n  }\n"])));
+var ButtonWrapper = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].div(_templateObject || (_templateObject = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\n  display: flex;\n  justify-content: center;\n  height: 50%;\n  margin-top: 10px;\n  > button {\n    min-width: 85px;\n  }\n"])));
 var MessageBoxFail = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].div(_templateObject2 || (_templateObject2 = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\n  padding: 10;\n  background-color: red;\n"])));
 var LoadingWrapper = Object(styled_components__WEBPACK_IMPORTED_MODULE_9__["default"])(connect_theme_Helpers__WEBPACK_IMPORTED_MODULE_18__["FlexRowContainer"])(_templateObject3 || (_templateObject3 = Object(_mnt_d_o8_aws_connect_bot_bbbbb_amazon_connect_chat_interface_node_modules_babel_preset_react_app_node_modules_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\n  padding: ", ";\n  height: 100%;\n"])), function (_ref) {
   var theme = _ref.theme;
@@ -149045,7 +149045,7 @@ var ChatContainer = /*#__PURE__*/function (_Component) {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 145,
+            lineNumber: 146,
             columnNumber: 9
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(connect_core__WEBPACK_IMPORTED_MODULE_10__["Loader"], {
@@ -149054,7 +149054,7 @@ var ChatContainer = /*#__PURE__*/function (_Component) {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 146,
+            lineNumber: 147,
             columnNumber: 11
           }
         }));
@@ -149064,21 +149064,21 @@ var ChatContainer = /*#__PURE__*/function (_Component) {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 153,
+            lineNumber: 154,
             columnNumber: 9
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(MessageBoxFail, {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 154,
+            lineNumber: 155,
             columnNumber: 11
           }
         }, "Initialization failed"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(ButtonWrapper, {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 155,
+            lineNumber: 156,
             columnNumber: 11
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(connect_core__WEBPACK_IMPORTED_MODULE_10__["Button"], {
@@ -149088,14 +149088,14 @@ var ChatContainer = /*#__PURE__*/function (_Component) {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 156,
+            lineNumber: 157,
             columnNumber: 13
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 157,
+            lineNumber: 158,
             columnNumber: 15
           }
         }, "Go Back"))));
@@ -149104,14 +149104,14 @@ var ChatContainer = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 164,
+          lineNumber: 165,
           columnNumber: 9
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_context_LanguageContext__WEBPACK_IMPORTED_MODULE_21__["LanguageContext"].Consumer, {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 165,
+          lineNumber: 166,
           columnNumber: 11
         }
       }, function (_ref3) {
@@ -149126,7 +149126,7 @@ var ChatContainer = /*#__PURE__*/function (_Component) {
           __self: _this2,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 167,
+            lineNumber: 168,
             columnNumber: 15
           }
         })));
