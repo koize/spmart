@@ -17,212 +17,218 @@
 <body>
     <div class="o8-widget">
 
+        <!-- Chat Button -->
+        <button class="chat-button" id="openChatButton">
+            <img src="smartbot.png" alt="Chat" class="chat-button-image" id="chatIcon">
+            <svg class="chat-button-image minimize-icon" id="minimizeIcon" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"/></svg>
+        </button>
 
-    <!-- Chat Button -->
-    <button class="chat-button" id="openChatButton">
-        <img src="smartbot.png" alt="Chat" class="chat-button-image" id="chatIcon">
-        <svg class="chat-button-image minimize-icon" id="minimizeIcon" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"/></svg>
-    </button>
-
-    <!-- Modal for Form -->
-    <div id="chatModal" class="bot-modal">
-        <div class="bot-modal-content">
-            <header>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4uvODVraMaquXgKDxTqxtS_GEml-x5Ra6bQ&s" alt="Octopus8 Logo">
-                <h2>O8 Chatbot</h2>
-            </header>
-            <div class="info-text">
-                Welcome to Octopus8 Chatbot Demo! Please fill in the required details to get started.
-                <br>
-                <span class="mandatory">*Denotes mandatory fields</span>
-            </div>
-            <form id="contactDetails">
-                <label for="firstName">Name <span class="mandatory">*</span></label>
-                <input type="text" id="firstName" name="firstName" placeholder="Please enter your given name" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Please enter your email address" >
-                <label for="mobile">Mobile Number</label>
-                <input type="tel" id="mobile" name="mobile" placeholder="Please enter your mobile number" >
-                <label for="enquiry">Your Enquiry <span class="mandatory">*</span></label>
-                <textarea id="enquiry" name="enquiry" rows="4" placeholder="Please enter your enquiry" ></textarea>
-                <div class="button-wrapper">
-                    <button type="submit">Start Chat</button>
+        <!-- Modal for Form -->
+        <div id="chatModal" class="bot-modal">
+            <div class="bot-modal-content">
+                <header>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4uvODVraMaquXgKDxTqxtS_GEml-x5Ra6bQ&s" alt="Octopus8 Logo">
+                    <h2>O8 Chatbot</h2>
+                </header>
+                <div class="info-text">
+                    Welcome to Octopus8 Chatbot Demo! Please fill in the required details to get started.
+                    <br>
+                    <span class="mandatory">*Denotes mandatory fields</span>
                 </div>
-            </form>
+                <form id="contactDetails">
+                    <label for="firstName">Name <span class="mandatory">*</span></label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Please enter your given name" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Please enter your email address" >
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Please enter your mobile number" >
+                    <label for="enquiry">Your Enquiry <span class="mandatory">*</span></label>
+                    <textarea id="enquiry" name="enquiry" rows="4" placeholder="Please enter your enquiry" ></textarea>
+                    <div class="button-wrapper">
+                        <button type="submit">Start Chat</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <!-- Loading Spinner -->
-    <div class="loading-spinner" id="loadingSpinner"></div>
+        <!-- Loading Spinner -->
+        <div class="loading-spinner" id="loadingSpinner"></div>
 
-    <!-- Chat Widget -->
-    <div class="section-chat" id="section-chat">
-        <div id="root"></div>
-    </div>
-    <script>
-        (function () {
-            connect.ChatInterface.init({
-                containerId: 'root' // This is the id of the container where you want the widget to reside
-            });
+        <!-- Chat Widget -->
+        <div class="section-chat" id="section-chat">
+            <div id="root"></div>
+        </div>
+        <script>
+            (function () {
+                // Variable to toggle pre-chat form modal
+                var enablePreChatForm = true; // Set to false to disable pre-chat form
 
-            document.getElementById('contactDetails').addEventListener('submit', function (e) {
-                e.preventDefault();
+                connect.ChatInterface.init({
+                    containerId: 'root' // This is the id of the container where you want the widget to reside
+                });
 
-                customerName = document.getElementById('firstName').value;
-                email = document.getElementById('email').value;
-                enquiry = document.getElementById('enquiry').value;
-                mobile = document.getElementById('mobile').value;
+                var chatButton = document.getElementById('openChatButton');
 
-                if (!customerName) {
-                    alert('you must enter a name & username');
-                    document.getElementById("contactDetails").reset();
-                } else {
-                    console.log("this is the first name:" + customerName);
-                    document.getElementById("contactDetails").reset();
+                if (enablePreChatForm) {
+                    // Pre-chat form is enabled
+                    // Get the modal
+                    var modal = document.getElementById('chatModal');
 
-                    // Show the loading spinner
-                    var loadingSpinner = document.getElementById("loadingSpinner");
-                    loadingSpinner.style.display = "block";
-
-                    connect.ChatInterface.initiateChat({
-                        name: customerName,
-                        initialMessage: enquiry,
-                        region,
-                        apiGatewayEndpoint,
-                        contactAttributes: JSON.stringify({
-                            "customerName": customerName,
-                            "email": email,
-                            "mobile": mobile,
-                            "initialMessage": enquiry,
-                            "enquiry": enquiry
-                        }),
-                        featurePermissions: {
-                            "ATTACHMENTS": true,  // this is the override flag from user for attachments
-                        },
-                        supportedMessagingContentTypes: "text/plain", // enable rich messaging
-                        contactFlowId,
-                        instanceId
-                    }, successHandler, failureHandler);
-
-                    // Hide the form modal
-                    var modal = document.getElementById("chatModal");
-                    modal.classList.remove("show");
-                    setTimeout(() => {
-                        modal.style.display = "none";
-                    }, 300); // Match the duration of the CSS transition
-
-                    // Change the chat button behavior to control the chat widget
-                    var chatButton = document.getElementById("openChatButton");
+                    // When the user clicks the button, toggle the modal 
                     chatButton.onclick = function () {
-                        var chatSection = document.getElementById("section-chat");
-                        if (chatSection.classList.contains("show")) {
-                            chatSection.classList.remove("show");
+                        if (modal.classList.contains("show")) {
+                            modal.classList.remove("show");
+                            setTimeout(() => {
+                                modal.style.display = "none";
+                            }, 300); // Match the duration of the CSS transition
+
                             document.getElementById("chatIcon").classList.remove("slide-down");
                             document.getElementById("chatIcon").classList.add("slide-up");
                             document.getElementById("minimizeIcon").classList.remove("slide-up");
                             document.getElementById("minimizeIcon").classList.add("slide-down");
+                            parent.postMessage({ action: 'minimize' }, '*');
                         } else {
-                            chatSection.classList.add("show");
+                            modal.style.display = "block";
+                            setTimeout(() => {
+                                modal.classList.add("show");
+                            }, 10); // Small delay to trigger the transition
                             document.getElementById("chatIcon").classList.remove("slide-up");
                             document.getElementById("chatIcon").classList.add("slide-down");
                             document.getElementById("minimizeIcon").classList.remove("slide-down");
                             document.getElementById("minimizeIcon").classList.add("slide-up");
-
+                            parent.postMessage({ action: 'expand' }, '*');
                         }
                     };
-                }
-            });
 
-            // Get the modal
-            var modal = document.getElementById("chatModal");
+                    document.getElementById('contactDetails').addEventListener('submit', function (e) {
+                        e.preventDefault();
 
-            // Get the button that opens the modal
-            var btn = document.getElementById("openChatButton");
+                        var customerName = document.getElementById('firstName').value;
+                        var email = document.getElementById('email').value;
+                        var enquiry = document.getElementById('enquiry').value;
+                        var mobile = document.getElementById('mobile').value;
 
-            // Get the <span> element that closes the modal
-            var span = document.getElementById("closeChatModal");
+                        if (!customerName) {
+                            alert('You must enter a name');
+                            document.getElementById("contactDetails").reset();
+                        } else {
+                            console.log("This is the first name: " + customerName);
+                            document.getElementById("contactDetails").reset();
 
-            // When the user clicks the button, toggle the modal 
-            btn.onclick = function () {
-                if (modal.classList.contains("show")) {
-                    modal.classList.remove("show");
-                    setTimeout(() => {
-                        modal.style.display = "none";
-                    }, 300); // Match the duration of the CSS transition
+                            // Show the loading spinner
+                            var loadingSpinner = document.getElementById("loadingSpinner");
+                            loadingSpinner.style.display = "block";
 
-                    document.getElementById("chatIcon").classList.remove("slide-down");
-                    document.getElementById("chatIcon").classList.add("slide-up");
-                    document.getElementById("minimizeIcon").classList.remove("slide-up");
-                    document.getElementById("minimizeIcon").classList.add("slide-down");
-                    parent.postMessage({ action: 'minimize' }, '*');
+                            connect.ChatInterface.initiateChat({
+                                name: customerName,
+                                initialMessage: enquiry,
+                                region,
+                                apiGatewayEndpoint,
+                                contactAttributes: JSON.stringify({
+                                    "customerName": customerName,
+                                    "email": email,
+                                    "mobile": mobile,
+                                    "initialMessage": enquiry,
+                                    "enquiry": enquiry
+                                }),
+                                featurePermissions: {
+                                    "ATTACHMENTS": true,  // this is the override flag from user for attachments
+                                },
+                                supportedMessagingContentTypes: "text/plain", // enable rich messaging
+                                contactFlowId,
+                                instanceId
+                            }, successHandler, failureHandler);
+
+                            // Hide the form modal
+                            modal.classList.remove("show");
+                            setTimeout(() => {
+                                modal.style.display = "none";
+                            }, 300); // Match the duration of the CSS transition
+
+                            // Change the chat button behavior to control the chat widget
+                            chatButton.onclick = function () {
+                                var chatSection = document.getElementById("section-chat");
+                                if (chatSection.classList.contains("show")) {
+                                    chatSection.classList.remove("show");
+                                    document.getElementById("chatIcon").classList.remove("slide-down");
+                                    document.getElementById("chatIcon").classList.add("slide-up");
+                                    document.getElementById("minimizeIcon").classList.remove("slide-up");
+                                    document.getElementById("minimizeIcon").classList.add("slide-down");
+                                } else {
+                                    chatSection.classList.add("show");
+                                    document.getElementById("chatIcon").classList.remove("slide-up");
+                                    document.getElementById("chatIcon").classList.add("slide-down");
+                                    document.getElementById("minimizeIcon").classList.remove("slide-down");
+                                    document.getElementById("minimizeIcon").classList.add("slide-up");
+                                }
+                            };
+                        }
+                    });
 
                 } else {
-                    modal.style.display = "block";
-                    setTimeout(() => {
-                        modal.classList.add("show");
-                    }, 10); // Small delay to trigger the transition
-                    document.getElementById("chatIcon").classList.remove("slide-up");
-                    document.getElementById("chatIcon").classList.add("slide-down");
-                    document.getElementById("minimizeIcon").classList.remove("slide-down");
-                    document.getElementById("minimizeIcon").classList.add("slide-up");
-                    parent.postMessage({ action: 'expand' }, '*');
+                    // Pre-chat form is disabled; initiate chat immediately on click
+                    chatButton.onclick = function () {
+                        // Show the loading spinner
+                        var loadingSpinner = document.getElementById("loadingSpinner");
+                        loadingSpinner.style.display = "block";
 
+                        // Initiate the chat
+                        connect.ChatInterface.initiateChat({
+                            name: "Customer",
+                            initialMessage: "",
+                            region,
+                            apiGatewayEndpoint,
+                            contactAttributes: JSON.stringify({}),
+                            featurePermissions: {
+                                "ATTACHMENTS": true,  // this is the override flag from user for attachments
+                            },
+                            supportedMessagingContentTypes: "text/plain", // enable rich messaging
+                            contactFlowId,
+                            instanceId
+                        }, successHandler, failureHandler);
+
+                        // Change the chat button behavior to control the chat widget
+                        chatButton.onclick = function () {
+                            var chatSection = document.getElementById("section-chat");
+                            if (chatSection.classList.contains("show")) {
+                                chatSection.classList.remove("show");
+                                document.getElementById("chatIcon").classList.remove("slide-down");
+                                document.getElementById("chatIcon").classList.add("slide-up");
+                                document.getElementById("minimizeIcon").classList.remove("slide-up");
+                                document.getElementById("minimizeIcon").classList.add("slide-down");
+                            } else {
+                                chatSection.classList.add("show");
+                                document.getElementById("chatIcon").classList.remove("slide-up");
+                                document.getElementById("chatIcon").classList.add("slide-down");
+                                document.getElementById("minimizeIcon").classList.remove("slide-down");
+                                document.getElementById("minimizeIcon").classList.add("slide-up");
+                            }
+                        };
+                    };
                 }
-            }
 
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                if (modal.classList.contains("show")) {
-                    modal.classList.remove("show");
-                    setTimeout(() => {
-                        modal.style.display = "none";
-                    }, 300); // Match the duration of the CSS transition
+                function successHandler(chatSession) {
+                    console.log("Success!");
+                    document.getElementById('section-chat').classList.add("show");
 
-                    document.getElementById("chatIcon").classList.remove("slide-down");
-                    document.getElementById("chatIcon").classList.add("slide-up");
-                    document.getElementById("minimizeIcon").classList.remove("slide-up");
-                    document.getElementById("minimizeIcon").classList.add("slide-down");
-                    parent.postMessage({ action: 'minimize' }, '*');
+                    // Hide the loading spinner
+                    var loadingSpinner = document.getElementById("loadingSpinner");
+                    loadingSpinner.style.display = "none";
 
-                } else {
-                    modal.style.display = "block";
-                    setTimeout(() => {
-                        modal.classList.add("show");
-                    }, 10); // Small delay to trigger the transition
-                    document.getElementById("chatIcon").classList.remove("slide-up");
-                    document.getElementById("chatIcon").classList.add("slide-down");
-                    document.getElementById("minimizeIcon").classList.remove("slide-down");
-                    document.getElementById("minimizeIcon").classList.add("slide-up");
-                    parent.postMessage({ action: 'expand' }, '*');
-
+                    chatSession.onChatDisconnected(function (data) {
+                        // Handle chat disconnection if needed
+                    });
                 }
-            }
 
+                function failureHandler(error) {
+                    console.log("There was an error: ", error);
 
-        })();
-
-        function successHandler(chatSession) {
-            console.log("success!");
-            document.getElementById('section-chat').classList.add("show");
-
-            // Hide the loading spinner
-            var loadingSpinner = document.getElementById("loadingSpinner");
-            loadingSpinner.style.display = "none";
-
-            chatSession.onChatDisconnected(function (data) {
-                //document.getElementById('section-chat').classList.remove("show");
-            });
-        }
-
-        function failureHandler(error) {
-            console.log("There was an error: ");
-            console.log(error);
-
-            // Hide the loading spinner
-            var loadingSpinner = document.getElementById("loadingSpinner");
-            loadingSpinner.style.display = "none";
-        }
-    </script>
+                    // Hide the loading spinner
+                    var loadingSpinner = document.getElementById("loadingSpinner");
+                    loadingSpinner.style.display = "none";
+                }
+            })();
+        </script>
     </div>
 
 </body>
